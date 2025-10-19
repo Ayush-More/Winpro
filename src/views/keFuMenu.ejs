@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support - Wingo Color Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #ff4757 0%, #ff6b35 50%, #ff8c42 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            min-height: 100vh;
+                max-width: 430px !important;
+            position: relative;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .header-left i {
+            color: white;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .help-icon {
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .content {
+            padding: 15px;
+            padding-bottom: 100px;
+        }
+
+        .support-hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+            padding: 20px;
+        }
+
+        .support-hero h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .support-hero p {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .quick-action-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quick-action-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .quick-action-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 20px;
+            color: white;
+        }
+
+        .quick-action-icon.chat { background: linear-gradient(135deg, #ff4757, #ff6b35); }
+        .quick-action-icon.email { background: linear-gradient(135deg, #3742fa, #5352ed); }
+        .quick-action-icon.phone { background: linear-gradient(135deg, #2ed573, #7bed9f); }
+        .quick-action-icon.faq { background: linear-gradient(135deg, #ffa502, #ff9f43); }
+
+        .quick-action-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .quick-action-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .support-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .support-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .section-icon.contact { background: linear-gradient(135deg, #ff4757, #ff6b35); }
+        .section-icon.faq { background: linear-gradient(135deg, #3742fa, #5352ed); }
+        .section-icon.ticket { background: linear-gradient(135deg, #2ed573, #7bed9f); }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .contact-item-icon.whatsapp { background: #25d366; }
+        .contact-item-icon.telegram { background: #0088cc; }
+        .contact-item-icon.email { background: #ea4335; }
+        .contact-item-icon.phone { background: #34a853; }
+
+        .contact-item-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .contact-item-info p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .contact-status {
+            margin-left: auto;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-online {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-busy {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .faq-item {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            background: #f8f9fa;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+
+        .faq-question.active {
+            background: #ff4757;
+            color: white;
+        }
+
+        .faq-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            padding: 15px;
+            max-height: 200px;
+        }
+
+        .ticket-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #ff4757;
+            box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff4757, #ff6b35);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .content {
+                padding: 10px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .support-hero h1 {
+                font-size: 20px;
+            }
+
+            .support-section {
+                padding: 15px;
+            }
+
+            .contact-item {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="header-title">Customer Support</div>
+            <div class="header-right">
+                <div class="help-icon" onclick="scrollToFAQ()">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Support Hero -->
+            <div class="support-hero">
+                <h1>How can we help you?</h1>
+                <p>Get instant support for your Wingo color prediction gaming experience. Our team is here to assist you 24/7 with any questions or issues.</p>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="quick-action-card" onclick="openLiveChat()">
+                    <div class="quick-action-icon chat">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="quick-action-title">Live Chat</div>
+                    <div class="quick-action-desc">Chat with our support team instantly</div>
+                </div>
+                <div class="quick-action-card" onclick="sendEmail()">
+                    <div class="quick-action-icon email">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="quick-action-title">Email Support</div>
+                    <div class="quick-action-desc">Send us your detailed query</div>
+                </div>
+                <div class="quick-action-card  " style="display:none;" onclick="callSupport()">
+                    <div class="quick-action-icon phone">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="quick-action-title">Phone Support</div>
+                    <div class="quick-action-desc">Speak directly with our team</div>
+                </div>
+                <div class="quick-action-card" onclick="scrollToFAQ()">
+                    <div class="quick-action-icon faq">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <div class="quick-action-title">FAQ</div>
+                    <div class="quick-action-desc">Find quick answers to common questions</div>
+                </div>
+            </div>
+
+            <!-- Support Sections -->
+            <div class="support-sections">
+                <!-- Contact Methods -->
+                <div class="support-section">
+                    <div class="section-header">
+                        <div class="section-icon contact">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="section-title">Contact Methods</div>
+                    </div>
+                    <div class="contact-methods" id="contactMethodss">
+                        <!-- Contact methods will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="support-section" id="faq-section">
+                    <div class="section-header">
+                        <div class="section-icon faq">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="section-title">Frequently Asked Questions</div>
+                    </div>
+                    <div class="faq-list" id="faqList">
+                        <!-- FAQs will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Support Ticket -->
+                <div class="support-section">
+                    <div class="section-header">
+                        <div class="section-icon ticket">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="section-title">Submit Support Ticket</div>
+                    </div>
+                    <form class="ticket-form" onsubmit="submitTicket(event)">
+                        <div class="form-group">
+                            <label class="form-label">Issue Category</label>
+                            <select class="form-select" required>
+                                <option value="">Select category</option>
+                                <option value="deposit">Deposit Issues</option>
+                                <option value="withdrawal">Withdrawal Issues</option>
+                                <option value="wingo_game">Wingo Game Issues</option>
+                                <option value="color_prediction">Color Prediction Problems</option>
+                                <option value="betting">Betting & Results</option>
+                                <option value="account">Account Issues</option>
+                                <option value="vip">VIP & Rewards</option>
+                                <option value="technical">Technical Problems</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-input" placeholder="Brief description of your issue" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-textarea" placeholder="Please provide detailed information about your issue..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Ticket
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Toggle Functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+
+            // Close all other FAQs
+            document.querySelectorAll('.faq-question.active').forEach(q => {
+                q.classList.remove('active');
+                q.nextElementSibling.classList.remove('active');
+            });
+
+            // Toggle current FAQ
+            if (!isActive) {
+                element.classList.add('active');
+                answer.classList.add('active');
+            }
+        }
+
+        // Scroll to FAQ section
+        function scrollToFAQ() {
+            document.getElementById('faq-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Contact Methods
+        function openWhatsApp() {
+            const phoneNumber = '919876543210'; // Replace with actual number
+            const message = 'Hello, I need support with my Wingo color prediction gaming account.';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function openTelegram() {
+            const telegramUsername = 'WingoGameSupport'; // Replace with actual username
+            const url = `https://t.me/${telegramUsername}`;
+            window.open(url, '_blank');
+        }
+
+        function sendEmail() {
+            const email = 'support@wingogame.com';
+            const subject = 'Wingo Game Support Request';
+            const body = 'Hello,\n\nI need assistance with my Wingo color prediction gaming account:\n\n[Please describe your issue here]\n\nAccount Details:\n- Phone Number: \n- User ID: \n- Issue Type: \n\nThank you.';
+            const url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = url;
+        }
+
+        function callSupport() {
+            const phoneNumber = 'tel:+918001234567';
+            window.location.href = phoneNumber;
+        }
+
+        function openLiveChat() {
+            // Implement live chat functionality
+            showToast('Live chat feature coming soon! Please use WhatsApp or Telegram for instant support.');
+        }
+
+        // Submit Support Ticket
+        function submitTicket(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const category = form.querySelector('select').value;
+            const subject = form.querySelector('input[type="text"]').value;
+            const description = form.querySelector('textarea').value;
+
+            // Validate form
+            if (!category || !subject || !description) {
+                showToast('Please fill in all required fields.');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+
+            // Prepare data for API
+            const ticketData = {
+                category: category,
+                subject: subject,
+                description: description,
+                timestamp: new Date().toISOString(),
+                priority: category === 'deposit' || category === 'withdrawal' ? 'high' : 'normal'
+            };
+
+            // Submit to API
+            fetch('/api/webapi/support', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(ticketData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === true) {
+                    showToast(`Support ticket #${data.ticketId || 'WINGO' + Date.now()} submitted successfully! We will contact you within 2-4 hours.`);
+                    form.reset();
+                } else {
+                    showToast(data.message || 'Failed to submit ticket. Please try again or contact us directly.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Network error. Please check your connection and try again.');
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+
+        // Toast notification
+        function showToast(message) {
+            // Remove existing toast
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            // Create new toast
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 25px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                z-index: 1001;
+                font-size: 14px;
+                font-weight: 500;
+                text-align: center;
+                max-width: 90%;
+                animation: fadeInOut 3s ease-in-out;
+            `;
+
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            // Add CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Remove toast after animation
+            setTimeout(() => {
+                toast.remove();
+                style.remove();
+            }, 3000);
+        }
+
+        // Load dynamic data
+        let supportContacts = [];
+        let supportFAQs = [];
+
+        function loadSupportData() {
+            // Load contact methods
+            fetch('/api/webapi/support/contacts')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === true) {
+                        supportContacts = data.contacts;
+                        renderContactMethods();
+                    } else {
+                        console.warn('Failed to load contacts, using fallback');
+                        loadFallbackContacts();
+                    }
+                })
+                .catch(error => {
+                    console.warn('Error loading contacts:', error);
+                    loadFallbackContacts();
+                });
+
+            // Load FAQs
+            fetch('/api/webapi/support/faqs')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === true) {
+                        supportFAQs = data.faqs;
+                        renderFAQs();
+                    } else {
+                        console.warn('Failed to load FAQs, using fallback');
+                        loadFallbackFAQs();
+                    }
+                })
+                .catch(error => {
+                    console.warn('Error loading FAQs:', error);
+                    loadFallbackFAQs();
+                });
+        }
+
+        function renderContactMethods() {
+            const container = document.getElementById('contactMethods');
+            container.innerHTML = '';
+
+            supportContacts.forEach(contact => {
+                const statusClass = `status-${contact.status}`;
+                const iconClass = getContactIcon(contact.type);
+
+                const contactItem = document.createElement('div');
+                contactItem.className = 'contact-item';
+                contactItem.onclick = () => handleContactClick(contact);
+
+                contactItem.innerHTML = `
+                    <div class="contact-item-icon ${contact.type}">
+                        <i class="${iconClass}"></i>
+                    </div>
+                    <div class="contact-item-info">
+                        <h4>${contact.title}</h4>
+                        <p>${contact.value} • ${contact.description}</p>
+                    </div>
+                    <div class="contact-status ${statusClass}">${contact.status.charAt(0).toUpperCase() + contact.status.slice(1)}</div>
+                `;
+
+                container.appendChild(contactItem);
+            });
+        }
+
+        function getContactIcon(type) {
+            const icons = {
+                'whatsapp': 'fab fa-whatsapp',
+                'telegram': 'fab fa-telegram',
+                'email': 'fas fa-envelope',
+                'phone': 'fas fa-phone'
+            };
+            return icons[type] || 'fas fa-question';
+        }
+
+        function handleContactClick(contact) {
+            switch(contact.type) {
+                case 'whatsapp':
+                    // openWhatsAppDynamic(contact.value);
+                    break;
+                case 'telegram':
+                    openTelegramDynamic(contact.value);
+                    break;
+                case 'email':
+                    sendEmailDynamic(contact.value);
+                    break;
+                case 'phone':
+                    // callSupportDynamic(contact.value);
+                    break;
+            }
+        }
+
+        function renderFAQs() {
+            const container = document.getElementById('faqList');
+            container.innerHTML = '';
+
+            supportFAQs.forEach(faq => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item';
+
+                faqItem.innerHTML = `
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>${faq.question}</span>
+                        <i class="fas fa-chevron-down faq-arrow"></i>
+                    </div>
+                    <div class="faq-answer">
+                        ${faq.answer}
+                    </div>
+                `;
+
+                container.appendChild(faqItem);
+            });
+        }
+
+        function loadFallbackContacts() {
+            supportContacts = [
+                /* {
+                    type: 'whatsapp',
+                    title: 'WhatsApp Support',
+                    value: '+91 98765 43210',
+                    description: 'Quick responses',
+                    status: 'online'
+                }, */ 
+                {
+                    type: 'telegram',
+                    title: 'Telegram Support',
+                    value: '@WingoGameSupport',
+                    description: '24/7 available',
+                    status: 'online'
+                },
+                {
+                    type: 'email',
+                    title: 'Email Support',
+                    value: 'support@wingogame.com',
+                    description: '2-4 hours response',
+                    status: 'busy'
+                },
+               /* {
+                    type: 'phone',
+                    title: 'Phone Support',
+                    value: '1800-123-4567',
+                    description: 'Mon-Sun 9AM-11PM',
+                    status: 'online'
+                } */ 
+            ];
+            renderContactMethods();
+        }
+
+        function loadFallbackFAQs() {
+            supportFAQs = [
+                {
+                    question: 'How do I deposit money into my account?',
+                    answer: 'You can deposit money using UPI, Net Banking, Credit/Debit Cards, or Digital Wallets. Go to Wallet → Deposit, select your preferred method, enter the amount, and follow the instructions. Minimum deposit is ₹10.'
+                },
+                {
+                    question: 'How long does withdrawal take?',
+                    answer: 'Withdrawals are processed within 2-24 hours. UPI and bank transfers are usually instant to 2 hours. The exact time depends on your bank and the withdrawal method chosen.'
+                },
+                {
+                    question: 'What are the minimum and maximum bet amounts in Wingo?',
+                    answer: 'Minimum bet amount is ₹10 for all Wingo color prediction games. Maximum bet limits: Wingo 30sec (₹50,000), Wingo 1min (₹100,000), Wingo 3min (₹200,000), Wingo 5min (₹300,000), Wingo 10min (₹500,000) per bet.'
+                },
+                {
+                    question: 'How do Wingo color prediction games work?',
+                    answer: 'Wingo is a color prediction game where you predict the color (Red, Green, Violet) or number (0-9) that will appear. Green numbers: 1,3,7,9 | Red numbers: 2,4,6,8 | Violet numbers: 0,5. You can bet on colors, numbers, or size (Big 5-9, Small 0-4).'
+                }
+            ];
+            renderFAQs();
+        }
+
+        // Dynamic contact functions
+        function openWhatsAppDynamic(phoneNumber) {
+            const cleanNumber = phoneNumber.replace(/[^\d]/g, '');
+            const message = 'Hello, I need support with my Wingo color prediction gaming account.';
+            const url = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function openTelegramDynamic(username) {
+            const cleanUsername = username.replace('@', '');
+            const url = `https://t.me/${cleanUsername}`;
+            window.open(url, '_blank');
+        }
+
+        function sendEmailDynamic(email) {
+            const subject = 'Wingo Game Support Request';
+            const body = 'Hello,\n\nI need assistance with my Wingo color prediction gaming account:\n\n[Please describe your issue here]\n\nAccount Details:\n- Phone Number: \n- User ID: \n- Issue Type: \n\nThank you.';
+            const url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = url;
+        }
+
+        function callSupportDynamic(phoneNumber) {
+            const cleanNumber = phoneNumber.replace(/[^\d+]/g, '');
+            window.location.href = `tel:${cleanNumber}`;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Customer Support page loaded');
+            loadSupportData();
+
+            // Add smooth scrolling for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

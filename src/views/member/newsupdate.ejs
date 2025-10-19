@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Updates - SecureTrade AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #ff4757 0%, #ff6b35 50%, #ff8c42 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(180deg, #ff4757 0%, #ff6b35 50%, #ff8c42 100%);
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .header-left i {
+            color: white;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification-icon {
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .content {
+            padding: 15px;
+            padding-bottom: 100px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 4px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-tab.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-card.urgent {
+            border-left: 4px solid #ff4757;
+        }
+
+        .news-card.announcement {
+            border-left: 4px solid #ffd700;
+        }
+
+        .news-card.update {
+            border-left: 4px solid #28a745;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .news-type {
+            background: #f8f9fa;
+            color: #666;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .news-type.urgent {
+            background: #ff4757;
+            color: white;
+        }
+
+        .news-type.announcement {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .news-type.update {
+            background: #28a745;
+            color: white;
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .news-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .read-more-btn {
+            background: linear-gradient(135deg, #ff4757, #ff6b35);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        .news-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .news-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-text {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .empty-subtext {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #ff4757;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .alert-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+        }
+
+        .msg {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .msg-content {
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .content {
+                padding: 10px;
+            }
+
+            .news-card {
+                padding: 15px;
+            }
+
+            .news-title {
+                font-size: 16px;
+            }
+
+            .filter-tabs {
+                margin-bottom: 15px;
+            }
+
+            .filter-tab {
+                padding: 8px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="header-title">News & Updates</div>
+            <div class="header-right">
+                <div class="notification-icon" onclick="markAllAsRead()">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-badge" id="notification-count">3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <div class="filter-tab active" data-filter="all">All</div>
+                <div class="filter-tab" data-filter="urgent">Important</div>
+                <div class="filter-tab" data-filter="announcement">Events</div>
+                <div class="filter-tab" data-filter="update">Updates</div>
+            </div>
+
+            <!-- News List -->
+            <div class="news-list" id="news-container">
+                <!-- News items will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" style="display: none;">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <div class="loading-text">Loading news...</div>
+            </div>
+        </div>
+
+        <!-- Alert Toast -->
+        <div class="alert-toast"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            loadNews();
+            initializeEventHandlers();
+        });
+
+        function loadNews() {
+            $('.loading-overlay').fadeIn(10);
+
+            // Simulate API call - replace with actual endpoint
+            setTimeout(() => {
+                fetchNewsData().then(newsData => {
+                    renderNews(newsData);
+                    $('.loading-overlay').fadeOut(300);
+                }).catch(error => {
+                    console.error('Error loading news:', error);
+                    showError('Failed to load news');
+                    $('.loading-overlay').fadeOut(300);
+                });
+            }, 1000);
+        }
+
+        function fetchNewsData() {
+            return new Promise((resolve, reject) => {
+                // Actual API call to your backend
+                $.ajax({
+                    type: "GET",
+                    url: "/api/webapi/news",
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.status === true) {
+                            resolve(response.news || []);
+                        } else {
+                            reject(new Error('Failed to fetch news'));
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.warn('API failed, using fallback data:', error);
+                        // Fallback mock data for gaming platform (if API fails)
+                        const mockNews = [
+                   /* {
+                        id: 1,
+                        type: 'urgent',
+                        title: 'Server Maintenance Tonight',
+                        content: 'We will be performing scheduled server maintenance from 2:00 AM to 4:00 AM IST on December 15th. All color prediction games will be temporarily unavailable during this time. Please plan your gaming sessions accordingly.',
+                        date: '2024-12-10',
+                        time: '10:30 AM',
+                        views: 1250,
+                        isNew: true
+                    }, */
+                    {
+                        id: 2,
+                        type: 'announcement',
+                        title: '🎉 New Color Prediction Game: Rainbow Rush!',
+                        content: 'Introducing our latest color prediction game "Rainbow Rush" with 7 colors, higher winning odds, and special bonus rounds! Play now and get 100% bonus on your first bet. Limited time offer!',
+                        date: '2024-12-08',
+                        time: '2:15 PM',
+                        views: 2340,
+                        isNew: true
+                    },
+                    {
+                        id: 3,
+                        type: 'update',
+                        title: 'App Update v3.2.1 - New Features',
+                        content: 'Latest update includes: Faster game loading, new sound effects, improved color prediction algorithms, auto-bet feature, and enhanced graphics for better gaming experience. Update now!',
+                        date: '2024-12-05',
+                        time: '9:45 AM',
+                        views: 890,
+                        isNew: false
+                    },
+                    {
+                        id: 4,
+                        type: 'announcement',
+                        title: '💰 Mega Jackpot Event - Win ₹1 Lakh!',
+                        content: 'Join our special Mega Jackpot event running from Dec 20-25! Predict 10 colors correctly in a row to win the grand prize of ₹1,00,000. Entry fee: ₹100. Limited slots available!',
+                        date: '2024-12-03',
+                        time: '11:20 AM',
+                        views: 3567,
+                        isNew: false
+                    },
+                    {
+                        id: 5,
+                        type: 'update',
+                        title: 'Enhanced Security & Fair Play',
+                        content: 'We have implemented advanced RNG (Random Number Generator) technology to ensure 100% fair gameplay. New anti-fraud systems and account verification processes are now active for player protection.',
+                        date: '2024-12-01',
+                        time: '3:30 PM',
+                        views: 1456,
+                        isNew: false
+                    },
+                    {
+                        id: 6,
+                        type: 'announcement',
+                        title: '🎁 Daily Login Bonus Increased!',
+                        content: 'Great news! We have increased daily login bonuses by 50%. Day 1: ₹10, Day 7: ₹100, Day 30: ₹500! Plus special weekend bonuses every Saturday and Sunday. Login daily to claim!',
+                        date: '2024-11-28',
+                        time: '4:45 PM',
+                        views: 2890,
+                        isNew: false
+                    },
+                    {
+                        id: 7,
+                        type: 'urgent',
+                        title: 'Withdrawal Limit Update',
+                        content: 'Important: Due to banking regulations, daily withdrawal limit has been updated to ₹50,000. Weekly limit remains ₹2,00,000. This ensures faster processing and compliance with financial guidelines.',
+                        date: '2024-11-25',
+                        time: '1:20 PM',
+                        views: 4123,
+                        isNew: false
+                    },
+                    {
+                        id: 8,
+                        type: 'update',
+                        title: 'New Payment Methods Added',
+                        content: 'We now support UPI, PhonePe, Google Pay, Paytm, and all major bank transfers for instant deposits and withdrawals. Minimum deposit reduced to ₹10. Processing time: 2-5 minutes!',
+                        date: '2024-11-22',
+                        time: '9:15 AM',
+                        views: 1789,
+                        isNew: false
+                    },
+                    {
+                        id: 9,
+                        type: 'announcement',
+                        title: '🏆 Leaderboard Competition',
+                        content: 'Monthly leaderboard competition is live! Top 10 players with highest wins get special rewards: 1st: ₹10,000, 2nd: ₹5,000, 3rd: ₹2,500. Competition ends on 31st December!',
+                        date: '2024-11-20',
+                        time: '6:30 PM',
+                        views: 2156,
+                        isNew: false
+                    },
+                    {
+                        id: 10,
+                        type: 'update',
+                        title: 'Referral Program Enhanced',
+                        content: 'Refer friends and earn more! New referral rewards: ₹50 for each friend who joins + 5% of their first deposit. Your friend gets ₹25 welcome bonus. No limit on referrals!',
+                        date: '2024-11-18',
+                        time: '11:45 AM',
+                        views: 3245,
+                        isNew: false
+                    }
+                        ];
+
+                        resolve(mockNews);
+                    }
+                });
+            });
+        }
+
+        function renderNews(newsData) {
+            const container = $('#news-container');
+            container.empty();
+
+            if (newsData.length === 0) {
+                container.html(`
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="empty-text">No news available</div>
+                        <div class="empty-subtext">Check back later for updates</div>
+                    </div>
+                `);
+                return;
+            }
+
+            newsData.forEach(news => {
+                const newsCard = createNewsCard(news);
+                container.append(newsCard);
+            });
+
+            // Update notification count
+            const newCount = newsData.filter(news => news.isNew).length;
+            $('#notification-count').text(newCount);
+            if (newCount === 0) {
+                $('#notification-count').hide();
+            }
+        }
+
+        function createNewsCard(news) {
+            const timeAgo = getTimeAgo(news.date);
+            const isNewBadge = news.isNew ? '<span style="background: #ff4757; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px; margin-left: 10px;">NEW</span>' : '';
+
+            return `
+                <div class="news-card ${news.type}" data-type="${news.type}" data-id="${news.id}">
+                    <div class="news-header">
+                        <div class="news-type ${news.type}">${news.type}</div>
+                        <div class="news-date">
+                            <i class="fas fa-clock"></i>
+                            ${timeAgo}${isNewBadge}
+                        </div>
+                    </div>
+                    <div class="news-title">${news.title}</div>
+                    <div class="news-content">${news.content}</div>
+                    <div class="news-actions">
+                        <button class="read-more-btn" onclick="readMore(${news.id})">Read More</button>
+                        <div class="news-stats">
+                            <div class="news-stat">
+                                <i class="fas fa-eye"></i>
+                                <span>${news.views.toLocaleString()}</span>
+                            </div>
+                            <div class="news-stat">
+                                <i class="fas fa-calendar"></i>
+                                <span>${news.date}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function initializeEventHandlers() {
+            // Filter tab switching
+            $('.filter-tab').click(function() {
+                $('.filter-tab').removeClass('active');
+                $(this).addClass('active');
+
+                const filter = $(this).data('filter');
+                filterNews(filter);
+            });
+        }
+
+        function filterNews(filter) {
+            const newsCards = $('.news-card');
+
+            if (filter === 'all') {
+                newsCards.show();
+            } else {
+                newsCards.hide();
+                $(`.news-card[data-type="${filter}"]`).show();
+            }
+        }
+
+        function readMore(newsId) {
+            alertMess('Opening full article...');
+            // Here you can implement navigation to full article page
+            // window.location.href = `/news/${newsId}`;
+        }
+
+        function markAllAsRead() {
+            $('#notification-count').text('0').hide();
+            $('.news-card').find('[style*="background: #ff4757"]').remove();
+            alertMess('All notifications marked as read');
+        }
+
+        function getTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays === 0) return 'Today';
+            if (diffDays === 1) return 'Yesterday';
+            if (diffDays < 7) return `${diffDays} days ago`;
+            if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+            return `${Math.floor(diffDays / 30)} months ago`;
+        }
+
+        function alertMess(text) {
+            let length = $('.alert-toast .msg').length;
+            if (length == 0) {
+                $('.alert-toast').append(`
+                    <div class="msg">
+                        <div class="msg-content">${text}</div>
+                    </div>
+                `);
+                setTimeout(() => {
+                    $('.msg').fadeOut();
+                    setTimeout(() => {
+                        $('.alert-toast .msg').remove();
+                    }, 100);
+                }, 2000);
+            }
+        }
+
+        function showError(message) {
+            $('#news-container').html(`
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="empty-text">${message}</div>
+                    <button class="read-more-btn" onclick="loadNews()" style="margin-top: 15px;">Retry</button>
+                </div>
+            `);
+        }
+    </script>
+</body>
+
+</html>

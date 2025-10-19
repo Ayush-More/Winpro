@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.16px;" style="min-height: 100vh;">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex,nofollow">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>Home</title>
+
+
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="shortcut icon" href="/images/bitbug_favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" crossorigin="" href="./index_files/index-BUBUniRp.css">
+
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        /* Google Translate Styles - Hide Google UI */
+        #google_translate_element {
+            display: none !important;
+        }
+
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+
+        body {
+            top: 0px !important;
+        }
+
+        .goog-te-balloon-frame {
+            display: none !important;
+        }
+
+        .goog-tooltip {
+            display: none !important;
+        }
+
+        .goog-tooltip:hover {
+            display: none !important;
+        }
+
+        .goog-text-highlight {
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Language Dropdown Styles */
+        .language-option:hover {
+            background-color: #f8f9fa !important;
+        }
+
+        .box {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .box:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Logout Dialog Styles */
+        
+        .van-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .van-dialog {
+            background: white;
+            border-radius: 12px;
+            padding: 0;
+            min-width: 280px;
+            max-width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .van-dialog__header {
+            padding: 20px 20px 10px;
+            text-align: center;
+        }
+        
+        .van-dialog__title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .van-dialog__content {
+            padding: 10px 20px 20px;
+            text-align: center;
+        }
+        
+        .van-dialog__message {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .van-dialog__footer {
+            display: flex;
+            border-top: 1px solid #eee;
+        }
+        
+        .van-dialog__cancel,
+        .van-dialog__confirm {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .van-dialog__cancel {
+            color: #666;
+            border-right: 1px solid #eee;
+        }
+        
+        .van-dialog__cancel:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .van-dialog__confirm {
+            color: #ff4444;
+            font-weight: bold;
+        }
+        
+        .van-dialog__confirm:hover {
+            background-color: #fff5f5;
+        }
+        /* Dialog animations */
+        
+        .van-dialog-bounce-enter-active {
+            animation: dialogBounceIn 0.3s ease-out;
+        }
+        
+        .van-dialog-bounce-leave-active {
+            animation: dialogBounceOut 0.2s ease-in;
+        }
+        
+        @keyframes dialogBounceIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes dialogBounceOut {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+        }
+    </style>
+
+
+    <link rel="shortcut icon" href="/images/bitbug_favicon.ico" type="image/x-icon">
+    <style id="_goober">
+        @keyframes go2264125279 {
+            from {
+                transform: scale(0) rotate(45deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go3020080000 {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go463499852 {
+            from {
+                transform: scale(0) rotate(90deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(90deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go1268368563 {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes go1310225428 {
+            from {
+                transform: scale(0) rotate(45deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go651618207 {
+            0% {
+                height: 0;
+                width: 0;
+                opacity: 0;
+            }
+            40% {
+                height: 0;
+                width: 6px;
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                height: 10px;
+            }
+        }
+        
+        @keyframes go901347462 {
+            from {
+                transform: scale(0.6);
+                opacity: 0.4;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .go4109123758 {
+            z-index: 9999;
+        }
+        
+        .go4109123758>* {
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div class="">
+            <a href="/customerSupport">
+                <div class="iconrob" style="position: fixed; right: 0px; bottom: 0px; width: 40px; height: 40px;"><img src="/images/icon-BMOz9JeZ.png" alt="Draggable Icon" style="position: absolute; left: -50px; top: -71px; cursor: move;"></div>
+            </a>
+        </div>
+        <div class="mainApp">
+            <div style="position: fixed;z-index: 9999;inset: 16px;pointer-events: none;"></div>
+            <div class="container-fluid accountSection" style="
+    height: 47vh;
+    padding: 10px 10px;
+">
+                <div class="row align-items-center pt-1" style="
+    padding-left: 20px;
+">
+                    <div class="col-auto" style="
+    padding: 5px 10px;
+">
+                        <div class="avtar"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHrPn6gvIVQU4DhXIDzDNSs-eySs9CQZglzxcSIpZQJcabIOAGdV8wK6KJJZDlpXiYI_8&usqp=CAU" class="w-100 h-100 rounded-pill" alt=""></div>
+                    </div>
+                    <div class="col" style="
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    justify-content: center;
+">
+                        <div class="ac">
+                            <div class="name">Member-222111</div>
+                            <div class="imagevips" style="
+    display: flex;
+"><img class="" src="/images/Vip-DSernNVr.png" alt=""></div>
+                        </div><button class="btn text-white btn-warning uid my-1">UID | 222111 &nbsp;<span><i class="fa-regular fa-copy text-white"></i></span></button>
+                        <div class="logindate"><span>Last login: </span><span>28/06/2025, 11:42 AM</span></div>
+                    </div>
+                </div>
+                <div class="row topbox " style="
+    /* margin-top: -15px; */
+">
+                    <div class="col-12">
+                        <div class="card border-0">
+                            <div class="card-body" style="
+    padding: 12px 14px;
+">
+                                <div class="heading text-muted">Total balance</div>
+                                <div class="payment border-bottom pb-3" style="
+    padding-bottom: 13px !important;
+">₹1.91</div>
+                                <ul class="listicontext mt-1" style="
+    margin: 7px;
+">
+                                    <li>
+                                        <a class="anker textblack" href="/wallet">
+                                            <div class="image"><svg id="icon-wallets" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.5 15.3789H15C9.475 15.3789 5 19.8539 5 25.3789V16.3539C5 11.2539 9.125 7.12891 14.225 7.12891H28.275C33.375 7.12891 37.5 10.2789 37.5 15.3789Z" fill="#F95959"></path><path opacity="0.4" d="M43.7 30.4961C42.45 31.7211 41.85 33.5711 42.35 35.4461C42.975 37.7711 45.275 39.2461 47.675 39.2461H50V42.8711C50 48.3961 45.525 52.8711 40 52.8711H15C9.475 52.8711 5 48.3961 5 42.8711V25.3711C5 19.8461 9.475 15.3711 15 15.3711H40C45.5 15.3711 50 19.8711 50 25.3711V28.9961H47.3C45.9 28.9961 44.625 29.5461 43.7 30.4961Z" fill="#F95959"></path><path d="M55 31.5561V36.7061C55 38.1061 53.85 39.2561 52.425 39.2561H47.6C44.9 39.2561 42.425 37.2811 42.2 34.5811C42.05 33.0061 42.65 31.5311 43.7 30.5061C44.625 29.5561 45.9 29.0061 47.3 29.0061H52.425C53.85 29.0061 55 30.1561 55 31.5561ZM32.5 29.7461H17.5C16.475 29.7461 15.625 28.8961 15.625 27.8711C15.625 26.8461 16.475 25.9961 17.5 25.9961H32.5C33.525 25.9961 34.375 26.8461 34.375 27.8711C34.375 28.8961 33.525 29.7461 32.5 29.7461Z" fill="#F95959"></path></svg></div>Wallet</a>
+                                    </li>
+                                    <li>
+                                        <a class="anker textblack" href="/wallet/recharge">
+                                            <div class="image"><svg id="icon-rechargeIcon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.8" d="M32.25 6.29534L32.175 6.47034L24.925 23.2953H17.8C16.1 23.2953 14.5 23.6203 13 24.2703L17.375 13.8203L17.475 13.5953L17.625 13.1953C17.7 13.0203 17.75 12.8703 17.825 12.7453C21.1 5.17034 24.8 3.44534 32.25 6.29534Z" fill="#F87700"></path><path d="M45.7219 23.8008C44.5969 23.4758 43.4219 23.3008 42.1969 23.3008H24.9219L32.1719 6.47578L32.2469 6.30078C32.5969 6.42578 32.9719 6.60078 33.3469 6.72578L38.8719 9.05078C41.9469 10.3258 44.0969 11.6508 45.4219 13.2508C45.6469 13.5508 45.8469 13.8258 46.0469 14.1508C46.2719 14.5008 46.4469 14.8508 46.5469 15.2258C46.6469 15.4508 46.7219 15.6508 46.7719 15.8758C47.4219 18.0008 47.0219 20.5758 45.7219 23.8008Z" fill="#F87700"></path><path opacity="0.4" d="M54.3938 35.5008V40.3758C54.3938 40.8758 54.3688 41.3758 54.3438 41.8508C53.8688 50.6008 48.9938 55.0008 39.7438 55.0008H20.2437C19.6187 55.0008 19.0437 54.9508 18.4688 54.8758C10.5188 54.3508 6.26875 50.1008 5.71875 42.1508C5.64375 41.5508 5.59375 40.9758 5.59375 40.3758V35.5008C5.59375 30.4758 8.64375 26.1508 12.9938 24.2758C14.4938 23.6258 16.0938 23.3008 17.7938 23.3008H42.1938C43.4188 23.3008 44.5938 23.4758 45.7188 23.8008C48.2264 24.5659 50.4225 26.1154 51.984 28.2215C53.5455 30.3275 54.3902 32.879 54.3938 35.5008Z" fill="#F87700"></path><path opacity="0.6" d="M17.3687 13.8281L12.9938 24.2781C10.799 25.2223 8.92876 26.7884 7.61374 28.7831C6.29873 30.7778 5.59651 33.1139 5.59375 35.5031V28.1781C5.59375 21.0781 10.6438 15.1531 17.3687 13.8281ZM54.3988 28.1756V35.5006C54.3952 32.8788 53.5505 30.3273 51.989 28.2213C50.4275 26.1153 48.2314 24.5658 45.7238 23.8006C47.0238 20.5756 47.4238 18.0006 46.7738 15.8756C46.7238 15.6506 46.6488 15.4506 46.5488 15.2256C48.9163 16.46 50.8999 18.32 52.284 20.6033C53.6681 22.8866 54.3995 25.5056 54.3988 28.1756Z" fill="#F87700"></path></svg></div>Deposit</a>
+                                    </li>
+                                    <li>
+                                        <a class="anker textblack" href="/wallet/withdrawal">
+                                            <div class="image"><svg id="icon-widthdrawBlue" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M55 22.5V41.15C55 46.875 50.35 51.5 44.625 51.5H15.375C9.65 51.5 5 46.875 5 41.15V22.5H55Z" fill="#5CA6FF"></path><path d="M55 18.8461V22.4961H5V18.8461C5 13.1211 9.65 8.49609 15.375 8.49609H44.625C50.35 8.49609 55 13.1211 55 18.8461ZM20 43.1261H15C13.975 43.1261 13.125 42.2761 13.125 41.2511C13.125 40.2261 13.975 39.3761 15 39.3761H20C21.025 39.3761 21.875 40.2261 21.875 41.2511C21.875 42.2761 21.025 43.1261 20 43.1261ZM36.25 43.1261H26.25C25.225 43.1261 24.375 42.2761 24.375 41.2511C24.375 40.2261 25.225 39.3761 26.25 39.3761H36.25C37.275 39.3761 38.125 40.2261 38.125 41.2511C38.125 42.2761 37.275 43.1261 36.25 43.1261Z" fill="#5CA6FF"></path></svg></div>Withdraw</a>
+                                    </li>
+                                    <li>
+                                        <a class="anker textblack" href="/vip">
+                                            <div class="image"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M16.8469 5H43.1308C46.2059 5 49.8323 7.27126 51.1958 10.0735L58.1584 24.2909C59.841 27.7126 58.9127 32.5795 56.1567 35.1457L36.0521 53.6992C32.7158 56.7669 27.2908 56.7669 23.9546 53.6992L3.84999 35.1457C1.06495 32.5795 0.165608 27.7126 1.84824 24.2909L8.81086 10.0735C10.1454 7.27126 13.7717 5 16.8469 5Z" fill="#03AC84"></path><path d="M23.4103 17C24.2155 17 24.7602 17.1319 25.0444 17.3956C25.3523 17.6593 25.5654 18.2107 25.6838 19.0498L28.0284 38.1812C28.0995 38.7566 28.2534 39.1282 28.4902 39.296C28.7271 39.4638 29.106 39.5597 29.627 39.5837L29.5915 43H28.0284C25.9443 43 24.5708 42.4846 23.9076 41.4537C23.5524 40.9023 23.3037 40.3628 23.1616 39.8354C23.0195 39.284 22.8893 38.5168 22.7709 37.5339L20 17H23.4103ZM32.6821 43H30.4796L34.3517 19.0498C34.4464 18.2347 34.6477 17.6953 34.9556 17.4315C35.2635 17.1438 35.82 17 36.6252 17H40L36.4476 38.2531C36.2818 39.1641 36.1397 39.8354 36.0213 40.2669C35.9266 40.6985 35.749 41.166 35.4885 41.6694C35.2279 42.1729 34.8727 42.5205 34.4227 42.7123C33.9728 42.9041 33.3925 43 32.6821 43Z" fill="#03AC84"></path></svg></div>VIP</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-2 iconbox my-1" style="/* width: 423px; */">
+                    <div class="col-6" style="margin: 0;">
+                        <div class="card p-sm-2 p-1">
+                            <div class="icon"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M54.2259 73.1178H18.4859C12.7419 73.1178 8.08594 68.4617 8.08594 62.7177V16.9937C8.08594 11.2497 12.7419 6.59375 18.4859 6.59375H54.2259C59.9699 6.59375 64.6259 11.2497 64.6259 16.9937V62.7177C64.6259 68.4617 59.9699 73.1178 54.2259 73.1178Z" fill="#5CA6FF"></path><path d="M49.1664 25.4703H23.7664C21.9984 25.4703 20.5664 24.0383 20.5664 22.2703C20.5664 20.5023 21.9984 19.0703 23.7664 19.0703H49.1664C50.9344 19.0703 52.3664 20.5023 52.3664 22.2703C52.3664 24.0383 50.9344 25.4703 49.1664 25.4703ZM49.1664 38.1583H23.7664C21.9984 38.1583 20.5664 36.7263 20.5664 34.9583C20.5664 33.1903 21.9984 31.7583 23.7664 31.7583H49.1664C50.9344 31.7583 52.3664 33.1903 52.3664 34.9583C52.3664 36.7263 50.9344 38.1583 49.1664 38.1583ZM35.9304 50.8463H23.7664C21.9984 50.8463 20.5664 49.4143 20.5664 47.6463C20.5664 45.8783 21.9984 44.4463 23.7664 44.4463H35.9304C37.6984 44.4463 39.1304 45.8783 39.1304 47.6463C39.1304 49.4143 37.6944 50.8463 35.9304 50.8463Z" fill="var(--bg_color_L2)"></path><path d="M42.9609 58.008C42.9609 61.9438 44.5244 65.7184 47.3075 68.5014C50.0905 71.2845 53.8651 72.848 57.8009 72.848C61.7367 72.848 65.5113 71.2845 68.2944 68.5014C71.0774 65.7184 72.6409 61.9438 72.6409 58.008C72.6409 54.0722 71.0774 50.2975 68.2944 47.5145C65.5113 44.7315 61.7367 43.168 57.8009 43.168C53.8651 43.168 50.0905 44.7315 47.3075 47.5145C44.5244 50.2975 42.9609 54.0722 42.9609 58.008Z" fill="#5CA6FF"></path><path d="M57.8205 43.1875C49.6245 43.1875 42.9805 49.8315 42.9805 58.0275C42.9805 65.8395 49.0165 72.2355 56.6805 72.8195C61.2405 71.7195 64.6325 67.6115 64.6325 62.7115V44.8395C62.5264 43.7526 60.1905 43.1862 57.8205 43.1875Z" fill="#3689FF"></path><path d="M68 48H48V68H68V48Z" fill="white" fill-opacity="0.01"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M58.0026 46.4687C58.9231 46.4687 59.6693 47.2149 59.6693 48.1354L59.6693 68.1354C59.6693 69.0559 58.9231 69.8021 58.0026 69.8021C57.0821 69.8021 56.3359 69.0559 56.3359 68.1354L56.3359 48.1354C56.3359 47.2149 57.0821 46.4687 58.0026 46.4687Z" fill="var(--bg_color_L2)"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M50.918 54.2487C50.918 51.2571 53.3431 48.832 56.3346 48.832H62.5834L62.5846 50.4987L62.5846 52.1654H56.3346C55.184 52.1654 54.2513 53.0981 54.2513 54.2487C54.2513 55.3993 55.184 56.332 56.3346 56.332C57.2551 56.332 58.0013 57.0782 58.0013 57.9987C58.0013 58.9192 57.2551 59.6654 56.3346 59.6654C53.3431 59.6654 50.918 57.2403 50.918 54.2487ZM64.2513 50.4987C64.2513 51.4192 63.5051 52.1654 62.5846 52.1654L62.5846 50.4987L62.5834 48.832C63.5039 48.832 64.2513 49.5782 64.2513 50.4987Z" fill="var(--bg_color_L2)"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M54.6667 57.9987C54.6667 57.0782 55.4129 56.332 56.3333 56.332H59.6667C62.6582 56.332 65.0833 58.7571 65.0833 61.7487C65.0833 64.7403 62.6582 67.1654 59.6667 67.1654H53.4179L53.4167 65.4987L53.4167 63.832H59.6667C60.8173 63.832 61.75 62.8993 61.75 61.7487C61.75 60.5981 60.8173 59.6654 59.6667 59.6654H56.3333C55.4129 59.6654 54.6667 58.9192 54.6667 57.9987ZM51.75 65.4987C51.75 64.5782 52.4962 63.832 53.4167 63.832L53.4167 65.4987L53.4179 67.1654C52.4974 67.1654 51.75 66.4192 51.75 65.4987Z" fill="var(--bg_color_L2)"></path></svg></div>
+                            <a class="headingtextbox" href="/gamestatistics">
+                                <div class="heading text-start">Game History</div>
+                                <p class="mb-0">My game history</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6" style="
+    margin: 0;
+">
+                        <div class="card p-sm-2 p-1">
+                            <div class="icon"><svg id="icon-tradeHistory" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M54.2259 73.1178H18.4859C12.7419 73.1178 8.08594 68.4617 8.08594 62.7177V16.9937C8.08594 11.2497 12.7419 6.59375 18.4859 6.59375H54.2259C59.9699 6.59375 64.6259 11.2497 64.6259 16.9937V62.7177C64.6259 68.4617 59.9699 73.1178 54.2259 73.1178Z" fill="#4BE2AC"></path><path d="M49.1703 25.4703H23.7703C22.0023 25.4703 20.5703 24.0383 20.5703 22.2703C20.5703 20.5023 22.0023 19.0703 23.7703 19.0703H49.1703C50.9383 19.0703 52.3703 20.5023 52.3703 22.2703C52.3703 24.0383 50.9383 25.4703 49.1703 25.4703ZM49.1703 38.1583H23.7703C22.0023 38.1583 20.5703 36.7263 20.5703 34.9583C20.5703 33.1903 22.0023 31.7583 23.7703 31.7583H49.1703C50.9383 31.7583 52.3703 33.1903 52.3703 34.9583C52.3703 36.7263 50.9383 38.1583 49.1703 38.1583ZM35.9343 50.8463H23.7703C22.0023 50.8463 20.5703 49.4143 20.5703 47.6463C20.5703 45.8783 22.0023 44.4463 23.7703 44.4463H35.9343C37.7023 44.4463 39.1343 45.8783 39.1343 47.6463C39.1343 49.4143 37.6983 50.8463 35.9343 50.8463Z" fill="var(--bg_color_L2)"></path><path d="M42.5 58.008C42.5 61.9438 44.0635 65.7184 46.8465 68.5014C49.6296 71.2845 53.4042 72.848 57.34 72.848C61.2758 72.848 65.0504 71.2845 67.8334 68.5014C70.6165 65.7184 72.18 61.9438 72.18 58.008C72.18 54.0722 70.6165 50.2975 67.8334 47.5145C65.0504 44.7315 61.2758 43.168 57.34 43.168C53.4042 43.168 49.6296 44.7315 46.8465 47.5145C44.0635 50.2975 42.5 54.0722 42.5 58.008Z" fill="#4BE2AC"></path><path d="M57.8205 43.1875C49.6245 43.1875 42.9805 49.8315 42.9805 58.0275C42.9805 65.8395 49.0165 72.2355 56.6805 72.8195C61.2405 71.7195 64.6325 67.6115 64.6325 62.7115V44.8395C62.5264 43.7526 60.1905 43.1862 57.8205 43.1875Z" fill="#06CC76"></path><path d="M51.25 54.375H63.75" stroke="var(--bg_color_L2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M51.25 61.875H63.75" stroke="var(--bg_color_L2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M63.75 54.375L59.375 50" stroke="var(--bg_color_L2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M55.625 66.25L51.25 61.875" stroke="var(--bg_color_L2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                            <a class="headingtextbox" href="/TransactionHistory">
+                                <div class="heading text-start">Transaction</div>
+                                <p class="mb-0">My transaction history</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6" style="
+    margin: 8px 0px;
+">
+                        <div class="card p-sm-2 p-1">
+                            <div class="icon"><svg id="icon-rechargeHistory" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M70 23.3346V56.668C70 66.668 65 73.3346 53.3333 73.3346H26.6667C15 73.3346 10 66.668 10 56.668V23.3346C10 13.3346 15 6.66797 26.6667 6.66797H53.3333C65 6.66797 70 13.3346 70 23.3346Z" fill="#F95959"></path><path d="M51.6667 6.66797V32.868C51.6667 34.3346 49.9333 35.068 48.8667 34.1013L41.1333 26.968C40.8266 26.6792 40.4213 26.5184 40 26.5184C39.5787 26.5184 39.1734 26.6792 38.8667 26.968L31.1333 34.1013C30.8949 34.3225 30.5969 34.4691 30.2761 34.523C29.9553 34.5768 29.6258 34.5357 29.3281 34.4046C29.0305 34.2735 28.7777 34.0581 28.6009 33.7851C28.4241 33.512 28.3311 33.1932 28.3333 32.868V6.66797H51.6667ZM58.3333 49.168H44.1667C42.8 49.168 41.6667 48.0346 41.6667 46.668C41.6667 45.3013 42.8 44.168 44.1667 44.168H58.3333C59.7 44.168 60.8333 45.3013 60.8333 46.668C60.8333 48.0346 59.7 49.168 58.3333 49.168ZM58.3333 62.5013H30C28.6333 62.5013 27.5 61.368 27.5 60.0013C27.5 58.6346 28.6333 57.5013 30 57.5013H58.3333C59.7 57.5013 60.8333 58.6346 60.8333 60.0013C60.8333 61.368 59.7 62.5013 58.3333 62.5013Z" fill="#F95959"></path></svg></div>
+                            <a class="headingtextbox text-decoration-none" href="/wallet/rechargerecord">
+                                <div class="heading text-start text-black text-decoration-none">Deposit</div>
+                                <p class="mb-0">My deposit history</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6" style="
+    margin: 8px 0px;
+">
+                        <div class="card p-sm-2 p-1">
+                            <div class="icon"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.6654 50.0012C9.2987 50.0012 3.33203 55.9678 3.33203 63.3345C3.33203 65.8345 4.03203 68.2012 5.26536 70.2012C6.44047 72.1761 8.10965 73.811 10.1086 74.9449C12.1075 76.0788 14.3672 76.6726 16.6654 76.6678C21.532 76.6678 25.7654 74.0678 28.0654 70.2012C29.2987 68.2012 29.9987 65.8345 29.9987 63.3345C29.9987 55.9678 24.032 50.0012 16.6654 50.0012ZM23.232 62.2345L16.132 68.8012C15.6654 69.2345 15.032 69.4678 14.432 69.4678C13.7987 69.4678 13.1654 69.2345 12.6654 68.7345L9.36536 65.4345C8.90043 64.964 8.63969 64.3293 8.63969 63.6678C8.63969 63.0064 8.90043 62.3716 9.36536 61.9012C10.332 60.9345 11.932 60.9345 12.8987 61.9012L14.4987 63.5012L19.832 58.5678C20.832 57.6345 22.432 57.7012 23.3654 58.7012C24.2987 59.7012 24.232 61.3012 23.232 62.2345ZM59.1687 23.5012C58.3687 23.3678 57.5354 23.3345 56.6687 23.3345H23.3354C22.402 23.3345 21.502 23.4012 20.6354 23.5345C21.102 22.6012 21.7687 21.7345 22.5687 20.9345L33.402 10.0678C35.6021 7.88976 38.5729 6.66797 41.6687 6.66797C44.7645 6.66797 47.7353 7.88976 49.9354 10.0678L55.7687 15.9678C57.902 18.0678 59.0354 20.7345 59.1687 23.5012Z" fill="#FF891D"></path><path opacity="0.4" d="M73.3346 40.0026V56.6693C73.3346 66.6693 66.668 73.3359 56.668 73.3359H25.4346C26.468 72.4693 27.368 71.4026 28.068 70.2026C29.3013 68.2026 30.0013 65.8359 30.0013 63.3359C30.0013 55.9693 24.0346 50.0026 16.668 50.0026C12.668 50.0026 9.1013 51.7693 6.66797 54.5359V40.0026C6.66797 30.9359 12.1346 24.6026 20.6346 23.5359C21.5013 23.4026 22.4013 23.3359 23.3346 23.3359H56.668C57.5346 23.3359 58.368 23.3693 59.168 23.5026C67.768 24.5026 73.3346 30.8693 73.3346 40.0026Z" fill="#FF891D"></path><path d="M73.3346 41.6641H63.3346C59.668 41.6641 56.668 44.6641 56.668 48.3307C56.668 51.9974 59.668 54.9974 63.3346 54.9974H73.3346" fill="#FF891D"></path></svg></div>
+                            <a class="headingtextbox" href="/wallet/Withdrawalrecord">
+                                <div class="heading text-start">Withdraw</div>
+                                <p class="mb-0">My withdraw history</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row notifiction mb-1">
+                    <div class="col-12">
+                        <div class="card border-0 p-2" style="
+">
+                            <div class="row mx-0">
+                                <div class="col-12">
+                                    <a class="box text-decoration-none" href="/redenvelopes">
+                                        <div class="icon-text">
+                                            <div class="icon"><i class="fa-solid fa-gift text-theme1"></i></div>
+                                            <div class="texthead">Gift Code</div>
+                                        </div><i class="fa-solid fa-angle-right text-secondary" style="font-size: 18px;"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row notifiction mb-1">
+                    <div class="col-12">
+                        <div class="card border-0 p-2" style="
+">
+                            <div class="row mx-0">
+                                <div class="col-12">
+                                    <a class="box text-decoration-none" href="#">
+                                        <div class="icon-text">
+                                            <div class="icon"><i class="fa-solid fa-envelope text-theme1"></i></div>
+                                            <div class="texthead">Notification</div>
+                                        </div><i class="fa-solid fa-angle-right text-secondary" style="font-size: 18px;"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row notifiction mb-1">
+                    <div class="col-12">
+                        <div class="card border-0 p-2">
+                            <div class="row mx-0">
+                                <div class="col-12">
+                                    <a class="box text-decoration-none" href="/newsupdate">
+                                        <div class="icon-text">
+                                            <div class="icon"><i class="fa-solid fa-flag text-theme1"></i></div>
+                                            <div class="texthead">New Update</div>
+                                        </div><i class="fa-solid fa-angle-right text-secondary" style="font-size: 18px;"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row notifiction mb-1">
+                    <div class="col-12">
+                        <div class="card border-0 p-2">
+                            <div class="row mx-0">
+                                <div class="col-12">
+                                    <a class="box text-decoration-none" href="/gamestatistics">
+                                        <div class="icon-text">
+                                            <div class="icon"><i class="fa-solid fa-chart-simple text-theme1"></i></div>
+                                            <div class="texthead">Game Statistics</div>
+                                        </div><i class="fa-solid fa-angle-right text-secondary" style="font-size: 18px;"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row notifiction mb-1">
+                    <div class="col-12">
+                        <div class="card border-0 p-2" style="
+">
+                            <div class="row mx-0">
+                                <div class="col-12">
+                                    <div class="box" onclick="toggleLanguageDropdown()">
+                                        <div class="icon-text">
+                                            <div class="icon"><i class="fa-solid fa-globe text-theme1"></i></div>
+                                            <div class="texthead">Language</div>
+                                        </div>
+                                        <div class="d-flex text-black tre" style="font-size: 12px;">
+                                            <span id="current-language">English</span> &nbsp;
+                                            <i class="fa-solid fa-angle-down text-secondary" style="margin-top: 5px;" id="language-arrow"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- Language Dropdown -->
+                                    <div id="language-dropdown" style="display: none; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-top: 10px; overflow: hidden;">
+                                        <div class="language-option" onclick="selectLanguage('en')" style="padding: 12px 20px; cursor: pointer; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center;">
+                                            <span style="margin-right: 10px;">🇬🇧</span>
+                                            <span>English</span>
+                                        </div>
+                                        <div class="language-option" onclick="selectLanguage('hi')" style="padding: 12px 20px; cursor: pointer; display: flex; align-items: center;">
+                                            <span style="margin-right: 10px;">🇮🇳</span>
+                                            <span>हिंदी (Hindi)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row topbox mb-1">
+                    <div class="col-12">
+                        <div class="card border-0 mt-0">
+                            <div class="card-body" style="
+    padding: 10px 12px;
+">
+                                <div class="heading text-black text-start fw-bold">Service Center</div>
+                                <ul class="listicontext mt-1" style="
+    margin: 12px;
+">
+                                    <li><a class="anker" href="/mian/forgot"><i class="fa-solid fa-gear text-theme1"></i>Security</a></li>
+                                    <li><a class="anker" href="/keFuMenu"><i class="fa-solid fa-wallet text-theme1"></i>Support</a></li>
+                                    <li><a class="anker" href="/about"><i class="fa-solid fa-wallet text-theme1"></i>About us</a></li>
+                                    <% if (level == 1) { %>
+                                        <li><a class="anker" href="/admin/manager/index"><i class="fa-solid fa-gear text-theme1"></i>Admin Panel</a></li>
+                                        <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row logoutbox">
+                    <div class="col-12 "><button class="btn logoutbtn logout"><span><i class="fa-solid fa-right-from-bracket text-theme1"></i></span>Log out</button><br>
+                        <footer class="container-fluid footermain mainApp px-1">
+                            <div class="row w-100">
+                                <div class="col-12 px-1 w-100">
+                                    <div class="footerlist" style="
+    zoom: 0.35 !important;
+">
+                                        <a class="tabbar__container-item text-decoration-none active" href="/">
+                                            <div class="icon"><img class="w-100 h-100" src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20opacity='0.3'%20d='M27%2046C36.9411%2046%2045%2037.9411%2045%2028C45%2018.0589%2036.9411%2010%2027%2010C17.0589%2010%209%2018.0589%209%2028C9%2037.9411%2017.0589%2046%2027%2046Z'%20fill='black'/%3e%3cpath%20d='M23.6599%205.27799L5.76039%2017.3574V42.8644H15.8404V32.4244C15.8404%2029.6409%2018.0969%2027.3844%2020.8804%2027.3844H27.2404C30.0239%2027.3844%2032.2804%2029.6409%2032.2804%2032.4244V36.8044H28.9204V32.4244C28.9204%2031.4965%2028.1682%2030.7444%2027.2404%2030.7444H20.8804C19.9526%2030.7444%2019.2004%2031.4965%2019.2004%2032.4244V43.5844C19.2004%2045.0424%2018.0184%2046.2244%2016.5604%2046.2244H5.04039C3.58236%2046.2244%202.40039%2045.0424%202.40039%2043.5844V16.9747C2.40039%2016.0973%202.83631%2015.2772%203.56361%2014.7863L22.4377%202.04925C23.1552%201.56501%2024.0926%201.55594%2024.8194%202.02622L44.5146%2014.7702C45.2664%2015.2567%2045.7204%2016.0911%2045.7204%2016.9866V43.5844C45.7204%2045.0424%2044.5384%2046.2244%2043.0804%2046.2244H30.6004V42.8644H42.3604V17.3783L23.6599%205.27799Z'%20fill='black'/%3e%3cpath%20d='M32.4%2044.5443C32.4%2045.4722%2031.6478%2046.2243%2030.72%2046.2243C29.7922%2046.2243%2029.04%2045.4722%2029.04%2044.5443C29.04%2043.6165%2029.7922%2042.8643%2030.72%2042.8643C31.6478%2042.8643%2032.4%2043.6165%2032.4%2044.5443Z'%20fill='black'/%3e%3cpath%20d='M32.2799%2036.7445C32.2799%2037.6724%2031.5277%2038.4245%2030.5999%2038.4245C29.6721%2038.4245%2028.9199%2037.6724%2028.9199%2036.7445C28.9199%2035.8167%2029.6721%2035.0645%2030.5999%2035.0645C31.5277%2035.0645%2032.2799%2035.8167%2032.2799%2036.7445Z'%20fill='black'/%3e%3c/svg%3e"
+                                                    alt=""></div><span>Home</span></a>
+                                        <a class="tabbar__container-item text-decoration-none" href="/checkIn">
+                                            <div class="icon"><img class="w-100 h-100" src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20opacity='0.3'%20d='M27%2042C36.9411%2042%2045%2033.9411%2045%2024C45%2014.0589%2036.9411%206%2027%206C17.0589%206%209%2014.0589%209%2024C9%2033.9411%2017.0589%2042%2027%2042Z'%20fill='black'/%3e%3cpath%20d='M17.4489%2016.6808C17.4491%2016.6697%2017.4492%2016.6586%2017.4492%2016.6475C17.4492%2015.681%2016.6833%2014.8975%2015.7168%2014.8975C14.7529%2014.8975%2013.9263%2015.6767%2013.9219%2016.6396C13.9222%2016.6432%2013.9215%2016.6469%2013.9219%2016.6505C13.9221%2016.7723%2013.9355%2016.8911%2013.9606%2017.0059C14.5925%2021.9877%2018.8462%2025.8397%2023.9996%2025.8397C29.1037%2025.8397%2033.3252%2022.0611%2034.0195%2017.1487C34.0666%2016.9905%2034.0918%2016.8229%2034.0918%2016.6494C34.0918%2015.6829%2033.3083%2014.8994%2032.3418%2014.8994C31.3753%2014.8994%2030.5469%2015.6829%2030.5469%2016.6494C30.5469%2016.6662%2030.5471%2016.6829%2030.5476%2016.6996C30.0741%2019.8911%2027.3228%2022.3397%2023.9996%2022.3397C20.67%2022.3397%2017.9144%2019.8815%2017.4489%2016.6808Z'%20fill='black'/%3e%3cpath%20d='M10.5119%205.2H37.487C40.0599%205.2%2042.1753%207.22874%2042.2828%209.79945L42.793%2022H42.7995C42.7995%2022.8836%2043.5158%2023.6005%2044.3995%2023.6005C45.2832%2023.6005%2045.9995%2022.8841%2045.9995%2022.0005C45.9995%2021.9341%2045.9955%2021.8686%2045.9876%2021.8044L45.48%209.66575C45.3008%205.38123%2041.7752%202%2037.487%202H10.5119C6.22361%202%202.69803%205.38123%202.51886%209.66575L1.34795%2037.6657C1.15787%2042.2112%204.79154%2046%209.34096%2046H38.6579C43.2073%2046%2046.841%2042.2112%2046.6509%2037.6657L46.3303%2030C46.3069%2029.1368%2045.5993%2028.4442%2044.7304%2028.4442C43.8615%2028.4442%2043.1544%2029.1368%2043.131%2030H43.1275L43.1307%2030.0763C43.1312%2030.1004%2043.1322%2030.1243%2043.1337%2030.148L43.4537%2037.7994C43.5677%2040.5267%2041.3875%2042.8%2038.6579%2042.8H9.34096C6.61131%2042.8%204.43111%2040.5267%204.54516%2037.7994L5.71607%209.79945C5.82357%207.22874%207.93892%205.2%2010.5119%205.2Z'%20fill='black'/%3e%3c/svg%3e"
+                                                    alt=""></div><span>Activity</span></a>
+                                        <a class="tabbar__container-item text-decoration-none " href="/promotion">
+                                            <div class="icon diamondimage" style="
+    margin-top: 53px;
+    margin-left: 18px;
+">
+                                                <div class="image"><svg id="icon-promotion" viewBox="0 0 57 49" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.93876 1.50122C9.69785 0.55236 10.8471 0 12.0622 0H44.2172C45.4324 0 46.5816 0.552359 47.3407 1.50122L55.0792 11.1744C55.5056 11.7073 55.828 12.2943 56.0469 12.9092H0.232598C0.451468 12.2943 0.773925 11.7073 1.20023 11.1744L8.93876 1.50122ZM0 16.091H56.2795C56.0896 17.0496 55.664 17.9709 55.0034 18.7637L31.2126 47.3125C29.6134 49.2316 26.666 49.2316 25.0669 47.3125L1.27612 18.7637C0.615521 17.9709 0.189841 17.0496 0 16.091ZM20.5563 22.0266L27.7513 32.1286C27.9512 32.4093 28.3685 32.4083 28.5671 32.1267L35.6853 22.0338C36.1425 21.3856 36.8863 21 37.6795 21C39.0272 21 40.1198 22.0925 40.1198 23.4403V23.6393H39.8972C39.5712 23.6393 39.1148 23.8877 38.5931 24.5708C38.0874 25.2331 32.1271 33.2938 28.9417 37.6047C28.7578 37.8535 28.467 38 28.1577 38C27.8515 38 27.5632 37.8562 27.379 37.6117L17.3204 24.2603C17.3204 24.2603 16.9258 23.6393 16.2608 23.6393H16.1198V23.445C16.1198 22.0947 17.2144 21 18.5648 21C19.3556 21 20.0975 21.3825 20.5563 22.0266Z" fill="white"></path></svg></div>
+                                            </div><span class="permotiontext">Promotion</span></a>
+                                        <a class="tabbar__container-item text-decoration-none" href="/wallet">
+                                            <div class="icon"><img src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20opacity='0.3'%20d='M28%2042C37.9411%2042%2046%2033.9411%2046%2024C46%2014.0589%2037.9411%206%2028%206C18.0589%206%2010%2014.0589%2010%2024C10%2033.9411%2018.0589%2042%2028%2042Z'%20fill='black'/%3e%3cpath%20d='M3%2023C3%2017.016%206.526%2012.836%2012.0085%2012.132C12.5675%2012.044%2013.148%2012%2013.75%2012H35.25C35.809%2012%2036.3465%2012.022%2036.8625%2012.11C42.4095%2012.77%2046%2016.972%2046%2023V34C46%2040.6%2041.7%2045%2035.25%2045H13.75C7.3%2045%203%2040.6%203%2034V31.822'%20stroke='black'/%3e%3cpath%20d='M46%2023.7241H39.548C37.1822%2023.7241%2035.2466%2025.5862%2035.2466%2027.8621C35.2466%2030.1379%2037.1822%2032%2039.548%2032H46M37%2012C36.4838%2011.9172%2035.8058%2012%2035.2466%2012H14C13.3978%2012%2012.5592%2011.9172%2012%2012C12%2012%2012.7312%2011.3517%2013.2474%2010.8551L20.2371%204.11027C21.6566%202.75836%2023.5733%202%2025.5708%202C27.5682%202%2029.4849%202.75836%2030.9044%204.11027L34.6681%207.77235C36.0445%209.0758%2039.548%2012%2037%2012Z'%20stroke='black'/%3e%3c/svg%3e"
+                                                    alt="" class="w-100 h-100"></div><span>Wallet</span></a>
+                                        <a class="tabbar__container-item text-decoration-none" href="/mian">
+                                            <div class="icon"><img src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20opacity='0.3'%20d='M28%2042C37.9411%2042%2046%2033.9411%2046%2024C46%2014.0589%2037.9411%206%2028%206C18.0589%206%2010%2014.0589%2010%2024C10%2033.9411%2018.0589%2042%2028%2042Z'%20fill='black'/%3e%3cpath%20d='M24.08%205.27992C13.7412%205.27992%205.36%2013.6612%205.36%2023.9999C5.36%2034.3387%2013.7412%2042.7199%2024.08%2042.7199C34.4188%2042.7199%2042.8%2034.3387%2042.8%2023.9999V15.2399H46.16V23.9999C46.16%2036.1944%2036.2744%2046.0799%2024.08%2046.0799C11.8856%2046.0799%202%2036.1944%202%2023.9999C2%2011.8055%2011.8856%201.91992%2024.08%201.91992H44.36V5.27992H24.08Z'%20fill='black'/%3e%3cpath%20d='M46.1598%203.59992C46.1598%204.52776%2045.4076%205.27992%2044.4798%205.27992C43.552%205.27992%2042.7998%204.52776%2042.7998%203.59992C42.7998%202.67208%2043.552%201.91992%2044.4798%201.91992C45.4076%201.91992%2046.1598%202.67208%2046.1598%203.59992Z'%20fill='black'/%3e%3cpath%20d='M46.1598%2015.1195C46.1598%2016.0474%2045.4076%2016.7995%2044.4798%2016.7995C43.552%2016.7995%2042.7998%2016.0474%2042.7998%2015.1195C42.7998%2014.1917%2043.552%2013.4395%2044.4798%2013.4395C45.4076%2013.4395%2046.1598%2014.1917%2046.1598%2015.1195Z'%20fill='black'/%3e%3cpath%20d='M15.8064%2029.5825C16.501%2028.9674%2017.5627%2029.0317%2018.1779%2029.7263C19.3275%2031.0242%2020.9265%2032.5202%2023.6403%2032.5202C26.5117%2032.5202%2028.4971%2031.0925%2029.4448%2029.9868C30.0486%2029.2824%2031.1092%2029.2008%2031.8136%2029.8046C32.5181%2030.4085%2032.5997%2031.469%2031.9959%2032.1735C30.5435%2033.8679%2027.6809%2035.8802%2023.6403%2035.8802C19.4421%2035.8802%2016.9931%2033.4562%2015.6627%2031.9541C15.0475%2031.2595%2015.1118%2030.1977%2015.8064%2029.5825Z'%20fill='black'/%3e%3c/svg%3e"
+                                                    alt="" class="w-100 h-100"></div><span>Account</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Google Translate Element -->
+    <div id="google_translate_element" style="display: none;"></div>
+
+    <!-- Logout Confirmation Dialog -->
+    <div class="van-overlay" id="logout-dialog" style="z-index: 2000; display: none;">
+        <div class="van-dialog" style="z-index: 2001;">
+            <div class="van-dialog__header">
+                <div class="van-dialog__title">Confirm Logout</div>
+            </div>
+            <div class="van-dialog__content">
+                <div class="van-dialog__message">Are you sure you want to logout?</div>
+            </div>
+            <div class="van-dialog__footer">
+                <button class="van-dialog__cancel">Cancel</button>
+                <button class="van-dialog__confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        // Language functionality
+        let currentLanguage = 'en';
+        let isDropdownOpen = false;
+
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('language-dropdown');
+            const arrow = document.getElementById('language-arrow');
+
+            if (isDropdownOpen) {
+                dropdown.style.display = 'none';
+                arrow.className = 'fa-solid fa-angle-down text-secondary';
+                isDropdownOpen = false;
+            } else {
+                dropdown.style.display = 'block';
+                arrow.className = 'fa-solid fa-angle-up text-secondary';
+                isDropdownOpen = true;
+            }
+        }
+
+        function selectLanguage(lang) {
+            const currentLangElement = document.getElementById('current-language');
+            const dropdown = document.getElementById('language-dropdown');
+            const arrow = document.getElementById('language-arrow');
+
+            if (lang === 'hi') {
+                translateToHindi();
+                currentLangElement.textContent = 'हिंदी';
+                currentLanguage = 'hi';
+            } else {
+                translateToEnglish();
+                currentLangElement.textContent = 'English';
+                currentLanguage = 'en';
+            }
+
+            // Close dropdown
+            dropdown.style.display = 'none';
+            arrow.className = 'fa-solid fa-angle-down text-secondary';
+            isDropdownOpen = false;
+
+            // Save preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        function translateToHindi() {
+            // Wait for Google Translate to be ready
+            setTimeout(() => {
+                const selectElement = document.querySelector('.goog-te-combo');
+                if (selectElement) {
+                    selectElement.value = 'hi';
+                    selectElement.dispatchEvent(new Event('change'));
+                }
+            }, 1000);
+        }
+
+        function translateToEnglish() {
+            const selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = 'en';
+                selectElement.dispatchEvent(new Event('change'));
+            }
+        }
+
+        // Initialize language on page load
+        function initializeLanguage() {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage === 'hi') {
+                setTimeout(() => {
+                    selectLanguage('hi');
+                }, 2000);
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageSection = event.target.closest('.box');
+            const dropdown = document.getElementById('language-dropdown');
+
+            if (!languageSection && isDropdownOpen) {
+                dropdown.style.display = 'none';
+                document.getElementById('language-arrow').className = 'fa-solid fa-angle-down text-secondary';
+                isDropdownOpen = false;
+            }
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initializeLanguage, 3000);
+        });
+
+        fetch('/api/webapi/GetUserInfo')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === false) {
+                    unsetCookie();
+                    return false;
+                }
+
+                // Log the complete response for debugging
+                console.log('Complete API Response:', data);
+
+                // Extract user data
+                const userData = data.data;
+
+                // Update existing elements with current data
+                $('.name').text(userData.name_user || 'Member');
+                $('.uid').html(`UID | ${userData.id_user || 'N/A'} &nbsp;<span><i class="fa-regular fa-copy text-white"></i></span>`);
+                $('.uid').attr('data-clipboard-text', userData.id_user || '');
+
+                // Update phone number display
+                if (userData.phone_user) {
+                    const phone = userData.phone_user.toString();
+                    const maskedPhone = `+91 ${phone.slice(0, 2)}****${phone.slice(-4)}`;
+                    $('.logindate').html(`<span>Phone: </span><span>${maskedPhone}</span>`);
+                }
+
+                // Update balance/money display
+                $('.payment').text(`₹${userData.money_user || '0.00'}`);
+
+                // Update any additional fields that might be available in the response
+                if (userData.email_user) {
+                    // Add email display if element exists
+                    $('.email-display').text(userData.email_user);
+                }
+
+                if (userData.vip_level) {
+                    // Update VIP level if available
+                    $('.vip-level').text(`VIP ${userData.vip_level}`);
+                }
+
+                if (userData.last_login) {
+                    // Update last login if available
+                    $('.logindate').html(`<span>Last login: </span><span>${userData.last_login}</span>`);
+                }
+
+                if (userData.registration_date) {
+                    // Add registration date if available
+                    $('.registration-date').text(`Joined: ${userData.registration_date}`);
+                }
+
+                if (userData.total_deposit) {
+                    // Add total deposit if available
+                    $('.total-deposit').text(`Total Deposits: ₹${userData.total_deposit}`);
+                }
+
+                if (userData.total_withdrawal) {
+                    // Add total withdrawal if available
+                    $('.total-withdrawal').text(`Total Withdrawals: ₹${userData.total_withdrawal}`);
+                }
+
+                if (userData.referral_code) {
+                    // Add referral code if available
+                    $('.referral-code').text(userData.referral_code);
+                    $('.referral-code').attr('data-clipboard-text', userData.referral_code);
+                }
+
+                if (userData.game_wins) {
+                    // Add game statistics if available
+                    $('.game-wins').text(`Wins: ${userData.game_wins}`);
+                }
+
+                if (userData.game_losses) {
+                    $('.game-losses').text(`Losses: ${userData.game_losses}`);
+                }
+
+                if (userData.win_rate) {
+                    $('.win-rate').text(`Win Rate: ${userData.win_rate}%`);
+                }
+
+                if (userData.avatar_url) {
+                    // Update avatar if available
+                    $('.avtar img').attr('src', userData.avatar_url);
+                }
+
+                // Update any status indicators
+                if (userData.account_status) {
+                    $('.account-status').text(userData.account_status);
+                    $('.account-status').removeClass('active inactive').addClass(userData.account_status.toLowerCase());
+                }
+
+                if (userData.kyc_status) {
+                    $('.kyc-status').text(`KYC: ${userData.kyc_status}`);
+                }
+
+                // Handle any additional nested data
+                if (data.additional_info) {
+                    console.log('Additional Info:', data.additional_info);
+                    // Process additional_info if it exists
+                }
+
+                if (data.preferences) {
+                    console.log('User Preferences:', data.preferences);
+                    // Process user preferences if they exist
+                }
+
+                if (data.statistics) {
+                    console.log('User Statistics:', data.statistics);
+                    // Process user statistics if they exist
+                }
+
+                // Store user data globally for other scripts to use
+                window.currentUserData = userData;
+                window.fullApiResponse = data;
+
+            })
+            .catch(error => {
+                console.error('Error fetching user info:', error);
+                // Handle error gracefully
+            });
+    </script>
+    <script>
+        $('.reload_money').click(function(e) {
+            e.preventDefault();
+            $(this).addClass('action block-click');
+            setTimeout(() => {
+                $(this).removeClass('action block-click');
+            }, 3000);
+        });
+
+        window.onload = function() {
+            $('.Loading').fadeOut(10);
+        }
+        $('.van-dialog__cancel').click(function(e) {
+            e.preventDefault();
+
+            $('.van-dialog').addClass('van-dialog-bounce-leave-active van-dialog-bounce-leave-to');
+            setTimeout(() => {
+                $('.van-dialog').removeClass('van-dialog-bounce-leave-active van-dialog-bounce-leave-to');
+                $('.van-dialog, .van-overlay').fadeOut(50);
+            }, 200);
+        });
+        $('.logout').click(function(e) {
+            e.preventDefault();
+            $('.van-dialog, .van-overlay').css('display', '');
+            $('.van-dialog').addClass('van-dialog-bounce-enter-active van-dialog-bounce-enter-to');
+            setTimeout(() => {
+                $('.van-dialog').removeClass('van-dialog-bounce-enter-active van-dialog-bounce-enter-to');
+            }, 500);
+        });
+
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function unsetCookie() {
+            document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            location.href = "/login";
+        }
+
+        $('.van-dialog__confirm').click(function(e) {
+            e.preventDefault();
+            performLogout();
+        });
+
+        // New logout function using API
+        function performLogout() {
+            // Show loading state
+            $('.van-dialog__confirm').text('Logging out...').prop('disabled', true);
+
+            fetch('/api/webapi/logout', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Logout response:', data);
+                    if (data.status === true) {
+                        // Successful logout
+                        console.log('Logout successful');
+                        unsetCookie();
+                    } else {
+                        // Logout failed, but still clear cookies as fallback
+                        console.error('Logout API failed:', data.message);
+                        unsetCookie();
+                    }
+                })
+                .catch(error => {
+                    console.error('Logout error:', error);
+                    // Fallback to client-side logout
+                    unsetCookie();
+                });
+        }
+
+        $(document).on('click', '.toggle-password', function() {
+
+            $(this).toggleClass("fa-eye-slash");
+
+            var input = $("#pass_log_id");
+            input.attr('type') === 'password' ? input.attr('type', 'text') : input.attr('type', 'password')
+        });
+
+        var isBalanceVisible = true;
+
+        function toggleBalanceVisibility() {
+            var actualBalance = document.getElementById("Balance");
+            var hiddenBalance = document.getElementById("balance_show");
+
+            isBalanceVisible = !isBalanceVisible;
+
+            if (isBalanceVisible) {
+                actualBalance.style.display = "inline";
+                hiddenBalance.style.display = "none";
+            } else {
+                actualBalance.style.display = "none";
+                hiddenBalance.style.display = "inline";
+            }
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</body>
+
+</html>

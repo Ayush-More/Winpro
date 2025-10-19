@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
+        integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+    <style>
+        .form-group {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #2ecc71;
+        }
+
+        .form-group button {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <%- include('nav') %>
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Recharge/Trade Level Settings</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </section>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="padding: 10px 20px;margin-bottom: 200px;">
+                            
+                                
+                                <div class="form-group">
+                                    
+                                  
+                                    <div class="text-center">
+                                        <label for="telegram">Recharge Level Setting</label>
+                                    </div>
+                                    
+                                    
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 1 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_1"
+                                        placeholder="Level 1" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 2 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_2"
+                                        placeholder="Level 2" value="">  
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 3 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_3"
+                                        placeholder="Level 3" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 4 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_4"
+                                        placeholder="Level 4" value="">  
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 5 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_5"
+                                        placeholder="Level 5" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 6 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_6"
+                                        placeholder="Level 6" value="">  
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 7 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_7"
+                                        placeholder="Level 7" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 8 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_8"
+                                        placeholder="Level 8" value="">  
+                                    </div>
+                                </div>  
+                                
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 9 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_9"
+                                        placeholder="Level 9" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 10 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_10"
+                                        placeholder="Level 10" value="">  
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 11 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_11"
+                                        placeholder="Level 11" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 12 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_12"
+                                        placeholder="Level 12" value="">  
+                                    </div>
+                                </div> 
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 13 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_13"
+                                        placeholder="Level 13" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 14 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_14"
+                                        placeholder="Level 14" value="">  
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 15 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_15"
+                                        placeholder="Level 15" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 16 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_16"
+                                        placeholder="Level 16" value="">  
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 17 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_17"
+                                        placeholder="Level 17" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 18 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_18"
+                                        placeholder="Level 18" value="">  
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Recharge Level 19 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_19"
+                                        placeholder="Level 19" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Recharge Level 20 (%)</label>
+                                    <input type="text" class="form-control" id="recharge_level_20"
+                                        placeholder="Level 20" value="">  
+                                    </div>
+                                </div>
+                                    <br>    
+                                    
+                                    <button type="submit" class="btn btn-primary Commission_setting_recharge"
+                                        style="width: 100%;">Submit</button>
+                                </div>
+                                
+                                <div class="form-group">
+                                    
+                                  
+                                    <div class="text-center">
+                                        <label for="telegram">Trade Level Setting</label>
+                                    </div>
+                                    
+                                    
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 1 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_1"
+                                        placeholder="Level 1" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 2 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_2"
+                                        placeholder="Level 2" value="">  
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 3 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_3"
+                                        placeholder="Level 3" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 4 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_4"
+                                        placeholder="Level 4" value="">  
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 5 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_5"
+                                        placeholder="Level 5" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 6 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_6"
+                                        placeholder="Level 6" value="">  
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 7 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_7"
+                                        placeholder="Level 7" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 8 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_8"
+                                        placeholder="Level 8" value="">  
+                                    </div>
+                                </div>  
+                                
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 9 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_9"
+                                        placeholder="Level 9" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 10 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_10"
+                                        placeholder="Level 10" value="">  
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 11 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_11"
+                                        placeholder="Level 11" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 12 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_12"
+                                        placeholder="Level 12" value="">  
+                                    </div>
+                                </div> 
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 13 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_13"
+                                        placeholder="Level 13" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 14 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_14"
+                                        placeholder="Level 14" value="">  
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 15 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_15"
+                                        placeholder="Level 15" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 16 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_16"
+                                        placeholder="Level 16" value="">  
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 17 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_17"
+                                        placeholder="Level 17" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 18 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_18"
+                                        placeholder="Level 18" value="">  
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inr_bonus" style="color: #3498db;">Trade Level 19 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_19"
+                                        placeholder="Level 19" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="inr_bonus" style="color: #3498db;">Trade Level 20 (%)</label>
+                                    <input type="text" class="form-control" id="trade_level_20"
+                                        placeholder="Level 20" value="">  
+                                    </div>
+                                </div>
+                                    <br>    
+                                    
+                                    <button type="submit" class="btn btn-primary Commission_setting_trade"
+                                        style="width: 100%;">Submit</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/dist/js/adminlte.min.js"></script>
+    <script src="/js/admin/admin.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script>
+        $.ajax({
+            type: "POST",
+            url: "/admin/manager/settings/getLevelSettingData",
+            data: "data",
+            dataType: "json",
+            success: function (response) {
+                
+                console.log(response);
+                
+              
+                $('#recharge_level_1').val(response.rechargeLevel_1);
+                $('#recharge_level_2').val(response.rechargeLevel_2);
+                $('#recharge_level_3').val(response.rechargeLevel_3);
+                $('#recharge_level_4').val(response.rechargeLevel_4);
+                $('#recharge_level_5').val(response.rechargeLevel_5);
+                $('#recharge_level_6').val(response.rechargeLevel_6);
+                $('#recharge_level_7').val(response.rechargeLevel_7);
+                $('#recharge_level_8').val(response.rechargeLevel_8);
+                $('#recharge_level_9').val(response.rechargeLevel_9);
+                $('#recharge_level_10').val(response.rechargeLevel_10);
+                $('#recharge_level_11').val(response.rechargeLevel_11);
+                $('#recharge_level_12').val(response.rechargeLevel_12);
+                $('#recharge_level_13').val(response.rechargeLevel_13);
+                $('#recharge_level_14').val(response.rechargeLevel_14);
+                $('#recharge_level_15').val(response.rechargeLevel_15);
+                $('#recharge_level_16').val(response.rechargeLevel_16);
+                $('#recharge_level_17').val(response.rechargeLevel_17);
+                $('#recharge_level_18').val(response.rechargeLevel_18);
+                $('#recharge_level_19').val(response.rechargeLevel_19);
+                $('#recharge_level_20').val(response.rechargeLevel_20);
+                
+                $('#trade_level_1').val(response.tradeLevel_1);
+                $('#trade_level_2').val(response.tradeLevel_2);
+                $('#trade_level_3').val(response.tradeLevel_3);
+                $('#trade_level_4').val(response.tradeLevel_4);
+                $('#trade_level_5').val(response.tradeLevel_5);
+                $('#trade_level_6').val(response.tradeLevel_6);
+                $('#trade_level_7').val(response.tradeLevel_7);
+                $('#trade_level_8').val(response.tradeLevel_8);
+                $('#trade_level_9').val(response.tradeLevel_9);
+                $('#trade_level_10').val(response.tradeLevel_10);
+                $('#trade_level_11').val(response.tradeLevel_11);
+                $('#trade_level_12').val(response.tradeLevel_12);
+                $('#trade_level_13').val(response.tradeLevel_13);
+                $('#trade_level_14').val(response.tradeLevel_14);
+                $('#trade_level_15').val(response.tradeLevel_15);
+                $('#trade_level_16').val(response.tradeLevel_16);
+                $('#trade_level_17').val(response.tradeLevel_17);
+                $('#trade_level_18').val(response.tradeLevel_18);
+                $('#trade_level_19').val(response.tradeLevel_19);
+                $('#trade_level_20').val(response.tradeLevel_20);
+                
+ 
+                
+               
+                
+            }
+        });
+    </script>
+    <script>
+     
+
+        const alertMessage = (text) => {
+            const msg = document.createElement('div');
+            msg.setAttribute('data-v-1dcba851', '');
+            msg.className = 'msg';
+
+            const msgContent = document.createElement('div');
+            msgContent.setAttribute('data-v-1dcba851', '');
+            msgContent.className = 'msg-content v-enter-active v-enter-to';
+            msgContent.style = '';
+            msgContent.textContent = text;
+
+            msg.appendChild(msgContent);
+            document.body.appendChild(msg);
+
+            setTimeout(() => {
+                msgContent.classList.remove('v-enter-active', 'v-enter-to');
+                msgContent.classList.add('v-leave-active', 'v-leave-to');
+
+                setTimeout(() => {
+                    document.body.removeChild(msg);
+                }, 100);
+            }, 1000);
+        }
+
+     
+// Commission_setting_recharge
+// Commission_setting_trade
+        
+        $('.Commission_setting_recharge').click(function (e) {
+            e.preventDefault();
+            const recharge_level_1         = $('#recharge_level_1').val();
+            const recharge_level_2         = $('#recharge_level_2').val();
+            const recharge_level_3         = $('#recharge_level_3').val();
+            const recharge_level_4         = $('#recharge_level_4').val();
+            const recharge_level_5         = $('#recharge_level_5').val();
+            const recharge_level_6         = $('#recharge_level_6').val();
+            const recharge_level_7         = $('#recharge_level_7').val();
+            const recharge_level_8         = $('#recharge_level_8').val();
+            const recharge_level_9         = $('#recharge_level_9').val();
+            const recharge_level_10        = $('#recharge_level_10').val();
+            const recharge_level_11        = $('#recharge_level_11').val();
+            const recharge_level_12        = $('#recharge_level_12').val();
+            const recharge_level_13        = $('#recharge_level_13').val();
+            const recharge_level_14        = $('#recharge_level_14').val();
+            const recharge_level_15        = $('#recharge_level_15').val();
+            const recharge_level_16        = $('#recharge_level_16').val();
+            const recharge_level_17        = $('#recharge_level_17').val();
+            const recharge_level_18        = $('#recharge_level_18').val();
+            const recharge_level_19        = $('#recharge_level_19').val();
+            const recharge_level_20        = $('#recharge_level_20').val();
+            
+           // alert(inr_bonus+'==='+usdt_bonus+'==='+referral_bonus);
+            $.ajax({
+                type: "POST",
+                url: "/admin/manager/settings/commissionSettingRechrage",
+                data: {
+                        recharge_level_1  : recharge_level_1 , 
+                        recharge_level_2  : recharge_level_2 , 
+                        recharge_level_3  : recharge_level_3 , 
+                        recharge_level_4  : recharge_level_4 , 
+                        recharge_level_5  : recharge_level_5 , 
+                        recharge_level_6  : recharge_level_6 , 
+                        recharge_level_7  : recharge_level_7 , 
+                        recharge_level_8  : recharge_level_8 , 
+                        recharge_level_9  : recharge_level_9 , 
+                        recharge_level_10 : recharge_level_10 , 
+                        recharge_level_11 : recharge_level_11 , 
+                        recharge_level_12 : recharge_level_12 , 
+                        recharge_level_13 : recharge_level_13 , 
+                        recharge_level_14 : recharge_level_14 , 
+                        recharge_level_15 : recharge_level_15 , 
+                        recharge_level_16 : recharge_level_16 , 
+                        recharge_level_17 : recharge_level_17 , 
+                        recharge_level_18 : recharge_level_18 , 
+                        recharge_level_19 : recharge_level_19 , 
+                        recharge_level_20 : recharge_level_20 , 
+                },
+                dataType: "json",
+                success: function (response) {
+               // console.log(response);
+                    if (response.status == true) {
+                        Swal.fire(
+                            'Good job!',
+                            'Your Block Updated Successfully!',
+                            'success'
+                        )
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Empty or Wrong',
+                        })
+                    }
+                }
+            });
+        });
+        
+        $('.Commission_setting_trade').click(function (e) {
+            e.preventDefault();
+            const trade_level_1         = $('#trade_level_1').val();
+            const trade_level_2         = $('#trade_level_2').val();
+            const trade_level_3         = $('#trade_level_3').val();
+            const trade_level_4         = $('#trade_level_4').val();
+            const trade_level_5         = $('#trade_level_5').val();
+            const trade_level_6         = $('#trade_level_6').val();
+            const trade_level_7         = $('#trade_level_7').val();
+            const trade_level_8         = $('#trade_level_8').val();
+            const trade_level_9         = $('#trade_level_9').val();
+            const trade_level_10        = $('#trade_level_10').val();
+            const trade_level_11        = $('#trade_level_11').val();
+            const trade_level_12        = $('#trade_level_12').val();
+            const trade_level_13        = $('#trade_level_13').val();
+            const trade_level_14        = $('#trade_level_14').val();
+            const trade_level_15        = $('#trade_level_15').val();
+            const trade_level_16        = $('#trade_level_16').val();
+            const trade_level_17        = $('#trade_level_17').val();
+            const trade_level_18        = $('#trade_level_18').val();
+            const trade_level_19        = $('#trade_level_19').val();
+            const trade_level_20        = $('#trade_level_20').val();
+            
+           // alert(inr_bonus+'==='+usdt_bonus+'==='+referral_bonus);
+            $.ajax({
+                type: "POST",
+                url: "/admin/manager/settings/commissionSettingTrade",
+                data: {
+                        trade_level_1  : trade_level_1 , 
+                        trade_level_2  : trade_level_2 , 
+                        trade_level_3  : trade_level_3 , 
+                        trade_level_4  : trade_level_4 , 
+                        trade_level_5  : trade_level_5 , 
+                        trade_level_6  : trade_level_6 , 
+                        trade_level_7  : trade_level_7 , 
+                        trade_level_8  : trade_level_8 , 
+                        trade_level_9  : trade_level_9 , 
+                        trade_level_10 : trade_level_10 , 
+                        trade_level_11 : trade_level_11 , 
+                        trade_level_12 : trade_level_12 , 
+                        trade_level_13 : trade_level_13 , 
+                        trade_level_14 : trade_level_14 , 
+                        trade_level_15 : trade_level_15 , 
+                        trade_level_16 : trade_level_16 , 
+                        trade_level_17 : trade_level_17 , 
+                        trade_level_18 : trade_level_18 , 
+                        trade_level_19 : trade_level_19 , 
+                        trade_level_20 : trade_level_20 , 
+                },
+                dataType: "json",
+                success: function (response) {
+               // console.log(response);
+                    if (response.status == true) {
+                        Swal.fire(
+                            'Good job!',
+                            'Your Block Updated Successfully!',
+                            'success'
+                        )
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Empty or Wrong',
+                        })
+                    }
+                }
+            });
+        });
+         
+    </script>
+</body>
+
+</html>

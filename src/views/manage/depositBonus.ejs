@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deposit Bonus Report</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <%- include('./nav') -%>
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Deposit Bonus Report</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/admin/manager/index">Home</a></li>
+                                <li class="breadcrumb-item active">Deposit Bonus Report</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Deposit Bonus Records</h3>
+                                    <div class="card-tools">
+                                        <div class="input-group input-group-sm" style="width: 300px;">
+                                            <input type="text" id="search-input" class="form-control float-right" placeholder="Search by phone">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-default" id="search-btn">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body table-responsive p-0">
+                                    <table class="table table-hover text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Phone</th>
+                                                <th>Recharge Amount</th>
+                                                <th>Bonus Amount</th>
+                                                <th>Bonus Type</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Data will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer clearfix">
+                                    <ul class="pagination pagination-sm m-0 float-right">
+                                        <li class="page-item"><a class="page-link" href="#" id="prev-page">&laquo;</a></li>
+                                        <li class="page-item"><a class="page-link" href="#" id="current-page">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#" id="next-page">&raquo;</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/dist/js/adminlte.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script>
+        let currentPage = 1;
+        const limit = 20;
+
+        function formateT(params) {
+            let result = (params < 10) ? "0" + params : params;
+            return result;
+        }
+
+        function timerJoin(params = '', addHours = 0) {
+            let date = '';
+            if (params) {
+                if (typeof params === 'string' && params.includes('-')) {
+                    date = new Date(params);
+                } else {
+                    date = new Date(Number(params));
+                }
+            } else {
+                date = new Date();
+            }
+
+            date.setHours(date.getHours() + addHours);
+
+            let years = formateT(date.getFullYear());
+            let months = formateT(date.getMonth() + 1);
+            let days = formateT(date.getDate());
+            let hours = formateT(date.getHours());
+            let minutes = formateT(date.getMinutes());
+            let seconds = formateT(date.getSeconds());
+
+            return years + '-' + months + '-' + days + ' ' + hours + ':' + minutes + ':' + seconds;
+        }
+
+        function loadDepositBonusData(page = 1, search = '') {
+            $.ajax({
+                type: "POST",
+                url: "/api/webapi/admin/listDepositBonus",
+                data: {
+                    page: page,
+                    limit: limit,
+                    search: search
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.status) {
+                        renderDepositBonusTable(response.data);
+                        updatePagination(response.totalPages, page);
+                    } else {
+                        Swal.fire('Error', response.message, 'error');
+                    }
+                },
+                error: function () {
+                    Swal.fire('Error', 'Failed to load deposit bonus data', 'error');
+                }
+            });
+        }
+
+        function renderDepositBonusTable(data) {
+            let html = '';
+            data.forEach((bonus, index) => {
+                const statusBadge = bonus.status == 1 ? 
+                    '<span class="badge badge-success">Credited</span>' : 
+                    '<span class="badge badge-warning">Pending</span>';
+                
+                html += `
+                    <tr>
+                        <td>${bonus.id}</td>
+                        <td><b>${bonus.phone}</b></td>
+                        <td>₹${parseFloat(bonus.recharge_amount || 0).toFixed(2)}</td>
+                        <td>₹${parseFloat(bonus.bonus_amount || 0).toFixed(2)}</td>
+                        <td>${bonus.bonus_type || 'Deposit Bonus'}</td>
+                        <td>${timerJoin(bonus.date_time)}</td>
+                        <td>${statusBadge}</td>
+                    </tr>
+                `;
+            });
+            $('tbody').html(html);
+        }
+
+        function updatePagination(totalPages, currentPageNum) {
+            currentPage = currentPageNum;
+            $('#current-page').text(currentPage);
+            
+            $('#prev-page').parent().toggleClass('disabled', currentPage <= 1);
+            $('#next-page').parent().toggleClass('disabled', currentPage >= totalPages);
+        }
+
+        // Event listeners
+        $('#search-btn').click(function() {
+            const searchTerm = $('#search-input').val();
+            loadDepositBonusData(1, searchTerm);
+        });
+
+        $('#search-input').keypress(function(e) {
+            if (e.which == 13) {
+                $('#search-btn').click();
+            }
+        });
+
+        $('#prev-page').click(function(e) {
+            e.preventDefault();
+            if (currentPage > 1) {
+                loadDepositBonusData(currentPage - 1, $('#search-input').val());
+            }
+        });
+
+        $('#next-page').click(function(e) {
+            e.preventDefault();
+            loadDepositBonusData(currentPage + 1, $('#search-input').val());
+        });
+
+        // Load initial data
+        $(document).ready(function() {
+            loadDepositBonusData();
+        });
+    </script>
+</body>
+</html>

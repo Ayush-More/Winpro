@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Referral - DeltInWin</title>
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+</head>
+
+<body style="font-size: 12px;">
+    <div id="root">
+        <div class="mainApp">
+            <div class="container-fluid" style="padding: 4px 12px;">
+                <!-- Header -->
+                <div class="row align-items-center mb-3">
+                    <div class="col-2">
+                        <a href="/promotion" class="text-decoration-none">
+                            <i class="fa-solid fa-arrow-left text-theme1" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h5 class="mb-0 text-theme1 fw-bold">My Referral</h5>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <!-- Referral Stats -->
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="card bg-gradient-primary text-white border-0 rounded-3">
+                            <div class="card-body text-center py-2" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <h6 class="card-title mb-1">Total</h6>
+                                <h4 class="mb-0" id="total-referrals">0</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card bg-gradient-success text-white border-0 rounded-3">
+                            <div class="card-body text-center py-2" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <h6 class="card-title mb-1">Active</h6>
+                                <h4 class="mb-0" id="active-referrals">0</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card bg-gradient-warning text-white border-0 rounded-3">
+                            <div class="card-body text-center py-2" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <h6 class="card-title mb-1">Today</h6>
+                                <h4 class="mb-0" id="today-referrals">0</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invitation Link -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-theme1 mb-2">
+                                    <i class="fa-solid fa-link me-2"></i>Invitation Link
+                                </h6>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="invitation-link" readonly>
+                                    <button class="btn btn-primary" type="button" onclick="copyInvitationLink()">
+                                        <i class="fa-solid fa-copy"></i>
+                                    </button>
+                                </div>
+                                <small class="text-muted">Share this link to invite new users</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR Code -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body text-center">
+                                <h6 class="card-title text-theme1 mb-2">
+                                    <i class="fa-solid fa-qrcode me-2"></i>QR Code
+                                </h6>
+                                <div id="qrcode" class="d-flex justify-content-center mb-2"></div>
+                                <small class="text-muted">Scan to register with your referral code</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <ul class="nav nav-pills nav-fill bg-light rounded-3 p-1">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-filter="all" href="javascript:void(0)">All</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-filter="active" href="javascript:void(0)">Active</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-filter="deposited" href="javascript:void(0)">Deposited</a>
+                            </li>
+                                <div class="row mb-3">
+                    <div class="col-12 text-end">
+                        <select id="levelFilter" class="form-select form-select-sm w-auto d-inline-block" onchange="filterByLevel(this.value)">
+                            <option value="all">All Levels</option>
+                            <option value="1">Level 1</option>
+                            <option value="2">Level 2</option>
+                            <option value="3">Level 3</option>
+                            <option value="4">Level 4</option>
+                            <option value="5">Level 5</option>
+                            <option value="6">Level 6</option>
+                        </select>
+                    </div>
+                </div>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+            
+
+                <!-- Referral List -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3">
+                            <div class="card-header bg-theme1 text-white">
+                                <h6 class="mb-0">Referral List</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="referral-list" class="list-group list-group-flush">
+                                    <!-- Loading state -->
+                                    <div class="list-group-item text-center py-4">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <p class="mt-2 mb-0">Loading referral data...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings Summary -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-theme1">Referral Earnings</h6>
+                                <div class="row text-center">
+                                    <div class="col-6">
+                                        <small class="text-muted">Total Earned</small>
+                                        <div class="fw-bold text-success" id="total-earned">₹0.00</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <small class="text-muted">This Month</small>
+                                        <div class="fw-bold text-primary" id="month-earned">₹0.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="van-overlay" style="z-index: 2000; display: none;">
+                <div class="Loading">
+                    <div class="van-loading van-loading--spinner van-loading--vertical">
+                        <span class="van-loading__spinner van-loading__spinner--spinner" style="width: 30px; height: 30px;">
+                            <svg viewBox="25 25 50 50" class="circular">
+                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                            </svg>
+                        </span>
+                        <span class="van-loading__text">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/qr.js"></script>
+    <script src="/js/client.js"></script>
+
+    <script>
+        let allReferrals = [];
+        let currentFilter = 'all';
+
+        $(document).ready(function() {
+            loadReferralData();
+            
+            // Filter functionality
+            $('.nav-link[data-filter]').on('click', function() {
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+                currentFilter = $(this).data('filter');
+                filterReferrals(currentFilter);
+            });
+        });
+
+        function loadReferralData() {
+            $('.van-overlay').fadeIn(10);
+            
+            // Fetch promotion data for invitation link
+            $.ajax({
+                type: "POST",
+                url: "/api/webapi/promotion",
+                data: {},
+                dataType: "json",
+                success: function(response) {
+                    if (response.status === true && response.info && response.info[0]) {
+                        const inviteCode = response.info[0].code;
+                        const inviteLink = window.location.hostname + `/register?r_code=${inviteCode}`;
+                        $('#invitation-link').val(inviteLink);
+                        
+                        // Generate QR code
+                        if (typeof QRCode !== 'undefined') {
+                            $('#qrcode').empty();
+                            var qrcode = new QRCode(document.getElementById("qrcode"));
+                            qrcode.makeCode(inviteLink);
+                        }
+                    }
+                }
+            });
+            
+            // Fetch team data for referrals
+            $.ajax({
+                type: "GET",
+                url: "/api/webapi/myTeam",
+                dataType: "json",
+                success: function(response) {
+                    console.log('Referral Data:', response);
+                    
+                    if (response.status === true && response.f1) {
+                        allReferrals = response.f1; // f1 contains all levels (1-6)
+                        updateReferralUI(response);
+                    } else {
+                        showNoData();
+                    }
+                    $('.van-overlay').fadeOut(10);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching referral data:', error);
+                    showError('Failed to load referral data');
+                    $('.van-overlay').fadeOut(10);
+                }
+            });
+        }
+function filterByLevel(level) {
+    let filteredReferrals = [];
+
+    if (level === 'all') {
+        filteredReferrals = allReferrals;
+    } else {
+        filteredReferrals = allReferrals.filter(ref => String(ref.user_level) === level);
+    }
+
+    renderReferralList(filteredReferrals);
+}
+
+        function updateReferralUI(data) {
+            const referrals = data.f1 || [];
+
+            // Update stats
+            $('#total-referrals').text(referrals.length);
+
+            // Calculate active referrals (users with deposits)
+            const activeReferrals = referrals.filter(ref => parseFloat(ref.total_money || 0) > 0).length;
+            $('#active-referrals').text(activeReferrals);
+
+            // Calculate today's referrals
+            const today = new Date().toISOString().split('T')[0];
+            const todayReferrals = referrals.filter(ref => {
+                if (!ref.time) return false;
+
+                // Handle both timestamp and date string formats
+                const timeValue = typeof ref.time === 'string' ? parseInt(ref.time) : ref.time;
+                const joinDate = new Date(timeValue);
+
+                if (isNaN(joinDate.getTime())) return false;
+                return joinDate.toISOString().split('T')[0] === today;
+            }).length;
+            $('#today-referrals').text(todayReferrals);
+
+            // Calculate level-wise statistics
+            const levelStats = {};
+            for (let i = 1; i <= 6; i++) {
+                levelStats[i] = referrals.filter(ref => parseInt(ref.user_level || 1) === i).length;
+            }
+
+            // Calculate earnings with proper commission rates
+            let totalEarned = 0;
+            referrals.forEach(ref => {
+                const deposit = parseFloat(ref.total_money || 0);
+                const level = parseInt(ref.user_level || 1);
+
+                // Commission rates by level (as per your level reward structure)
+                const commissionRates = {
+                    1: 0.007, // 0.70%
+                    2: 0.003, // 0.30%
+                    3: 0.002, // 0.20%
+                    4: 0.002, // 0.20%
+                    5: 0.001, // 0.10%
+                    6: 0.001  // 0.10%
+                };
+
+                const rate = commissionRates[level] || 0.007;
+                totalEarned += deposit * rate;
+            });
+
+            $('#total-earned').text(`₹${totalEarned.toFixed(2)}`);
+            $('#month-earned').text(`₹${(totalEarned * 0.3).toFixed(2)}`); // Estimate
+
+            // Update level filter with counts
+            for (let i = 1; i <= 6; i++) {
+                const option = $(`#levelFilter option[value="${i}"]`);
+                if (option.length) {
+                    option.text(`Level ${i} (${levelStats[i]})`);
+                }
+            }
+
+            // Render referral list
+            renderReferralList(referrals);
+        }
+
+        function renderReferralList(referrals) {
+            const listContainer = $('#referral-list');
+            listContainer.empty();
+            
+            if (referrals.length === 0) {
+                listContainer.html(`
+                    <div class="list-group-item text-center py-4">
+                        <i class="fa-solid fa-user-plus text-muted" style="font-size: 48px;"></i>
+                        <p class="mt-2 mb-0 text-muted">No referrals found</p>
+                        <small class="text-muted">Share your invitation link to get referrals</small>
+                    </div>
+                `);
+                return;
+            }
+            
+            referrals.forEach(ref => {
+                // Handle both timestamp and date string formats
+                let joinDate;
+                if (ref.time) {
+                    // If ref.time is a timestamp (number), convert it
+                    const timeValue = typeof ref.time === 'string' ? parseInt(ref.time) : ref.time;
+                    const date = new Date(timeValue);
+                    joinDate = isNaN(date.getTime()) ? 'Invalid Date' :
+                        date.toLocaleDateString('en-IN', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                        });
+                } else {
+                    joinDate = 'N/A';
+                }
+
+                const totalMoney = parseFloat(ref.total_money || 0);
+                const level = parseInt(ref.user_level || 1);
+                const isActive = totalMoney > 0;
+
+                // Commission rates by level
+                const commissionRates = {
+                    1: 0.007, // 0.70%
+                    2: 0.003, // 0.30%
+                    3: 0.002, // 0.20%
+                    4: 0.002, // 0.20%
+                    5: 0.001, // 0.10%
+                    6: 0.001  // 0.10%
+                };
+
+                const rate = commissionRates[level] || 0.007;
+                const commission = totalMoney * rate;
+                
+                const statusBadge = isActive ?
+                    '<span class="badge bg-success">Active</span>' :
+                    '<span class="badge bg-secondary">Inactive</span>';
+
+                // Level badge with different colors
+                const levelColors = {
+                    1: 'bg-primary',
+                    2: 'bg-info',
+                    3: 'bg-success',
+                    4: 'bg-warning',
+                    5: 'bg-danger',
+                    6: 'bg-dark'
+                };
+                const levelBadge = `<span class="badge ${levelColors[level] || 'bg-primary'}">L${level}</span>`;
+
+                const commissionRate = ((rate * 100).toFixed(2)) + '%';
+
+                const listItem = `
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">${ref.name_user || 'User'} ${statusBadge} ${levelBadge}</h6>
+                                <p class="mb-1 text-muted small">
+                                    <i class="fa-solid fa-id-card me-1"></i>ID: ${ref.id_user || 'N/A'} |
+                                    <i class="fa-solid fa-percentage me-1"></i>Rate: ${commissionRate}
+                                </p>
+                                <small class="text-muted"><i class="fa-solid fa-calendar me-1"></i>Joined: ${joinDate}</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="badge bg-primary mb-1">₹${totalMoney.toLocaleString()}</div>
+                                <div class="small text-muted">Deposit</div>
+                                <div class="badge bg-success">₹${commission.toFixed(2)}</div>
+                                <div class="small text-muted">Commission</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listContainer.append(listItem);
+            });
+        }
+
+        function filterReferrals(filter) {
+            let filteredReferrals = allReferrals;
+            
+            switch(filter) {
+                case 'active':
+                    filteredReferrals = allReferrals.filter(ref => parseFloat(ref.total_money || 0) > 0);
+                    break;
+                case 'deposited':
+                    filteredReferrals = allReferrals.filter(ref => parseFloat(ref.total_money || 0) > 0);
+                    break;
+                default:
+                    filteredReferrals = allReferrals;
+            }
+            
+            renderReferralList(filteredReferrals);
+        }
+
+        function filterByLevel(level) {
+            let filteredReferrals = allReferrals;
+
+            if (level !== 'all') {
+                filteredReferrals = allReferrals.filter(ref => {
+                    return parseInt(ref.user_level || 1) === parseInt(level);
+                });
+            }
+
+            renderReferralList(filteredReferrals);
+        }
+
+        function copyInvitationLink() {
+            const linkInput = document.getElementById('invitation-link');
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999);
+            
+            navigator.clipboard.writeText(linkInput.value).then(function() {
+                showSuccessMessage('Invitation link copied successfully!');
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+                document.execCommand('copy');
+                showSuccessMessage('Invitation link copied successfully!');
+            });
+        }
+
+        function showSuccessMessage(text) {
+            $('body').append(`
+                <div data-v-1dcba851="" class="msg">
+                    <div data-v-1dcba851="" class="msg-content v-enter-active v-enter-to">${text}</div>
+                </div>
+            `);
+            
+            setTimeout(() => {
+                $('.msg .msg-content').removeClass('v-enter-active v-enter-to');
+                $('.msg .msg-content').addClass('v-leave-active v-leave-to');
+                setTimeout(() => {
+                    $('.msg').remove();
+                }, 100);
+            }, 1000);
+        }
+
+        function showNoData() {
+            $('#referral-list').html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-user-plus text-muted" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-muted">No referral data available</p>
+                </div>
+            `);
+        }
+
+        function showError(message) {
+            $('#referral-list').html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-exclamation-triangle text-danger" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-danger">${message}</p>
+                    <button class="btn btn-primary btn-sm mt-2" onclick="loadReferralData()">Retry</button>
+                </div>
+            `);
+        }
+    </script>
+</body>
+
+</html>

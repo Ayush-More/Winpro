@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Attendance Bonus - DeltInWin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+</head>
+<body style="font-size: 12px;">
+    <div id="root">
+        <div class="mainApp">
+            <div class="container-fluid" style="padding: 4px 12px;">
+                <div class="row align-items-center mb-3">
+                    <div class="col-2">
+                        <a href="/promotion" class="text-decoration-none">
+                            <i class="fa-solid fa-arrow-left text-theme1" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h5 class="mb-0 text-theme1 fw-bold">Daily Attendance Bonus</h5>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card bg-gradient-success text-white border-0 rounded-3">
+                            <div class="card-body text-center" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <h6 class="card-title mb-2">Total Attendance Bonus</h6>
+                                <h2 class="mb-0" id="total-bonus">₹0.00</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3">
+                            <div class="card-header bg-theme1 text-white">
+                                <h6 class="mb-0">Attendance History</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="attendance-list" class="list-group list-group-flush">
+                                    <div class="list-group-item text-center py-4">
+                                        <i class="fa-solid fa-calendar-check text-muted" style="font-size: 48px;"></i>
+                                        <p class="mt-2 mb-0 text-muted">No attendance bonus data available</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        $(document).ready(function() {
+            console.log('Daily Attendance Bonus page loaded');
+        });
+    </script>
+</body>
+</html>

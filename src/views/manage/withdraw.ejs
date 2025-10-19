@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Withdraw money</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+
+    <style>
+      .swal2-html-container {
+        color: white;
+        display: block;
+      }
+
+      /* Ensure all table cells are centered */
+      table.projects td,
+      table.projects th {
+        text-align: center !important;
+        vertical-align: middle !important;
+      }
+
+      body.sidebar-mini .content-wrapper {
+        margin-left: 250px;
+      }
+
+      body.sidebar-mini.sidebar-collapse .content-wrapper {
+        margin-left: 4.6rem;
+      }
+    </style>
+  </head>
+
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <%- include('nav') %>
+      <div class="content-wrapper">
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>
+                  Browse withdrawals
+                  <img
+                    data-v-7b283485=""
+                    width="35px"
+                    height="35px"
+                    src="/images/withdraw.png"
+                    class="chackImg"
+                  />
+                </h1>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="content">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">withdrawals Requests</h3>
+              <div class="card-tools">
+                <button
+                  type="button"
+                  class="btn btn-tool"
+                  data-card-widget="collapse"
+                  title="Collapse"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-tool"
+                  data-card-widget="remove"
+                  title="Remove"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0" style="overflow-x: auto">
+              <table class="table table-striped projects">
+                <thead>
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Phone</th>
+                    <th class="text-center">Type</th>
+                    <th class="text-center">Address</th>
+                    <th class="text-center">Amount(INR)</th>
+                    <th class="text-center">Charge(INR)</th>
+                    <th class="text-center">Net Amount(INR)</th>
+                    <th class="text-center">Amount(USDT)</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Accept/Reject</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="text-center">
+                    <td colspan="12">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <script src="/js/admin/admin.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <script>
+      function formateT(params) {
+        let result = params < 10 ? "0" + params : params;
+        return result;
+      }
+
+      function timerJoin(params = "", addHours = 0) {
+        let date = "";
+        if (params) {
+          date = new Date(Number(params));
+        } else {
+          date = new Date();
+        }
+
+        date.setHours(date.getHours() + addHours);
+
+        let years = formateT(date.getFullYear());
+        let months = formateT(date.getMonth() + 1);
+        let days = formateT(date.getDate());
+
+        let hours = date.getHours() % 12;
+        hours = hours === 0 ? 12 : hours;
+        let ampm = date.getHours() < 12 ? "AM" : "PM";
+
+        let minutes = formateT(date.getMinutes());
+        let seconds = formateT(date.getSeconds());
+
+        return (
+          years +
+          "-" +
+          months +
+          "-" +
+          days +
+          " " +
+          hours +
+          ":" +
+          minutes +
+          ":" +
+          seconds +
+          " " +
+          ampm
+        );
+      }
+
+      function show(params) {
+        console.log("params", params);
+
+        if (params.length == 0) {
+          $("tbody").html(`
+                    <tr class="text-center">
+                        <td colspan="12">No more data...</td>
+                    </tr>
+                `);
+          return;
+        }
+
+        let html = "";
+
+        params.forEach((data) => {
+          html += `<tr>
+                    <td class="text-center">${data.id}</td>
+                    <td class="text-center">${data.name_user}</td>
+                    <td class="text-center"><b>${data.phone}</b></td>
+                    <td class="text-center">
+                        <b>${data.mode}</b>
+                        ${
+                          data.mode === "bank"
+                            ? `<br/><small>IFSC: ${data.ifsc}</small><br/><small>Account No: ${data.stk}</small>`
+                            : ""
+                        }
+                    </td>
+                    <td class="text-center"><b>${data.address}</b></td>
+                    <td class="text-center"><b>${data.money}</b></td>
+                    <td class="text-center"><b>${data.charges}</b></td>
+                    <td class="text-center"><b>${data.net_amount}</b></td>
+                    <td class="text-center"><b>${(data.money / 90).toFixed(
+                      2
+                    )}</b></td>
+                    <td class="text-center" style="min-width: 190px;"><b>${timerJoin(
+                      data.time
+                    )}</b></td>
+                    <td class="text-center project-state">
+                        <span class="badge badge-warning">Waiting...</span>
+                    </td>
+                    <td class="text-center project-actions" style="min-width: 160px; white-space: nowrap;">
+                        <a class="btn btn-success btn-sm confirm-btn2" href="#" data="${
+                          data.id
+                        }">Approve</a>
+                        <a class="btn btn-danger btn-sm delete-btn" href="#" data="${
+                          data.id
+                        }"><i class="fas fa-times-circle"></i></a>
+                    </td>
+                </tr>`;
+        });
+
+        $("tbody").html(html);
+
+        $(".btn-success").click(function (e) {
+          e.preventDefault();
+          let id = $(this).attr("data");
+          $.ajax({
+            type: "POST",
+            url: "/api/webapi/admin/withdraw",
+            data: {
+              id: id,
+              type: "confirm",
+            },
+            dataType: "json",
+            success: function (response) {
+              Swal.fire(
+                "Good job!",
+                "Withdrawal Accepted Successfully!",
+                "success"
+              );
+              setTimeout(() => {
+                location.reload();
+              }, 100);
+            },
+          });
+        });
+
+        $(".btn-danger").click(function (e) {
+          e.preventDefault();
+          let id = $(this).attr("data");
+          $.ajax({
+            type: "POST",
+            url: "/api/webapi/admin/withdraw",
+            data: {
+              id: id,
+              type: "delete",
+            },
+            dataType: "json",
+            success: function (response) {
+              setTimeout(() => {
+                location.reload();
+              }, 100);
+              Swal.fire(
+                "Good job!",
+                "Withdrawal Rejected Successfully!",
+                "success"
+              );
+            },
+          });
+        });
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/recharge",
+        data: {},
+        dataType: "json",
+        success: function (response) {
+          show(response.datas3);
+        },
+      });
+    </script>
+  </body>
+</html>

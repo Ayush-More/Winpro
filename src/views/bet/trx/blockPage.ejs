@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Viewer</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+    iframe {
+      border: none;
+      height: calc(100% - 50px); /* Adjust iframe height to account for the header */
+      width: 100%;
+    }
+    header {
+      height: 50px;
+      background-color: #3f3f3f;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-back {
+      cursor: pointer;
+      height: 30px; /* Adjust height of the back button image */
+    }
+    .title {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      flex-grow: 1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div onclick="goBack()">
+      <img src="/images/back.c3244ab0.png" class="navbar-back" alt="Back"/>
+    </div>
+    <div class="title">TRX</div>
+    <div style="width: 30px;"></div> <!-- Spacer to balance the flex layout -->
+  </header>
+  <iframe src="https://tronscan.org/#/block/<%= blockId %>"></iframe>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

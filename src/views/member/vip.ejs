@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP - SecureTrade AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+    
+    .d-none {display:none;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff8c42 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .header-left i {
+            color: white;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .vip-badge {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .content {
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+        .vip-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vip-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .vip-header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vip-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .vip-icon i {
+            color: white;
+            font-size: 32px;
+        }
+
+        .vip-level {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff6b35;
+            margin-bottom: 5px;
+        }
+
+        .vip-description {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .progress-section {
+            margin-bottom: 25px;
+        }
+
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .progress-value {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .progress-bar-container {
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .benefit-item {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .benefit-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefit-value {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefit-label {
+            font-size: 12px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+        }
+
+        .section-header h3 {
+            color: #ff6b35;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .benefit-card {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .benefit-icon-wrapper.monthly {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .benefit-content {
+            flex: 1;
+        }
+
+        .benefit-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .benefit-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .claim-btn {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .claim-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .vip-levels {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .vip-level-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vip-level-item.current {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.1));
+            border: 2px solid #ff6b35;
+        }
+
+        .vip-level-item.current::before {
+            content: 'CURRENT';
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #ff6b35;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .level-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .level-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .level-icon.vip1 { background: linear-gradient(135deg, #6c757d, #495057); }
+        .level-icon.vip2 { background: linear-gradient(135deg, #cd7f32, #b8860b); }
+        .level-icon.vip3 { background: linear-gradient(135deg, #c0c0c0, #a8a8a8); }
+        .level-icon.vip4 { background: linear-gradient(135deg, #ffd700, #ffed4e); }
+        .level-icon.vip5 { background: linear-gradient(135deg, #e91e63, #ad1457); }
+
+        .level-details h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin: 0 0 4px 0;
+        }
+
+        .level-requirements {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .level-rewards {
+            text-align: right;
+        }
+
+        .reward-item {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .reward-value {
+            font-weight: 600;
+            color: #ff6b35;
+        }
+
+        .history-tabs {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 25px;
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .history-content {
+            min-height: 100px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .empty-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #ff6b35;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .alert-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+        }
+
+        .msg {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .msg-content {
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .content {
+                padding: 15px;
+            }
+
+            .vip-card {
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .benefit-card {
+                padding: 12px;
+            }
+
+            .vip-level-item {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left" onclick="location.href='/promotion'">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="header-title">VIP</div>
+            <div class="vip-badge">VIP</div>
+        </div>
+
+        <div class="content">
+            <!-- VIP Status Card -->
+            <div class="vip-card">
+                <div class="vip-header">
+                    <div class="vip-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="vip-level" id="current-level">VIP 1</div>
+                    <div class="vip-description" id="level-description">Bronze Member</div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span class="progress-title">Team Turnover</span>
+                            <span class="progress-value" id="turnover-text">₹0 / ₹10,000</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="turnover-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span class="progress-title">Direct Referrals</span>
+                            <span class="progress-value" id="referral-text">0 / 5</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="referral-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Grid -->
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="benefit-value" id="commission-rate">4%</div>
+                        <div class="benefit-label">Commission</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="benefit-value" id="daily-bonus">₹50</div>
+                        <div class="benefit-label">Daily Bonus</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP Benefits Section -->
+            <div class="vip-card">
+                <div class="section-header">
+                    <h3>🎁 My Benefits</h3>
+                </div>
+
+                <div class="benefits-list">
+                    <div class="benefit-card">
+                        <div class="benefit-icon-wrapper">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <div class="benefit-title">Level up rewards</div>
+                            <div class="benefit-desc">Get special rewards when you level up</div>
+                        </div>
+                        <div class="benefit-action">
+                            <button class="claim-btn">Claim</button>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon-wrapper monthly">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <div class="benefit-title">Monthly reward</div>
+                            <div class="benefit-desc">Get special rewards every month</div>
+                        </div>
+                        <div class="benefit-action">
+                            <button class="claim-btn">Claim</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP Levels Section -->
+            <div class="vip-card">
+                <div class="section-header">
+                    <h3>🏆 VIP Privileges</h3>
+                </div>
+
+                <div class="vip-levels" id="all-levels">
+                    <!-- VIP levels will be loaded here -->
+                </div>
+            </div>
+
+            <!-- History Section -->
+            <div class="vip-card">
+                <div class="section-header">
+                    <h3>📊 History</h3>
+                </div>
+
+                <div class="history-tabs">
+                    <div class="tab active" data-tab="rewards">Rewards</div>
+                    <div class="tab" data-tab="levels">Level Changes</div>
+                </div>
+
+                <div class="history-content">
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="empty-text">No history available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" style="display: none;">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <div class="loading-text">Loading...</div>
+            </div>
+        </div>
+
+        <!-- Alert Toast -->
+        <div class="alert-toast"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            loadVIPData();
+            initializeEventHandlers();
+        });
+
+        function loadVIPData() {
+            $('.loading-overlay').fadeIn(10);
+
+            Promise.all([
+                fetchLevelInfo(),
+                fetchUserProgress()
+            ]).then(() => {
+                $('.loading-overlay').fadeOut(300);
+            }).catch(error => {
+                console.error('Error loading VIP data:', error);
+                showError('Failed to load VIP data');
+                $('.loading-overlay').fadeOut(300);
+            });
+        }
+
+        function fetchLevelInfo() {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/webapi/LevelTurnOver",
+                    data: {},
+                    dataType: "json",
+                    success: function(response) {
+                        console.log('Level Data:', response);
+                        if (response.status === true) {
+                            renderVIPLevels(response.levels || []);
+                        }
+                        resolve(response);
+                    },
+                    error: function() {
+                        // Use default levels if API fails
+                        renderVIPLevels([]);
+                        resolve();
+                    }
+                });
+            });
+        }
+
+        function fetchUserProgress() {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/webapi/myTeam",
+                    dataType: "json",
+                    success: function(response) {
+                        console.log('User Progress:', response);
+                        if (response.status === true) {
+                            updateUserProgress(response);
+                        }
+                        resolve(response);
+                    },
+                    error: function() {
+                        // Use default values if API fails
+                        updateUserProgress({ f1: [] });
+                        resolve();
+                    }
+                });
+            });
+        }
+
+        function updateUserProgress(data) {
+            const team = data.f1 || [];
+
+            // Calculate current stats
+            let totalTurnover = 0;
+            team.forEach(member => {
+                totalTurnover += parseFloat(member.total_turn_over || 0);
+            });
+
+            const directReferrals = team.length;
+
+            // Determine current level and requirements
+            let currentLevel = 1;
+            let requiredTurnover = 10000;
+            let requiredReferrals = 5;
+
+            if (totalTurnover >= 500000 && directReferrals >= 25) {
+                currentLevel = 5;
+                requiredTurnover = 100000;
+                requiredReferrals = 25;
+            } else if (totalTurnover >= 300000 && directReferrals >= 15) {
+                currentLevel = 4;
+                requiredTurnover = 300000;
+                requiredReferrals = 20;
+            } else if (totalTurnover >= 150000 && directReferrals >= 15) {
+                currentLevel = 3;
+                requiredTurnover = 150000;
+                requiredReferrals = 15;
+            } else if (totalTurnover >= 100000 && directReferrals >= 10) {
+                currentLevel = 2;
+                requiredTurnover = 100000;
+                requiredReferrals = 10;
+            } else {
+                requiredTurnover = 10000;
+                requiredReferrals = 5;
+            }
+
+            // Update progress bars
+            const turnoverProgress = Math.min((totalTurnover / requiredTurnover) * 100, 100);
+            const referralProgress = Math.min((directReferrals / requiredReferrals) * 100, 100);
+
+            $('#turnover-progress').css('width', `${turnoverProgress}%`);
+            $('#referral-progress').css('width', `${referralProgress}%`);
+
+            $('#turnover-text').text(`₹${totalTurnover.toLocaleString()} / ₹${requiredTurnover.toLocaleString()}`);
+            $('#referral-text').text(`${directReferrals} / ${requiredReferrals}`);
+
+            updateVIPLevel(currentLevel);
+        }
+
+        function updateVIPLevel(level) {
+            const vipLevels = {
+                1: { name: 'VIP 1', description: 'Bronze', commission: '3%', bonus: '₹ 0' },
+                2: { name: 'VIP 2', description: 'Silver', commission: '2%', bonus: '₹ 0' },
+                3: { name: 'VIP 3', description: 'Gold', commission: '1.5%', bonus: '₹ 0' },
+                4: { name: 'VIP 4', description: 'Star', commission: '1%', bonus: '₹ 0' },
+                5: { name: 'VIP 5', description: 'Diamond', commission: '1%', bonus: '₹ 0' }
+            };
+
+            const vip = vipLevels[level] || vipLevels[1];
+            $('#current-level').text(vip.name);
+            $('#level-description').text(vip.description);
+            $('#commission-rate').text(vip.commission);
+            $('#daily-bonus').text(vip.bonus);
+        }
+
+        function renderVIPLevels(levels) {
+            const container = $('#all-levels');
+            container.empty();
+
+            // Default VIP levels
+            const defaultLevels = [
+                { level: 1, name: 'Bronze', turnover: 10000, referrals: 5, commission: '3%', bonus: '₹ 0', icon: 'vip1' },
+                { level: 2, name: 'Silver', turnover: 100000, referrals: 10, commission: '2%', bonus: '₹ 0', icon: 'vip2' },
+                { level: 3, name: 'Gold', turnover: 150000, referrals: 15, commission: '1.5%', bonus: '₹ 0', icon: 'vip3' },
+                { level: 4, name: 'Star', turnover: 300000, referrals: 20, commission: '1%', bonus: '₹ 0', icon: 'vip4' },
+                { level: 5, name: 'Diamond', turnover: 500000, referrals: 25, commission: '1%', bonus: '₹ 0', icon: 'vip5' }
+            ];
+
+            const levelsToRender = levels.length > 0 ? levels : defaultLevels;
+
+            levelsToRender.forEach((level, index) => {
+                const isCurrentLevel = index === 0; // For demo, first level is current
+                const levelItem = `
+                    <div class="vip-level-item ${isCurrentLevel ? 'current' : ''}">
+                        <div class="level-info">
+                            <div class="level-icon ${level.icon || 'vip' + level.level}">
+                                ${level.level}
+                            </div>
+                            <div class="level-details">
+                                <h4> ${level.name}</h4>
+                                <div class="level-requirements">
+                                    Turnover: ₹${level.turnover.toLocaleString()} | Referrals: ${level.referrals}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="level-rewards">
+                            <div class="reward-item">
+                                Commission: <span class="reward-value">${level.commission}</span>
+                            </div>
+                            <div class="reward-item d-none">
+                                Daily Bonus: <span class="reward-value">${level.bonus}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.append(levelItem);
+            });
+        }
+
+        function initializeEventHandlers() {
+            // Tab switching
+            $('.tab').click(function() {
+                $('.tab').removeClass('active');
+                $(this).addClass('active');
+
+                const tabType = $(this).data('tab');
+                loadHistoryData(tabType);
+            });
+
+            // Claim button handlers
+            $('.claim-btn').click(function() {
+                const benefitType = $(this).closest('.benefit-card').find('.benefit-title').text();
+                alertMess(`${benefitType} claimed successfully!`);
+            });
+        }
+
+        function loadHistoryData(type) {
+            $('.history-content').html(`
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-${type === 'rewards' ? 'gift' : 'chart-line'}"></i>
+                    </div>
+                    <div class="empty-text">No ${type} history available</div>
+                </div>
+            `);
+        }
+
+        function alertMess(text) {
+            let length = $('.alert-toast .msg').length;
+            if (length == 0) {
+                $('.alert-toast').append(`
+                    <div class="msg">
+                        <div class="msg-content">${text}</div>
+                    </div>
+                `);
+                setTimeout(() => {
+                    $('.msg').fadeOut();
+                    setTimeout(() => {
+                        $('.alert-toast .msg').remove();
+                    }, 100);
+                }, 2000);
+            }
+        }
+
+        function showError(message) {
+            $('#all-levels').html(`
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="empty-text">${message}</div>
+                    <button class="claim-btn" onclick="loadVIPData()" style="margin-top: 15px;">Retry</button>
+                </div>
+            `);
+        }
+    </script>
+</body>
+
+</html>

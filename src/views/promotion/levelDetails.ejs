@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Details - DeltInWin</title>
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+</head>
+
+<body style="font-size: 12px;">
+    <div id="root">
+        <div class="mainApp">
+            <div class="container-fluid" style="padding: 4px 12px;">
+                <!-- Header -->
+                <div class="row align-items-center mb-3">
+                    <div class="col-2">
+                        <a href="/promotion" class="text-decoration-none">
+                            <i class="fa-solid fa-arrow-left text-theme1" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h5 class="mb-0 text-theme1 fw-bold">Level Details</h5>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <!-- Current Level -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card bg-gradient-primary text-white border-0 rounded-3">
+                            <div class="card-body text-center" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <h6 class="card-title mb-2">Current Level</h6>
+                                <h2 class="mb-2" id="current-level">Level 1</h2>
+                                <p class="mb-0" id="level-description">Beginner Level</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress to Next Level -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-theme1 mb-3">Progress to Next Level</h6>
+                                <div class="mb-2">
+                                    <small class="text-muted">Team Turnover Required</small>
+                                    <div class="progress mt-1">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%" id="turnover-progress"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-1">
+                                        <small id="current-turnover">₹0</small>
+                                        <small id="required-turnover">₹10,000</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <small class="text-muted">Direct Referrals Required</small>
+                                    <div class="progress mt-1">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 0%" id="referral-progress"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-1">
+                                        <small id="current-referrals">0</small>
+                                        <small id="required-referrals">5</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level Benefits -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3">
+                            <div class="card-header bg-theme1 text-white">
+                                <h6 class="mb-0">Current Level Benefits</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="level-benefits">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="text-center p-2">
+                                                <i class="fa-solid fa-percentage text-primary mb-2" style="font-size: 24px;"></i>
+                                                <div class="fw-bold" id="commission-rate">4%</div>
+                                                <small class="text-muted">Commission Rate</small>
+                                            </div>
+                                        </div>
+                                        <!--<div class="col-6 d-none">-->
+                                        <!--    <div class="text-center p-2">-->
+                                        <!--        <i class="fa-solid fa-gift text-warning mb-2" style="font-size: 24px;"></i>-->
+                                                <!--<div class="fw-bold" id="daily-bonus"></div>-->
+                                                <!--<small class="text-muted">Daily Bonus</small>-->
+                                        <!--    </div>-->
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Levels -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3">
+                            <div class="card-header bg-theme1 text-white">
+                                <h6 class="mb-0">All Levels</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="all-levels" class="list-group list-group-flush">
+                                    <!-- Loading state -->
+                                    <div class="list-group-item text-center py-4">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <p class="mt-2 mb-0">Loading level data...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="van-overlay" style="z-index: 2000; display: none;">
+                <div class="Loading">
+                    <div class="van-loading van-loading--spinner van-loading--vertical">
+                        <span class="van-loading__spinner van-loading__spinner--spinner" style="width: 30px; height: 30px;">
+                            <svg viewBox="25 25 50 50" class="circular">
+                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                            </svg>
+                        </span>
+                        <span class="van-loading__text">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/client.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            loadLevelData();
+        });
+
+        function loadLevelData() {
+            $('.van-overlay').fadeIn(10);
+            
+            // Fetch level data and user progress
+            Promise.all([
+                fetchLevelInfo(),
+                fetchUserProgress()
+            ]).then(() => {
+                $('.van-overlay').fadeOut(10);
+            }).catch(error => {
+                console.error('Error loading level data:', error);
+                showError('Failed to load level data');
+                $('.van-overlay').fadeOut(10);
+            });
+        }
+
+        function fetchLevelInfo() {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/webapi/LevelTurnOver",
+                    data: {},
+                    dataType: "json",
+                    success: function(response) {
+                        console.log('Level Data:', response);
+                        if (response.status === true) {
+                            renderAllLevels(response.levels || []);
+                        }
+                        resolve(response);
+                    },
+                    error: reject
+                });
+            });
+        }
+
+        function fetchUserProgress() {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/webapi/myTeam",
+                    dataType: "json",
+                    success: function(response) {
+                        console.log('User Progress:', response);
+                        if (response.status === true) {
+                            updateUserProgress(response);
+                        }
+                        resolve(response);
+                    },
+                    error: reject
+                });
+            });
+        }
+
+        function updateUserProgress(data) {
+            const team = data.f1 || [];
+            
+            // Calculate current stats
+            let totalTurnover = 0;
+            team.forEach(member => {
+                totalTurnover += parseFloat(member.total_turn_over || 0);
+            });
+            
+            const directReferrals = team.length;
+            
+            // Update progress bars
+            const requiredTurnover = 10000; // This should come from level requirements
+            const requiredReferrals = 5;
+            
+            const turnoverProgress = Math.min((totalTurnover / requiredTurnover) * 100, 100);
+            const referralProgress = Math.min((directReferrals / requiredReferrals) * 100, 100);
+            
+            $('#turnover-progress').css('width', `${turnoverProgress}%`);
+            $('#referral-progress').css('width', `${referralProgress}%`);
+            
+            $('#current-turnover').text(`₹${totalTurnover.toFixed(0)}`);
+            $('#current-referrals').text(directReferrals);
+            
+            // Determine current level
+            let currentLevel = 1;
+            if (totalTurnover >= 50000 && directReferrals >= 20) currentLevel = 5;
+            else if (totalTurnover >= 25000 && directReferrals >= 15) currentLevel = 4;
+            else if (totalTurnover >= 10000 && directReferrals >= 10) currentLevel = 3;
+            else if (totalTurnover >= 5000 && directReferrals >= 5) currentLevel = 2;
+            
+            $('#current-level').text(`Level ${currentLevel}`);
+            updateLevelBenefits(currentLevel);
+        }
+
+        function updateLevelBenefits(level) {
+            const benefits = {
+                1: { commission: '3%', bonus: '₹ 0', description: 'Bronze' },
+                2: { commission: '2%', bonus: '₹ 0', description: 'Silver' },
+                3: { commission: '1.5%', bonus: '₹ 0', description: 'Gold' },
+                4: { commission: '1%', bonus: '₹ 0', description: 'Star' },
+                5: { commission: '1%', bonus: '₹ 0', description: 'Diamond' }
+            };
+            
+            const benefit = benefits[level] || benefits[1];
+            $('#commission-rate').text(benefit.commission);
+            // $('#daily-bonus').text(benefit.bonus);
+            $('#level-description').text(benefit.description);
+        }
+
+        function renderAllLevels(levels) {
+            const listContainer = $('#all-levels');
+            listContainer.empty();
+            
+            // Default levels if none provided
+            const defaultLevels = [
+                { level: 1, name: 'Bronze', turnover: 10000, referrals: 5, commission: '3%', bonus: '₹50' },
+                { level: 2, name: 'Silver', turnover: 100000, referrals: 10, commission: '2%', bonus: '₹100' },
+                { level: 3, name: 'Gold', turnover: 150000, referrals: 15, commission: '1.5%', bonus: '₹200' },
+                { level: 4, name: 'Star', turnover: 300000, referrals: 20, commission: '1%', bonus: '₹400' },
+                { level: 5, name: 'Diamond', turnover: 500000, referrals: 25, commission: '1%', bonus: '₹800' }
+            ];
+            
+            const levelsToRender = levels.length > 0 ? levels : defaultLevels;
+            
+            levelsToRender.forEach(level => {
+                const listItem = `
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">  ${level.name}</h6>
+                                <p class="mb-1 text-muted small">
+                                    Turnover: ₹${level.turnover.toLocaleString()} | 
+                                    Referrals: ${level.referrals}
+                                </p>
+                            </div>
+                            <div class="text-end">
+                                <div class="badge bg-primary mb-1">${level.commission}</div>
+                                <div class="small text-muted">Commission</div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listContainer.append(listItem);
+            });
+        }
+// <div class="small text-muted">Daily Bonus</div> <div class="badge bg-success">${level.bonus}</div>
+        function showError(message) {
+            $('#all-levels').html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-exclamation-triangle text-danger" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-danger">${message}</p>
+                    <button class="btn btn-primary btn-sm mt-2" onclick="loadLevelData()">Retry</button>
+                </div>
+            `);
+        }
+    </script>
+</body>
+
+</html>

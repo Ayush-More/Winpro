@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subordinate Data - DeltInWin</title>
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+</head>
+
+<body style="font-size: 12px;">
+    <div id="root">
+        <div class="mainApp">
+            <div class="container-fluid" style="padding: 4px 12px;">
+                <!-- Header -->
+                <div class="row align-items-center mb-3">
+                    <div class="col-2">
+                        <a href="/promotion" class="text-decoration-none">
+                            <i class="fa-solid fa-arrow-left text-theme1" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h5 class="mb-0 text-theme1 fw-bold">Subordinate Data</h5>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="card bg-gradient-primary text-white border-0 rounded-3">
+                            <div class="card-body text-center py-2" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <h6 class="card-title mb-1">Total Subordinates</h6>
+                                <h4 class="mb-0" id="total-subordinates">0</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card bg-gradient-success text-white border-0 rounded-3">
+                            <div class="card-body text-center py-2" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <h6 class="card-title mb-1">Active Today</h6>
+                                <h4 class="mb-0" id="active-today">0</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <ul class="nav nav-pills nav-fill bg-light rounded-3 p-1">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-filter="all" href="javascript:void(0)">All</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-filter="today" href="javascript:void(0)">Today</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-filter="week" href="javascript:void(0)">This Week</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Subordinate List -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3">
+                            <div class="card-header bg-theme1 text-white">
+                                <h6 class="mb-0">Subordinate List</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="subordinate-list" class="list-group list-group-flush">
+                                    <!-- Loading state -->
+                                    <div class="list-group-item text-center py-4">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <p class="mt-2 mb-0">Loading subordinate data...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Card -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-theme1">Summary</h6>
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <small class="text-muted">Total Deposits</small>
+                                        <div class="fw-bold" id="total-deposits">₹0.00</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <small class="text-muted">Total Bets</small>
+                                        <div class="fw-bold" id="total-bets">₹0.00</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <small class="text-muted">Commission</small>
+                                        <div class="fw-bold text-success" id="total-commission">₹0.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="van-overlay" style="z-index: 2000; display: none;">
+                <div class="Loading">
+                    <div class="van-loading van-loading--spinner van-loading--vertical">
+                        <span class="van-loading__spinner van-loading__spinner--spinner" style="width: 30px; height: 30px;">
+                            <svg viewBox="25 25 50 50" class="circular">
+                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                            </svg>
+                        </span>
+                        <span class="van-loading__text">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/client.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            loadSubordinateData();
+            
+            // Filter functionality
+            $('.nav-link[data-filter]').on('click', function() {
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+                const filter = $(this).data('filter');
+                filterSubordinates(filter);
+            });
+        });
+
+        function loadSubordinateData() {
+            $('.van-overlay').fadeIn(10);
+            
+            // Fetch team data
+            $.ajax({
+                type: "GET",
+                url: "/api/webapi/myTeam",
+                dataType: "json",
+                success: function(response) {
+                    console.log('Subordinate Data:', response);
+                    
+                    if (response.status === true && response.f1) {
+                        updateSubordinateUI(response);
+                    } else {
+                        showNoData();
+                    }
+                    $('.van-overlay').fadeOut(10);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching subordinate data:', error);
+                    showError('Failed to load subordinate data');
+                    $('.van-overlay').fadeOut(10);
+                }
+            });
+        }
+
+        function updateSubordinateUI(data) {
+            const subordinates = data.f1 || [];
+            
+            // Update stats
+            $('#total-subordinates').text(subordinates.length);
+            
+            // Calculate today's active users
+            const today = new Date().toISOString().split('T')[0];
+            const activeToday = subordinates.filter(sub => {
+                const lastActive = new Date(sub.time || sub.last_login || 0);
+                return lastActive.toISOString().split('T')[0] === today;
+            }).length;
+            $('#active-today').text(activeToday);
+            
+            // Calculate totals
+            let totalDeposits = 0;
+            let totalBets = 0;
+            let totalCommission = 0;
+            subordinates.forEach(sub => {
+                totalDeposits += parseFloat(sub.total_deposit || 0);
+                totalBets += parseFloat(sub.total_turn_over || 0);
+                // Commission calculation would depend on your business logic
+            });
+            console.log(totalDeposits , 55555);
+            $('#total-deposits').text(`₹${totalDeposits.toFixed(2)}`);
+            $('#total-bets').text(`₹${totalBets.toFixed(2)}`);
+            $('#total-commission').text(`₹${totalCommission.toFixed(2)}`);
+            
+            // Render subordinate list
+            renderSubordinateList(subordinates);
+        }
+
+        function renderSubordinateList(subordinates) {
+            const listContainer = $('#subordinate-list');
+            listContainer.empty();
+            
+            if (subordinates.length === 0) {
+                listContainer.html(`
+                    <div class="list-group-item text-center py-4">
+                        <i class="fa-solid fa-users text-muted" style="font-size: 48px;"></i>
+                        <p class="mt-2 mb-0 text-muted">No subordinates found</p>
+                    </div>
+                `);
+                return;
+            }
+            
+            subordinates.forEach(sub => {
+                const joinDate = new Date(sub.time || 0).toLocaleDateString();
+                const totalMoney = parseFloat(sub.total_deposit || 0);
+                const totalTurnover = parseFloat(sub.total_turn_over || 0);
+                
+                const listItem = `
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">${sub.name_user || 'User'}</h6>
+                                <p class="mb-1 text-muted small">ID: ${sub.id_user || 'N/A'}</p>
+                                <small class="text-muted">Joined: ${joinDate}</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="badge bg-success mb-1">₹${totalMoney.toFixed(2)}</div>
+                                <div class="small text-muted">Deposits</div>
+                                <div class="badge bg-primary">₹${totalTurnover.toFixed(2)}</div>
+                                <div class="small text-muted">Turnover</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listContainer.append(listItem);
+            });
+        }
+
+        function filterSubordinates(filter) {
+            // This would filter the displayed subordinates based on the selected filter
+            console.log('Filtering by:', filter);
+            // Implement filtering logic here
+        }
+
+        function showNoData() {
+            $('#subordinate-list').html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-users text-muted" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-muted">No subordinate data available</p>
+                </div>
+            `);
+        }
+
+        function showError(message) {
+            $('#subordinate-list').html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-exclamation-triangle text-danger" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-danger">${message}</p>
+                    <button class="btn btn-primary btn-sm mt-2" onclick="loadSubordinateData()">Retry</button>
+                </div>
+            `);
+        }
+    </script>
+</body>
+
+</html>

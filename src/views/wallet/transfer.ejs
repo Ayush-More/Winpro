@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.16px;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex,nofollow">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>Wallet Transfer</title>
+    <link rel="stylesheet" href="./index_files/index-96409872.css">
+    <link rel="stylesheet" href="../index_files/index-96409872.css">
+    <link href="/css/wallet/main.css" rel="stylesheet" />
+    <link href="/css/wallet/chunk_2-1.css" rel="stylesheet" />
+    <link href="/css/wallet/chunk_2-2.css" rel="stylesheet" />
+    <link href="/css/wallet/chunk_2-3.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/bitbug_favicon.ico" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+            padding: 0;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            min-height: 100vh;
+            background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+            position: relative;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .header-left i {
+            color: white;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-right {
+            cursor: pointer;
+        }
+
+        .header-right i {
+            color: white;
+            font-size: 18px;
+        }
+
+        .wallet-card {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 20px;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .wallet-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .wallet-title {
+            color: #ff6b35;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .balance-section {
+            background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .balance-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .balance-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .transfer-form {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            color: #ff6b35;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .input-icon i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .country-code {
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 18px 15px 18px 80px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            color: #333;
+            outline: none;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #999;
+        }
+
+        .transfer-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .transfer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .transfer-btn:active {
+            transform: translateY(0);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .action-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-icon.deposit {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .action-icon.withdraw {
+            background: linear-gradient(135deg, #dc3545, #fd7e14);
+        }
+
+        .action-icon.history {
+            background: linear-gradient(135deg, #6f42c1, #e83e8c);
+        }
+
+        .action-item span {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .transaction-section {
+            margin: 20px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .section-header {
+            margin-bottom: 15px;
+        }
+
+        .section-header h3 {
+            color: #ff6b35;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .transaction-table {
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 10px;
+        }
+
+        .table-cell {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .table-body {
+            min-height: 60px;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+            align-items: center;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row .table-cell {
+            font-weight: 500;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .empty-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 25px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 12px;
+        }
+
+        .nav-item.active {
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item.active i {
+            color: #ff6b35;
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            color: #999;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item.active span {
+            color: #ff6b35;
+        }
+
+        .alert-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .msg {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .msg-content {
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .wallet-card {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            .balance-amount {
+                font-size: 28px;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .action-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .transaction-section {
+                margin: 15px;
+            }
+
+            .bottom-nav {
+                padding-bottom: 20px;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Smooth transitions */
+        * {
+            transition: all 0.3s ease;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 53, 0.5);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 107, 53, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left" onclick="location.href='/wallet'">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="header-title">Wallet</div>
+            <div class="header-right" onclick="location.href='/keFuMenu'">
+                <i class="fas fa-headphones"></i>
+            </div>
+        </div>
+
+        <!-- Wallet Card -->
+        <div class="wallet-card">
+            <div class="wallet-header">
+                <div class="wallet-title">💳</div>
+            </div>
+
+            <!-- Balance Section -->
+            <div class="balance-section">
+                <div class="balance-label">Total Withdrawal Amount</div>
+                <div class="balance-amount">
+                    <span class="money">₹0</span>
+                </div>
+                <div class="balance-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Total Recharge</div>
+                        <div class="stat-value total-recharge">₹0.00</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Total Withdrawal</div>
+                        <div class="stat-value total-withdrawal">₹0.00</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Transfer Limits Info -->
+            <div class="transfer-limits" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 15px; margin-bottom: 20px; color: white;">
+                <h6 style="margin: 0 0 10px 0; font-weight: 600;"><i class="fas fa-info-circle me-2"></i>Transfer Limits</h6>
+                <div class="row">
+                    <div class="col-6">
+                        <small>Min: ₹<span id="min-limit">100</span></small><br>
+                        <small>Max: ₹<span id="max-limit">50,000</span></small>
+                    </div>
+                    <div class="col-6">
+                        <small>Daily Limit: ₹<span id="daily-limit">100,000</span></small><br>
+                        <small>Used Today: ₹<span id="daily-used">0</span></small>
+                    </div>
+                </div>
+                <div class="progress mt-2" style="height: 6px; background-color: rgba(255,255,255,0.3);">
+                    <div class="progress-bar" id="daily-progress" role="progressbar" style="width: 0%; background-color: #28a745;"></div>
+                </div>
+            </div>
+
+            <!-- Transfer Form -->
+            <div class="transfer-form">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <div class="input-icon">
+                            <i class="fas fa-phone"></i>
+                            <span class="country-code">+91</span>
+                        </div>
+                        <input type="text" id="phone-input" placeholder="Phone Number" maxlength="16">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <div class="input-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <input type="text" id="amount-input" placeholder="Enter Amount">
+                    </div>
+                </div>
+
+                <button class="transfer-btn" id="send-money-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Transfer
+                </button>
+            </div>
+
+        </div>
+        <!-- Transaction History -->
+        <div class="transaction-section">
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Transferred Balance</h3>
+                </div>
+                <div class="transaction-table">
+                    <div class="table-header">
+                        <div class="table-cell">Phone</div>
+                        <div class="table-cell">Amount</div>
+                        <div class="table-cell">Status</div>
+                    </div>
+                    <div class="table-body lisys">
+                        <!-- Transaction history data will be dynamically populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Received Balance</h3>
+                </div>
+                <div class="transaction-table">
+                    <div class="table-header">
+                        <div class="table-cell">Phone</div>
+                        <div class="table-cell">Amount</div>
+                        <div class="table-cell">Date</div>
+                    </div>
+                    <div class="table-body lisys-r">
+                        <!-- Transaction history data will be dynamically populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="empty-state" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-inbox"></i>
+                </div>
+                <div class="empty-text">No transactions available</div>
+            </div>
+        </div>
+
+       
+
+        <!-- Alert Toast -->
+        <div class="alert-toast"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        // Load user information
+        $.ajax({
+            type: "GET",
+            url: "/api/webapi/GetUserInfo",
+            dataType: "json",
+            success: function (response) {
+                let user = response.data;
+                $('.money').text("₹" + user.money_user);
+                $('.total-recharge').text("₹" + response.totalRecharge);
+                $('.total-withdrawal').text("₹" + response.totalWithdraw);
+            },
+            error: function() {
+                $('.money').text("₹0.00");
+                $('.total-recharge').text("₹0.00");
+                $('.total-withdrawal').text("₹0.00");
+            }
+        });
+
+        // Load transfer limits
+        $.ajax({
+            type: "GET",
+            url: "/api/webapi/transfer_limits",
+            dataType: "json",
+            success: function (response) {
+                if (response.status && response.limits) {
+                    const limits = response.limits;
+                    $('#min-limit').text(limits.minTransfer.toLocaleString());
+                    $('#max-limit').text(limits.maxTransfer.toLocaleString());
+                    $('#daily-limit').text(limits.dailyLimit.toLocaleString());
+                    $('#daily-used').text(limits.dailyUsed.toLocaleString());
+
+                    // Update progress bar
+                    const progressPercent = (limits.dailyUsed / limits.dailyLimit) * 100;
+                    $('#daily-progress').css('width', progressPercent + '%');
+
+                    // Change color based on usage
+                    if (progressPercent > 80) {
+                        $('#daily-progress').css('background-color', '#dc3545'); // Red
+                    } else if (progressPercent > 60) {
+                        $('#daily-progress').css('background-color', '#ffc107'); // Yellow
+                    } else {
+                        $('#daily-progress').css('background-color', '#28a745'); // Green
+                    }
+                }
+            },
+            error: function() {
+                console.log('Failed to load transfer limits');
+            }
+        });
+
+        // Alert message function
+        function alertMess(text) {
+            let length = $('.alert-toast .msg').length;
+            if (length == 0) {
+                $('.alert-toast').append(`
+                    <div class="msg">
+                        <div class="msg-content">${text}</div>
+                    </div>
+                `);
+                setTimeout(() => {
+                    $('.msg').fadeOut();
+                    setTimeout(() => {
+                        $('.alert-toast .msg').remove();
+                    }, 100);
+                }, 2000);
+            }
+        }
+
+        // Form validation
+        function validateForm(phone, amount) {
+            if (!phone || phone.length < 10) {
+                alertMess('Please enter a valid phone number');
+                return false;
+            }
+            if (!amount || parseFloat(amount) <= 0) {
+                alertMess('Please enter a valid amount');
+                return false;
+            }
+
+            // Check transfer limits
+            const amountNum = parseFloat(amount);
+            const minLimit = parseFloat($('#min-limit').text().replace(/,/g, ''));
+            const maxLimit = parseFloat($('#max-limit').text().replace(/,/g, ''));
+            const dailyLimit = parseFloat($('#daily-limit').text().replace(/,/g, ''));
+            const dailyUsed = parseFloat($('#daily-used').text().replace(/,/g, ''));
+
+            if (amountNum < minLimit) {
+                alertMess(`Minimum transfer amount is ₹${minLimit.toLocaleString()}`);
+                return false;
+            }
+
+            if (amountNum > maxLimit) {
+                alertMess(`Maximum transfer amount is ₹${maxLimit.toLocaleString()}`);
+                return false;
+            }
+
+            if (dailyUsed + amountNum > dailyLimit) {
+                const remaining = dailyLimit - dailyUsed;
+                alertMess(`Daily limit exceeded. Remaining: ₹${remaining.toLocaleString()}`);
+                return false;
+            }
+
+            return true;
+        }
+
+// Add this function definition before fetchRecharge
+function fetchWithTimeout(url, timeout = 10000) {
+  return Promise.race([
+    fetch(url).then(res => res.json()),  // Assuming JSON response
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Request timeout')), timeout)
+    )
+  ]);
+}
+
+function fetchRecharge() {
+  console.log("Checking recharge list...");
+  return fetchWithTimeout("/api/webapi/recharge/list")
+    .then((res) => {
+      console.log("Recharge API Response:", res);
+
+      // ✅ Properly check inside res.datas
+      const list = res?.datas || [];
+      return Array.isArray(list) && list.length > 0;
+    })
+    .catch((err) => {
+      console.error("Error fetching recharge list:", err);
+      return false;  // Keep returning false on error to prevent transfer
+    });
+}
+
+// Send money button click handler
+$('#send-money-btn').click(async (e) => {
+    e.preventDefault();
+    
+    // Show loading immediately
+    $('#send-money-btn').html('<div class="loading"></div> Checking...');
+    $('#send-money-btn').prop('disabled', true);
+    
+    const cantransfer = await fetchRecharge();
+
+    if (!cantransfer) {
+        alertMess("Recharge first, then you can transfer money.");
+        // Reset button on failure
+        $('#send-money-btn').html('<i class="fas fa-paper-plane"></i> Send Money');
+        $('#send-money-btn').prop('disabled', false);
+        return;
+    }
+    
+    let phone = $('#phone-input').val().trim();
+    let amount = $('#amount-input').val().trim();
+
+    if (validateForm(phone, amount)) {
+        // Update button text for transfer
+        $('#send-money-btn').html('<div class="loading"></div> Transferring...');
+        
+        $.ajax({
+            type: "POST",
+            url: "/api/webapi/transfer",
+            data: {
+                phone: phone,
+                amount: amount,
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log("Transfer Response:", response);
+                alertMess(response.message || 'Transfer completed!');
+
+                if (response.status === true) {
+                    // Clear form on success
+                    $('#phone-input').val('');
+                    $('#amount-input').val('');
+
+                    // Reload user info and transaction history
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                } else {
+                    // Handle false status
+                    alertMess(response.message || 'Transfer failed. Please try again.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Transfer AJAX Error:", error);
+                alertMess('Transfer failed due to network error. Please try again.');
+            },
+            complete: function() {
+                // Reset button state
+                $('#send-money-btn').html('<i class="fas fa-paper-plane"></i> Send Money');
+                $('#send-money-btn').prop('disabled', false);
+            }
+        });
+    } else {
+        // Reset if validation fails
+        $('#send-money-btn').html('<i class="fas fa-paper-plane"></i> Send Money');
+        $('#send-money-btn').prop('disabled', false);
+    }
+});
+
+        // Load transaction history
+        function loadTransactionHistory(datas) {
+            if (!datas || datas.length === 0) {
+                $('.lisys').html('<div class="empty-state"><div class="empty-icon"><i class="fas fa-inbox"></i></div><div class="empty-text">No transfers found</div></div>');
+                return;
+            }
+
+            let html = datas.map((data) => {
+                return `
+                    <div class="table-row">
+                        <div class="table-cell">${data.receiver_phone}</div>
+                        <div class="table-cell">₹${parseFloat(data.amount)}</div>
+                        <div class="table-cell">${new Date(data.datetime).toLocaleDateString()}</div>
+                    </div>
+                `;
+            }).join('');
+            $('.lisys').html(html);
+        }
+
+        // Load received transaction history
+        function loadTransactionReceiveHistory(receive) {
+            if (!receive || receive.length === 0) {
+                $('.lisys-r').html('<div class="empty-state"><div class="empty-icon"><i class="fas fa-inbox"></i></div><div class="empty-text">No received transfers found</div></div>');
+                return;
+            }
+
+            let html = receive.map((r_data) => {
+                return `
+                    <div class="table-row">
+                        <div class="table-cell">${r_data.sender_phone}</div>
+                        <div class="table-cell">₹${parseFloat(r_data.amount)}</div>
+                        <div class="table-cell">${new Date(r_data.datetime).toLocaleDateString()}</div>
+                    </div>
+                `;
+            }).join('');
+            $('.lisys-r').html(html);
+        }
+
+        // Load transfer history
+        $.ajax({
+            type: "GET",
+            url: "/api/webapi/transfer_history",
+            dataType: "json",
+            success: function (response) {
+                if (response.status === true) {
+                    loadTransactionHistory(response.datas);
+                    loadTransactionReceiveHistory(response.receive);
+                }
+            },
+            error: function() {
+                $('.lisys').html('<div class="empty-state"><div class="empty-icon"><i class="fas fa-exclamation-triangle"></i></div><div class="empty-text">Failed to load transfer history</div></div>');
+                $('.lisys-r').html('<div class="empty-state"><div class="empty-icon"><i class="fas fa-exclamation-triangle"></i></div><div class="empty-text">Failed to load received history</div></div>');
+            }
+        });
+
+        // Input formatting
+        $('#phone-input').on('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        $('#amount-input').on('input', function() {
+            this.value = this.value.replace(/[^0-9.]/g, '');
+        });
+
+        // Quick action handlers
+        $('.action-item').click(function() {
+            const actionType = $(this).find('span').text().toLowerCase();
+
+            switch(actionType) {
+                case 'deposit':
+                    alertMess('Deposit feature coming soon!');
+                    break;
+                case 'withdraw':
+                    alertMess('Withdraw feature coming soon!');
+                    break;
+                case 'deposit history':
+                    alertMess('Deposit history feature coming soon!');
+                    break;
+                case 'withdrawal history':
+                    alertMess('Withdrawal history feature coming soon!');
+                    break;
+            }
+        });
+
+       
+    </script>
+
+
+</body>
+
+</html>

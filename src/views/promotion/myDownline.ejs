@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Downline - DeltInWin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+    <style>
+        .member-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .member-card:hover {
+            background-color: #f8f9fa;
+            border-left-color: #007bff;
+        }
+
+        .member-card[data-level="1"] {
+            border-left-color: #007bff;
+        }
+
+        .member-card[data-level="2"] {
+            border-left-color: #17a2b8;
+        }
+
+        .member-card[data-level="3"] {
+            border-left-color: #28a745;
+        }
+
+        .member-card[data-level="4"] {
+            border-left-color: #ffc107;
+        }
+
+        .member-card[data-level="5"] {
+            border-left-color: #dc3545;
+        }
+
+        .member-card[data-level="6"] {
+            border-left-color: #343a40;
+        }
+
+        .level-indicator {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+
+        .member-details small {
+            line-height: 1.4;
+        }
+
+        .level-filter-btn {
+            font-size: 11px;
+            padding: 8px 12px;
+        }
+
+        .level-filter-btn.active {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        .level-filter-btn:not(.active):hover {
+            background-color: #e9ecef;
+        }
+
+        .card-header {
+            font-weight: 600;
+        }
+
+        .badge {
+            font-size: 10px;
+        }
+
+        @media (max-width: 576px) {
+            .level-filter-btn {
+                font-size: 10px;
+                padding: 6px 8px;
+            }
+
+            .level-indicator {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 10px !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="font-size: 12px;">
+    <div id="root">
+        <div class="mainApp">
+            <div class="container-fluid" style="padding: 4px 12px;">
+                <div class="row align-items-center mb-3">
+                    <div class="col-2">
+                        <a href="/promotion" class="text-decoration-none">
+                            <i class="fa-solid fa-arrow-left text-theme1" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h5 class="mb-0 text-theme1 fw-bold">My Downline</h5>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+               
+
+                <!-- Team Summary -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3">
+                            <!-- <div class="card-header bg-gradient-primary text-white">
+                                <h6 class="mb-0"><i class="fas fa-chart-line"></i> Team Performance</h6>
+                            </div> -->
+                            <div class="card-body py-2">
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <div class="border-end">
+                                            <h6 class="mb-0 text-primary" id="team-turnover">₹0</h6>
+                                            <small class="text-muted">Total Turnover</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="border-end">
+                                            <h6 class="mb-0 text-success" id="active-members">0</h6>
+                                            <small class="text-muted">Active Members</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="mb-0 text-warning" id="verified-members">0</h6>
+                                        <small class="text-muted">Verified Members</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level Filter Buttons -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="btn-group w-100 mb-2" role="group">
+                            <button type="button" class="btn btn-outline-primary level-filter-btn active" data-level="all">
+                                <i class="fas fa-users"></i> All
+                            </button>
+                            <button type="button" class="btn btn-outline-primary level-filter-btn" data-level="1">
+                                L1 <span class="badge bg-primary" id="level1-count">0</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-info level-filter-btn" data-level="2">
+                                L2 <span class="badge bg-info" id="level2-count">0</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-success level-filter-btn" data-level="3">
+                                L3 <span class="badge bg-success" id="level3-count">0</span>
+                            </button>
+                        </div>
+                        <div class="btn-group w-100" role="group">
+                            <button type="button" class="btn btn-outline-warning level-filter-btn" data-level="4">
+                                L4 <span class="badge bg-warning" id="level4-count">0</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger level-filter-btn" data-level="5">
+                                L5 <span class="badge bg-danger" id="level5-count">0</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-dark level-filter-btn" data-level="6">
+                                L6 <span class="badge bg-dark" id="level6-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-12 ">
+                        <div class="card border-0 rounded-3 ">
+                            <div class="card-header bg-theme1 text-white d-flex justify-content-between align-items-center">
+                                <h6 class="mb-0">Downline Structure</h6>
+                                <small class="text-white-50" id="member-count-display">Total: 0 members</small>
+                            </div>
+                            <div class="card-body p-0 ">
+                                <div id="downline-list" class="list-group list-group-flush">
+                                    <div class="list-group-item text-center py-4 ">
+                                        <i class="fa-solid fa-sitemap text-muted " style="font-size: 48px; "></i>
+                                        <p class="mt-2 mb-0 text-muted ">No downline data available</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js "></script>
+    <script src="/js/client.js "></script>
+  <script>
+    $(document).ready(function () {
+        console.log('My Downline page loaded');
+        loadDownlineData();
+    });
+
+    function loadDownlineData() {
+        $('#level1-count, #level2-count, #level3-count, #level4-count, #level5-count, #level6-count').text('...');
+        $('#downline-list').html(`
+            <div class="list-group-item text-center py-4">
+                <i class="fa-solid fa-spinner fa-spin text-muted" style="font-size: 48px;"></i>
+                <p class="mt-2 mb-0 text-muted">Loading downline data...</p>
+            </div>
+        `);
+
+        $.ajax({
+            type: "GET",
+            url: "/api/webapi/myTeam",
+            dataType: "json",
+            success: function (response) {
+                console.log('Team response:', response);
+                if (response.status === true) {
+                    updateDownlineUI(response);
+                } else {
+                    showError('Failed to load downline data');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error loading downline data:', error);
+                showError('Error loading downline data');
+            }
+        });
+    }
+
+    function updateDownlineUI(data) {
+        console.log('Processing team data:', data);
+
+        // Initialize level arrays for all 6 levels
+        const levels = {
+            1: [], 2: [], 3: [], 4: [], 5: [], 6: []
+        };
+
+        // Process f1 array which contains all referrals with their correct user_level
+        if (data.f1 && Array.isArray(data.f1)) {
+            data.f1.forEach(member => {
+                const memberLevel = parseInt(member.user_level || 1);
+
+                // Ensure level is between 1-6
+                if (memberLevel >= 1 && memberLevel <= 6) {
+                    const processedMember = {
+                        ...member,
+                        level: memberLevel,
+                        level_name: `Level ${memberLevel}`
+                    };
+
+                    levels[memberLevel].push(processedMember);
+                }
+            });
+        }
+
+        // Update level counts in UI
+        for (let i = 1; i <= 6; i++) {
+            const countElement = $(`#level${i}-count`);
+            if (countElement.length) {
+                countElement.text(levels[i].length);
+            }
+        }
+
+        // Store level data for filtering
+        window.teamLevels = {
+            level1: levels[1],
+            level2: levels[2],
+            level3: levels[3],
+            level4: levels[4],
+            level5: levels[5],
+            level6: levels[6],
+            all: [...levels[1], ...levels[2], ...levels[3], ...levels[4], ...levels[5], ...levels[6]]
+        };
+
+        console.log('Level counts:', {
+            level1: levels[1].length,
+            level2: levels[2].length,
+            level3: levels[3].length,
+            level4: levels[4].length,
+            level5: levels[5].length,
+            level6: levels[6].length
+        });
+
+        // Update team summary
+        updateTeamSummary(window.teamLevels.all);
+
+        renderDownlineStructure(window.teamLevels.all);
+    }
+
+    function renderDownlineStructure(members) {
+        const downlineList = $('#downline-list');
+
+        if (members.length === 0) {
+            downlineList.html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-sitemap text-muted" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-muted">No downline data available</p>
+                </div>
+            `);
+            return;
+        }
+
+        let downlineHTML = '';
+
+        // Sort members by level and join date
+        const sortedMembers = members.sort((a, b) => {
+            if (a.level !== b.level) {
+                return a.level - b.level; // Sort by level first
+            }
+            // Then by join date (newest first)
+            const dateA = new Date(a.today || a.created_at || a.join_date || a.time || 0);
+            const dateB = new Date(b.today || b.created_at || b.join_date || b.time || 0);
+            return dateB - dateA;
+        });
+
+        sortedMembers.forEach(member => {
+            const joinDate = member.time ? formatDate(member.time) :
+                           member.today ? formatDate(member.today) :
+                           member.created_at ? formatDate(member.created_at) : 'N/A';
+
+            const memberPhone = member.phone ? `${member.phone.slice(0, 2)}****${member.phone.slice(-4)}` : 'Unknown';
+
+            // Determine status
+            let statusBadge = '<span class="badge bg-success">Active</span>';
+            if (member.status === 0) {
+                statusBadge = '<span class="badge bg-secondary">Inactive</span>';
+            } else if (member.verify === 1) {
+                statusBadge = '<span class="badge bg-success"><i class="fas fa-check-circle"></i> Verified</span>';
+            }
+
+            // Use the level we assigned in updateDownlineUI
+            const level = member.level || member.user_level || 1;
+            const levelColor = getLevelColor(level);
+            const levelName = member.level_name || `Level ${level}`;
+
+            // Calculate earnings or turnover if available
+            const earnings = member.total_turn_over ? `₹${parseFloat(member.total_turn_over).toLocaleString()}` :
+                           member.earnings ? `₹${parseFloat(member.earnings).toLocaleString()}` : 'N/A';
+
+            downlineHTML += `
+                <div class="list-group-item member-card" data-level="${level}">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="level-indicator ${levelColor} text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 35px; height: 35px; font-size: 11px; font-weight: bold;">
+                                L${level}
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-bold">${member.name_user || member.name || 'Member'}</h6>
+                                <div class="member-details">
+                                    <small class="text-muted d-block">ID: ${member.id_user || member.user_id || 'N/A'}</small>
+                                    <small class="text-muted d-block">Phone: ${memberPhone}</small>
+                                    ${member.code ? `<small class="text-muted d-block">Code: ${member.code}</small>` : ''}
+                                    ${earnings !== 'N/A' ? `<small class="text-success d-block fw-bold">Turnover: ${earnings}</small>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <div class="mb-1">${statusBadge}</div>
+                            <small class="text-muted d-block">${levelName}</small>
+                            <small class="text-muted d-block">${joinDate}</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        downlineList.html(downlineHTML);
+
+        // Add level filter functionality
+        addLevelFilterListeners();
+    }
+
+    function addLevelFilterListeners() {
+        // Add click handlers for level filter buttons
+        $('.level-filter-btn').off('click').on('click', function() {
+            const targetLevel = $(this).data('level');
+
+            // Update active button
+            $('.level-filter-btn').removeClass('active');
+            $(this).addClass('active');
+
+            // Filter members and update count
+            let visibleCount = 0;
+            if (targetLevel === 'all') {
+                $('.member-card').show();
+                visibleCount = $('.member-card').length;
+                $('#member-count-display').text(`Total: ${visibleCount} members`);
+            } else {
+                $('.member-card').hide();
+                $(`.member-card[data-level="${targetLevel}"]`).show();
+                visibleCount = $(`.member-card[data-level="${targetLevel}"]`).length;
+                $('#member-count-display').text(`Level ${targetLevel}: ${visibleCount} members`);
+            }
+        });
+
+        // Initialize count display
+        const totalMembers = $('.member-card').length;
+        $('#member-count-display').text(`Total: ${totalMembers} members`);
+    }
+
+    function updateTeamSummary(allMembers) {
+        // Calculate team statistics
+        let totalTurnover = 0;
+        let activeMembers = 0;
+        let verifiedMembers = 0;
+
+        allMembers.forEach(member => {
+            if (member.total_turn_over) {
+                totalTurnover += parseFloat(member.total_turn_over) || 0;
+            }
+            if (member.status === 1) {
+                activeMembers++;
+            }
+            if (member.verify === 1) {
+                verifiedMembers++;
+            }
+        });
+
+        // Update summary if elements exist
+        if ($('#team-turnover').length) {
+            $('#team-turnover').text(`₹${totalTurnover.toLocaleString()}`);
+        }
+        if ($('#active-members').length) {
+            $('#active-members').text(activeMembers);
+        }
+        if ($('#verified-members').length) {
+            $('#verified-members').text(verifiedMembers);
+        }
+
+        console.log('Team Summary:', {
+            totalMembers: allMembers.length,
+            totalTurnover: totalTurnover,
+            activeMembers: activeMembers,
+            verifiedMembers: verifiedMembers
+        });
+    }
+
+    function getLevelColor(level) {
+        switch (level) {
+            case 1: return 'bg-primary';
+            case 2: return 'bg-info';
+            case 3: return 'bg-success';
+            case 4: return 'bg-warning';
+            case 5: return 'bg-danger';
+            case 6: return 'bg-dark';
+            default: return 'bg-secondary';
+        }
+    }
+
+    function formatDate(input) {
+        let date;
+        if (typeof input === 'string' && input.includes('T')) {
+            date = new Date(input);
+        } else {
+            date = new Date(Number(input));
+        }
+        if (isNaN(date.getTime())) return 'Invalid date';
+        return date.toLocaleDateString('en-IN', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    }
+
+    function showError(message) {
+        $('#level1-count, #level2-count, #level3-count, #level4-count, #level5-count, #level6-count').text('0');
+        $('#team-turnover').text('₹0');
+        $('#active-members, #verified-members').text('0');
+        $('#member-count-display').text('Total: 0 members');
+
+        $('#downline-list').html(`
+            <div class="list-group-item text-center py-4">
+                <i class="fa-solid fa-exclamation-triangle text-danger" style="font-size: 48px;"></i>
+                <p class="mt-2 mb-0 text-danger fw-bold">${message}</p>
+                <button class="btn btn-sm btn-primary mt-2" onclick="loadDownlineData()">
+                    <i class="fas fa-refresh"></i> Try Again
+                </button>
+            </div>
+        `);
+    }
+</script>
+
+</body>
+
+</html>

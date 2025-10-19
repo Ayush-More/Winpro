@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.16px;">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge History</title>
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+    <style id="_goober">
+        @keyframes go2264125279 {
+            from {
+                transform: scale(0) rotate(45deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go3020080000 {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go463499852 {
+            from {
+                transform: scale(0) rotate(90deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(90deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go1268368563 {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes go1310225428 {
+            from {
+                transform: scale(0) rotate(45deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go651618207 {
+            0% {
+                height: 0;
+                width: 0;
+                opacity: 0;
+            }
+            40% {
+                height: 0;
+                width: 6px;
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                height: 10px;
+            }
+        }
+        
+        @keyframes go901347462 {
+            from {
+                transform: scale(0.6);
+                opacity: 0.4;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .go4109123758 {
+            z-index: 9999;
+        }
+        
+        .go4109123758>* {
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body style="font-size: 12px;">
+    <div id="root">
+        <div class="">
+            <a href="/customerSupport">
+                <div class="iconrob" style="position: fixed; right: 0px; bottom: 0px; width: 40px; height: 40px;"><img src="/images/icon-BMOz9JeZ.png" alt="Draggable Icon" style="position: absolute; left: -50px; top: -50px; cursor: move;"></div>
+            </a>
+        </div>
+        <div class="mainApp">
+            <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
+            <div class="container-fluid subordinate headertop bg-white rounded-0 py-1" style="
+    background: var(--main_gradient-color);
+    color: #fff !important;
+">
+                <div class="row align-items-center">
+                    <div class="col-auto text-center" style="
+    padding: 0;
+"><a class="btn hedbtn text-end shadow-none me-auto" href="/wallet"><span><i class="fa-solid fa-angle-left text-center text-black"></i></span></a></div>
+                    <div class="col">
+                        <div class="headertext text-center fw-bold">Deposit History</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid lotterysectionsection1 mb-1" id="rechargeRecordsContainer">
+                <!-- Records will be loaded here dynamically -->
+            </div>
+
+
+
+        </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        function formateT(params) {
+            let result = (params < 10) ? "0" + params : params;
+            return result;
+        }
+
+        function timerJoin(params = '', addHours = 0) {
+            let date = '';
+            if (params) {
+                date = new Date(Number(params));
+            } else {
+                date = new Date();
+            }
+
+            date.setHours(date.getHours() + addHours);
+
+            let years = formateT(date.getFullYear());
+            let months = formateT(date.getMonth() + 1);
+            let days = formateT(date.getDate());
+
+            let hours = date.getHours() % 12;
+            hours = hours === 0 ? 12 : hours;
+            let ampm = date.getHours() < 12 ? "AM" : "PM";
+
+            let minutes = formateT(date.getMinutes());
+            let seconds = formateT(date.getSeconds());
+
+            return years + '-' + months + '-' + days + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+        }
+
+        function loads(datas, address) {
+            let html = '';
+
+            if (datas.length === 0) {
+                html = `
+                    <div class="row">
+                        <div class="col-12 px-1 px-2">
+                            <div class="card withdrwalcard border-0 mb-1">
+                                <div class="card-body p-1 p-sm-2 text-center">
+                                    <p class="text-muted">No recharge records found</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                html = datas.map((data) => {
+                            // Determine payment type display
+                            let paymentType = 'E Wallet';
+                            if (data.type === 'bank') {
+                                paymentType = 'Bank Transfer';
+                            } else if (data.type === 'momo') {
+                                paymentType = 'MOMO';
+                            } else if (data.type === 'upi_manual') {
+                                paymentType = 'UPI';
+                            } else if (data.type === 'crypto' || data.type === 'USDT') {
+                                paymentType = 'USDT';
+                            } else if (data.type === 'admin') {
+                                paymentType = 'Fund Transfer By Admin';
+                            }
+
+                            // Determine status display and color
+                            let statusText = 'PENDING';
+                            let statusClass = 'text-warning';
+                            if (data.status == 1) {
+                                statusText = 'Confirmed';
+                                statusClass = 'text-success';
+                            } else if (data.status == 2) {
+                                statusText = 'failed';
+                                statusClass = 'text-danger';
+                            } else if (data.status == 3) {
+                                statusText = 'EXPIRED';
+                                statusClass = 'text-danger';
+                            }
+
+                            // Format currency symbol
+                            let currencySymbol = '₹';
+                            if (data.type === 'crypto' || data.type === 'usdt') {
+                                currencySymbol = '$';
+                            }
+
+                            return `
+                        <div class="row">
+                            <div class="col-12 px-1 px-2">
+                                <div class="card withdrwalcard border-0 mb-1">
+                                    <div class="card-body p-1 p-sm-2">
+                                        <div class="buttonfiledsection pb-2 mb-1">
+                                            <button class="btn depositbtn">${paymentType}</button>
+                                        </div>
+                                        <div class="text-section mb-1">
+                                            <div class="heading">Balance</div>
+                                            <div class="subheading text-success fw-bold">${currencySymbol}${data.money}</div>
+                                        </div>
+                                        <div class="text-section mb-1">
+                                            <div class="heading">Order Id</div>
+                                            <div class="subheading text-black copyable-text" data-clipboard-text="${data.id_order || ''}">${data.id_order || ''}</div>
+                                        </div>
+                                        ${data.utr && data.utr !== 'NULL' ? `
+                                        <div class="text-section mb-1">
+                                            <div class="heading">Txn Hash</div>
+                                            <div class="subheading text-black">
+                                                <a href="https://bscscan.com/tx/${data.utr}" target="_blank" style="text-decoration: none;">View Hash</a>
+                                            </div>
+                                        </div>
+                                        ` : ''}
+                                        <div class="text-section mb-1">
+                                            <div class="heading">Requested Date</div>
+                                            <div class="subheading text-black">${data.today}</div>
+                                        </div>
+                                        <div class="text-section mb-1">
+                                            <div class="heading">Status</div>
+                                            <div class="subheading copytext ${statusClass}">${statusText}</div>
+                                        </div>
+                                        <div class="text-section mb-1">
+                                            <div class="heading">Approved Date</div>
+                                            <div class="subheading text-black">${data.status == 1 ? timerJoin(data.time) : ''}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            $('#rechargeRecordsContainer').html(html);
+
+            // Add click handler for copyable text (Order IDs)
+            $('.copyable-text').click(function(e) {
+                e.preventDefault();
+                let text = $(this).data('clipboard-text');
+                if (text) {
+                    navigator.clipboard.writeText(text);
+                    $(this).addClass('block-click');
+                    alertMess('Copy successful', $(this));
+                }
+            });
+        }
+
+        function alertMess(text, sic) {
+            $('body').append(
+                `
+                <div data-v-1dcba851="" class="msg">
+                    <div data-v-1dcba851="" class="msg-content v-enter-active v-enter-to" style=""> ${text} </div>
+                </div>
+                `
+            );
+            setTimeout(() => {
+                $('.msg .msg-content').removeClass('v-enter-active v-enter-to');
+                $('.msg .msg-content').addClass('v-leave-active v-leave-to');
+                setTimeout(() => {
+                    $('.msg').remove();
+                }, 100);
+                sic.removeClass('block-click');
+            }, 1000);
+        }
+        // Show loading state
+        $('#rechargeRecordsContainer').html(`
+            <div class="row">
+                <div class="col-12 px-1 px-2">
+                    <div class="card withdrwalcard border-0 mb-1">
+                        <div class="card-body p-1 p-sm-2 text-center">
+                            <p class="text-muted">Loading recharge records...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+
+        $.ajax({
+            type: "GET",
+            url: "/api/webapi/recharge/list",
+            dataType: "json",
+            success: function(response) {
+                if (response.status && response.datas) {
+                    loads(response.datas, response.address);
+                } else {
+                    loads([], '');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching recharge records:', error);
+                $('#rechargeRecordsContainer').html(`
+                    <div class="row">
+                        <div class="col-12 px-1 px-2">
+                            <div class="card withdrwalcard border-0 mb-1">
+                                <div class="card-body p-1 p-sm-2 text-center">
+                                    <p class="text-danger">Error loading recharge records. Please try again later.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            }
+        });
+
+        const searchParams = new URLSearchParams(window.location.search);
+
+        const clientTxnId = searchParams.get("client_txn_id")
+        const txnId = searchParams.get("txn_id")
+
+        if (!!txnId && !!clientTxnId) {
+            $.ajax({
+                type: "POST",
+                url: "/api/webapi/confirm_recharge",
+                data: {
+                    client_txn_id: clientTxnId,
+                    txn_id: txnId,
+                },
+                dataType: "json",
+                success: function(response) {
+                    window.location.href = `${window.location.origin}${window.location.pathname}`
+                        //window.location.reload()
+                    localStorage.removeItem("userData")
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

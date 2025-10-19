@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.24px;">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex,nofollow">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>Report</title>
+    <link href="/css/promotion/app.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_1.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_2.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_3.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_4.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_5.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_6.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/bitbug_favicon.ico" type="image/x-icon">
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            background-color: #090909;
+            padding: 0;
+            margin: 0;
+             }
+
+        #nav_checkUrl {
+            left: 35vw;
+        }
+        
+        .van-col--6 {
+    width: 15%!important;
+}
+    </style>
+</head>
+
+<body style="font-size: 12px;">
+    <div id="app">
+        <div data-v-7c8bbbf4="" class="mian">
+            <div data-v-106b99c8="" data-v-7c8bbbf4="" class="navbar">
+                <div data-v-106b99c8="" class="navbar-left" onclick="location.href='/checkIn'">
+                    <div data-v-a9660e98="" data-v-106b99c8="" class="c-row c-row-middle-center">
+                        <i class="fa-light fa-angle-left fa-fade fa-xl center" style="color: #FFF"></i>
+                    </div>
+                </div>
+                <div data-v-106b99c8="" class="navbar-title"> Daily Trade Income </div>
+                <div data-v-106b99c8="" class="navbar-right" onclick="location.href='/checkIn'">
+                    <div data-v-7c8bbbf4="" data-v-106b99c8="" class="c-row">
+                        <i class="fa-duotone fa-calendar-lines fa-fade fa-lg"
+                            style="--fa-primary-color: #fff; --fa-secondary-color: #fff;"></i>
+                    </div>
+                </div>
+            </div>
+            <div data-v-7c8bbbf4="" class="promotion">
+                 
+                <div data-v-7c8bbbf4="" class="tit c-row c-row-between">Daily Trade Level History </div>
+                <div data-v-7c8bbbf4="" class="table">
+                    <div data-v-7c8bbbf4="" class="hd van-row">
+                        <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6" style="  width: 20% !important;  font-size: 12px;">Date</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6" style="    font-size: 12px;">From</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6" style="    font-size: 12px;">Level</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6" style="    font-size: 12px;">Trade</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6" style="    font-size: 12px;">%</div>
+                         <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6" style="    font-size: 12px;">Amount</div>
+                    </div>
+                     <div id="van-list">
+
+                        </div>
+                     
+                </div>
+              
+            </div>
+        </div>
+    </div>
+    </div>
+    <!---->
+    <%- include('../nav') -%>
+        </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="/js/client.js"></script>
+        <script>
+        
+        function formatToFourDigits(amount) {
+    // Convert the amount to a string and pad with leading zeros if necessary
+    return String(amount).padStart(4, '0');
+}
+function formatDate(dateString) {
+    // Create a new Date object from the dateString
+    const date = new Date(dateString);
+    // Extract the year, month, and day
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const day = String(date.getDate()).padStart(2, '0');
+    // Return the formatted date
+    return `${year}-${month}-${day}`;
+}
+
+
+            $('.nav .van-tabbar-item:eq(0) img').attr('src', '/images/home1.png');
+            $('.nav .van-tabbar-item:eq(0) .name').removeClass('action');
+            $('.nav .van-tabbar-item:eq(2) .name').addClass('action');
+            function RosesRender(datas) {
+                let html = datas.map((e) => {
+                    let html = '';
+                    
+                    
+
+ 
+
+
+
+
+
+
+
+
+                    return html += `
+                    
+                    <div data-v-7c8bbbf4="" class="bd van-row" style="    font-size: 12px!important;">
+                        <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6" style=" width: 20% !important;">${formatDate(e.date)}</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6">${e.fromId}</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-ellipsis van-col van-col--6">${e.level}</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-col van-col--6">${e.trade}</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-col van-col--6">${e.returns}%</div>
+                        <div data-v-7c8bbbf4="" class="c-tc van-col van-col--6">${formatToFourDigits(e.amount)}</div>
+                    </div> `;
+                });
+                $('#van-list').append(html);
+
+               
+            }
+            $.ajax({
+                type: "POST",
+                url: "/api/webapi/DailyTrade",
+                data: {
+
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.status === false) return location.href = '/home';
+                     RosesRender(response.record);
+                }
+            });
+        </script>
+</body>
+
+</html>

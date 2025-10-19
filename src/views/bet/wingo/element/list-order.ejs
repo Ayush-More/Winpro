@@ -1,0 +1,943 @@
+<script>
+let labels1;
+let amounts1;
+let data;
+let canvas;
+let ctx;
+let gradient;
+let padding;
+let spaceBetween;
+let x;
+let y;
+let prevX;
+let prevY;
+let value;
+let index;
+
+</script>
+
+
+  <link rel="stylesheet" href="/assets/page-home-4a55d8dd.css">
+ <style>
+    /* The Modal (background) */
+    .modal {
+      display: blocked;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 20001;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+    }
+
+    .text-over-image {
+      position: absolute;
+      /* Position relative to the parent element */
+      top: 35%;
+      /* Center vertically */
+      left: 50%;
+      /* Center horizontally */
+      transform: translate(-50%, -50%);
+      /* Adjust the positioning */
+      color: #fff;
+      /* Text color */
+      font-size: 24px;
+      /* Text size */
+      font-weight: bold;
+      /* Text weight */
+      text-align: center;
+      /* Center text */
+    }
+
+    .text-over-image-l {
+      position: absolute;
+      /* Position relative to the parent element */
+      top: 48%;
+      /* Center vertically */
+      left: 49%;
+      /* Center horizontally */
+      transform: translate(-50%, -50%);
+      /* Adjust the positioning */
+      color: #fff;
+      /* Text color */
+      font-size: 10px;
+      /* Text size */
+      font-weight: bold;
+      /* Text weight */
+      text-align: center;
+      /* Center text */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      text-align: -webkit-center;
+      position: relative;
+      top: 20%;
+    }
+
+    .modal-content img {
+      width: 280px;
+      /* Use this to ensure the image is full width */
+      height: auto;
+      /* Adjust height automatically */
+      display: block;
+      /* Change display to block to avoid extra space */
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Circle button style */
+    .close-btn {
+      border: 2px solid #fff;
+      /* Black border */
+      border-radius: 50%;
+      /* Circle shape */
+      background-color: transparent;
+      /* Transparent background */
+      width: 30px;
+      /* Width and height should be equal for a circle */
+      height: 30px;
+      /* Width and height should be equal for a circle */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .close-btn:hover {
+      background-color: #ddd;
+      /* Light grey background on hover */
+    }
+
+    /* "X" line style */
+    .close-x {
+      font-size: 35px;
+      /* Large font size for the "X" */
+      font-family: none;
+      line-height: 1;
+      /* Tight line height for the "X" */
+      color: #fff;
+      /* Black color for the "X" */
+      padding: 0;
+      /* No padding */
+      margin: 0;
+      /* No margin */
+    }
+
+    .text-over-image-2 {
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ff850f;
+      font-size: 25px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .text-over-image-3 {
+      position: absolute;
+      top: 72%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #8c4500;
+      font-size: 12px;
+      font-weight: none;
+      text-align: center;
+    }
+
+    .btn-boox {
+      background: linear-gradient(to bottom, #20d90a, #aae69d);
+      border: none;
+      color: white;
+      padding: 5px 6px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 10px;
+      margin: 4px 4px;
+      cursor: pointer;
+      font-family: monospace;
+      border-radius: 5px;
+    }
+  </style>
+  
+  
+<style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      background-color: #9195a3;
+      padding: 0;
+      margin: 0;
+    }
+
+    .wingo-change-time-img {
+      transition: 1s;
+    }
+
+    #line_canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .block-click {
+      pointer-events: none;
+    }
+    
+    /* The Modal (background) */
+    .modal {
+      display: blocked;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 20001;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+    }
+
+    .text-over-image {
+      position: absolute;
+      /* Position relative to the parent element */
+      top: 35%;
+      /* Center vertically */
+      left: 50%;
+      /* Center horizontally */
+      transform: translate(-50%, -50%);
+      /* Adjust the positioning */
+      color: #fff;
+      /* Text color */
+      font-size: 30px;
+      /* Text size */
+      font-weight: bold;
+      /* Text weight */
+      text-align: center;
+      /* Center text */
+    }
+
+    .text-over-image-l {
+      position: absolute;
+      top: 45%;
+      left: 49%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      text-align: center;
+      margin-left: -32px;
+    }
+
+    /* Modal Content */
+    .modal-content {
+      text-align: -webkit-center;
+      position: relative;
+      top: 20%;
+      /* background: #33333385; */
+    }
+
+    .modal-content img {
+      width: 330px;
+      /* Use this to ensure the image is full width */
+      height: auto;
+      /* Adjust height automatically */
+      display: block;
+      /* Change display to block to avoid extra space */
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Circle button style */
+    .close-btn {
+      border: 2px solid #fff;
+      /* Black border */
+      border-radius: 50%;
+      /* Circle shape */
+      background-color: transparent;
+      /* Transparent background */
+      width: 30px;
+      /* Width and height should be equal for a circle */
+      height: 30px;
+      /* Width and height should be equal for a circle */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .close-btn:hover {
+      background-color: #ddd;
+      /* Light grey background on hover */
+    }
+
+    /* "X" line style */
+    .close-x {
+      font-size: 35px;
+      /* Large font size for the "X" */
+      font-family: none;
+      line-height: 1;
+      /* Tight line height for the "X" */
+      color: #fff;
+      /* Black color for the "X" */
+      padding: 0;
+      /* No padding */
+      margin: 0;
+      /* No margin */
+    }
+
+    .text-over-image-2 {
+      position: absolute;
+      top: 63%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ff850f;
+      font-size: 25px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .text-over-image-3 {
+      position: absolute;
+      top: 69%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #070706;
+      font-size: 13px;
+      font-weight: none;
+      text-align: center;
+    }
+
+    .btn-boox {
+      border: none;
+      color: white;
+      padding: 5px 6px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 4px;
+      cursor: pointer;
+      font-family: monospace;
+      border-radius: 5px;
+    }
+
+    .xredviolet {
+      background: linear-gradient(45deg, red 50%, violet 50%);
+    }
+
+    .xgreenviolet {
+      background: linear-gradient(45deg, green 50%, violet 50%);
+    }
+
+    .xred {
+      background-color: red;
+    }
+
+    .xgreen {
+      background-color: green;
+    }
+
+    .xgreenvioletcolor {
+      background-image: -webkit-linear-gradient(top left, #5cba47 50%, #eb43dd 0) !important;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 0.66667rem;
+      font-size: .53333rem;
+      font-weight: 700;
+      font-size: .656rem;
+    }
+
+    .xredvioletcolor {
+      background-image: -webkit-linear-gradient(top left, #d0322d 50%, #eb43dd 0) !important;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 0.66667rem;
+      font-size: .53333rem;
+      font-weight: 700;
+      font-size: .656rem;
+    }
+</style>
+<div data-v-a9660e98="" class="tab c-row c-row-between">
+    <div data-v-a9660e98="" class="li c-row c-row-center">
+        <span data-v-a9660e98="" class="txt action">
+            Game History
+        </span>
+    </div>
+    <div data-v-a9660e98="" class="li c-row c-row-center">
+        <span data-v-a9660e98="" class="txt"> My Bets </span>
+    </div>
+    <div data-v-a9660e98="" class="li c-row c-row-center">
+        <span data-v-a9660e98="" class="txt "> Trend </span>
+    </div>
+    
+</div>
+<div data-v-a9660e98="" class="con-box">
+    <div data-v-a9660e98="" class="list m-t-10">
+        <div data-v-a9660e98="" class="wrap">
+            <div data-v-a9660e98="" class="c-tc van-row">
+                <div data-v-a9660e98="" class="van-col van-col--8">Draw</div>
+                <div data-v-a9660e98="" class="van-col van-col--5">
+                    Number
+                </div>
+                <div data-v-a9660e98="" class="van-col van-col--5">
+                    Big/Small
+                </div>
+                <div data-v-a9660e98="" class="van-col van-col--6">
+                    Colour
+                </div>
+            </div>
+        </div>
+        <div data-v-a9660e98="">
+            <div data-v-a9660e98="" class="hb"></div>
+        </div>
+        <div data-v-a9660e98="" class="list-fooder"></div>
+    </div>
+    <div data-v-a9660e98="" class="page-nav c-row c-row-center c-tc">
+        <div data-v-a9660e98="" class="arr c-row c-row-middle-center block-click">
+            <i data-v-a9660e98="" class="van-icon van-icon-arrow-left icon" style="font-size: 20px">
+                <!---->
+            </i>
+        </div>
+        <div data-v-a9660e98="" class="number"></div>
+        <div data-v-a9660e98="" class="arr c-row c-row-middle-center action">
+            <i data-v-a9660e98="" class="van-icon van-icon-arrow icon action" style="font-size: 20px">
+                <!---->
+            </i>
+        </div>
+    </div>
+</div>
+<div data-v-a9660e98="" class="con-box p-b-20" style="display: none">
+   
+    <div data-v-a9660e98="" class="list m-t-10">
+        <div data-v-a9660e98="" class="p-t-5 p-b-5" id="history-order">
+            
+        </div>
+        <div data-v-a9660e98="" class="list-fooder"></div>
+    </div>
+    <!---->
+    <div data-v-a9660e98="" class="page-nav c-row c-row-center c-tc">
+        <div data-v-a9660e98="" class="arr c-row c-row-middle-center">
+            <i data-v-a9660e98="" class="van-icon van-icon-arrow-left icon" style="font-size: 20px">
+                <!---->
+            </i>
+        </div>
+        <div data-v-a9660e98="" class="number"></div>
+        <div data-v-a9660e98="" class="arr c-row c-row-middle-center action">
+            <i data-v-a9660e98="" class="van-icon van-icon-arrow icon action" style="font-size: 20px">
+                <!---->
+            </i>
+        </div>
+    </div>
+</div>
+<div data-v-a9660e98="" class="con-box p-b-20" style="display: none">
+  <div data-v-a9660e98="" class="list m-t-10">
+<style>
+  .stat-table {
+    background: #333; /* Fallback for browsers that do not support gradients */
+    background: -webkit-linear-gradient(to right, #444, #555); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #444, #555); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+  }
+  .stat-table th, .stat-table td {
+    padding: 8px 0px;
+    text-align: center;
+    font-size: xx-small;
+  }
+  .stat-table th {
+    background: #555;
+    border-bottom: 1px solid #666;
+  }
+  .stat-table th:first-child {
+    border-radius: 5px 0 0 0;
+  }
+  .stat-table th:last-child {
+    border-radius: 0 5px 0 0;
+  }
+  .stat-row {
+    background: #444; /* Fallback for browsers that do not support gradients */
+    background: -webkit-linear-gradient(to right, #555, #666); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #555, #666); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin-bottom: 4px;
+    border-radius: 4px;
+  }
+  .number-cell {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 50%;
+    background: #666;
+    border: 1px solid #777; /* Slight border for definition */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+  }
+  .stat-header {
+    font-weight: bold;
+    text-align: left;
+    padding-left: 12px;
+  }
+  #app {
+    color: #ffffff;
+}
+</style>
+<table class="stat-table" style="display:none;">
+  <thead>
+    <tr>
+      <th>Period</th>
+      <th>Statistic (last 100 Periods)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="stat-row">
+      <td class="stat-header">Total Number</td>
+      <td>
+        <div class="number-cell">0</div>
+        <div class="number-cell">1</div>
+        <div class="number-cell">2</div>
+        <div class="number-cell">3</div>
+        <div class="number-cell">4</div>
+        <div class="number-cell">5</div>
+        <div class="number-cell">6</div>
+        <div class="number-cell">7</div>
+        <div class="number-cell">8</div>
+        <div class="number-cell">9</div>
+      </td>
+    </tr>
+    <tr class="stat-row">
+      <td class="stat-header">Winning </td>
+      <td>
+        <div id="Winning_0" class="number-cell">0</div>
+        <div id="Winning_1" class="number-cell">1</div>
+        <div id="Winning_2" class="number-cell">2</div>
+        <div id="Winning_3" class="number-cell">3</div>
+        <div id="Winning_4" class="number-cell">4</div>
+        <div id="Winning_5" class="number-cell">5</div>
+        <div id="Winning_6" class="number-cell">6</div>
+        <div id="Winning_7" class="number-cell">7</div>
+        <div id="Winning_8" class="number-cell">8</div>
+        <div id="Winning_9" class="number-cell">9</div>
+      </td>
+    </tr>
+    <tr class="stat-row">
+      <td class="stat-header">Average Missing</td>
+      <td>
+        <span class="number-cell">0</span>
+        <span class="number-cell">1</span>
+        <span class="number-cell">2</span>
+        <span class="number-cell">3</span>
+        <span class="number-cell">4</span>
+        <span class="number-cell">5</span>
+        <span class="number-cell">6</span>
+        <span class="number-cell">7</span>
+        <span class="number-cell">8</span>
+        <span class="number-cell">9</span>
+      </td>
+    </tr>
+    <tr class="stat-row">
+      <td class="stat-header">Frequency</td>
+      <td>
+        <span class="number-cell">0</span>
+        <span class="number-cell">1</span>
+        <span class="number-cell">2</span>
+        <span class="number-cell">3</span>
+        <span class="number-cell">4</span>
+        <span class="number-cell">5</span>
+        <span class="number-cell">6</span>
+        <span class="number-cell">7</span>
+        <span class="number-cell">8</span>
+        <span class="number-cell">9</span>
+      </td>
+    </tr>
+    <tr class="stat-row">
+      <td class="stat-header">Max consecutive</td>
+      <td>
+        <span class="number-cell">0</span>
+        <span class="number-cell">1</span>
+        <span class="number-cell">2</span>
+        <span class="number-cell">3</span>
+        <span class="number-cell">4</span>
+        <span class="number-cell">5</span>
+        <span class="number-cell">6</span>
+        <span class="number-cell">7</span>
+        <span class="number-cell">8</span>
+        <span class="number-cell">9</span>
+      </td>
+    </tr>
+    <!-- ... More rows for Winning number, Missing, etc. ... -->
+  </tbody>
+</table>
+    <div data-v-a9660e98="">
+      <div data-v-a9660e98="" class="hbsss">
+        </div>
+
+
+
+
+    </div>
+     <div data-v-a9660e98="" class="con-boxxxx p-b-20" style="display: block;">
+          <div data-v-d79474c9="" data-v-b67ac651="" class="Trend__C" apifun="e=>r(c.WinGoGetMyEmerdList,e).then(s=>s.data)" gopathname="AllLotteryGames-BettingRecordWin">
+            <div data-v-d79474c9="" class="Trend__C-head">
+              <div data-v-d79474c9="" class="van-row">
+                <div data-v-d79474c9="" class="van-col van-col--8">Period</div>
+                <div data-v-d79474c9="" class="van-col van-col--16">Number</div>
+              </div>
+            </div> 
+            <div data-v-d79474c9="" class="Trend__C-body1">
+              <div data-v-d79474c9="" class="Trend__C-body1-line">Statistic (last 100 Periods)</div>
+              <div data-v-d79474c9="" class="Trend__C-body1-line lottery">
+                <div data-v-d79474c9="">Winning number</div>
+                <div data-v-d79474c9="" class="Trend__C-body1-line-num">
+                  <div data-v-d79474c9="">0</div>
+                  <div data-v-d79474c9="">1</div>
+                  <div data-v-d79474c9="">2</div>
+                  <div data-v-d79474c9="">3</div>
+                  <div data-v-d79474c9="">4</div>
+                  <div data-v-d79474c9="">5</div>
+                  <div data-v-d79474c9="">6</div>
+                  <div data-v-d79474c9="">7</div>
+                  <div data-v-d79474c9="">8</div>
+                  <div data-v-d79474c9="">9</div>
+                </div>
+              </div>
+              <div data-v-d79474c9="" class="Trend__C-body1-line">
+                <div data-v-d79474c9="">Missing</div>
+                <div data-v-d79474c9="" class="Trend__C-body1-line-num">
+                  <div data-v-d79474c9="">8</div>
+                  <div data-v-d79474c9="">13</div>
+                  <div data-v-d79474c9="">14</div>
+                  <div data-v-d79474c9="">1</div>
+                  <div data-v-d79474c9="">7</div>
+                  <div data-v-d79474c9="">4</div>
+                  <div data-v-d79474c9="">9</div>
+                  <div data-v-d79474c9="">11</div>
+                  <div data-v-d79474c9="">0</div>
+                  <div data-v-d79474c9="">3</div>
+                </div>
+              </div>
+              <div data-v-d79474c9="" class="Trend__C-body1-line">
+                <div data-v-d79474c9="">Avg missing</div>
+                <div data-v-d79474c9="" class="Trend__C-body1-line-num">
+                  <div data-v-d79474c9="">13</div>
+                  <div data-v-d79474c9="">10</div>
+                  <div data-v-d79474c9="">8</div>
+                  <div data-v-d79474c9="">8</div>
+                  <div data-v-d79474c9="">11</div>
+                  <div data-v-d79474c9="">6</div>
+                  <div data-v-d79474c9="">8</div>
+                  <div data-v-d79474c9="">9</div>
+                  <div data-v-d79474c9="">9</div>
+                  <div data-v-d79474c9="">10</div>
+                </div>
+              </div>
+              <div data-v-d79474c9="" class="Trend__C-body1-line">
+                <div data-v-d79474c9="">Frequency</div>
+                <div data-v-d79474c9="" class="Trend__C-body1-line-num">
+                  <div data-v-d79474c9="">7</div>
+                  <div data-v-d79474c9="">8</div>
+                  <div data-v-d79474c9="">11</div>
+                  <div data-v-d79474c9="">12</div>
+                  <div data-v-d79474c9="">8</div>
+                  <div data-v-d79474c9="">13</div>
+                  <div data-v-d79474c9="">11</div>
+                  <div data-v-d79474c9="">9</div>
+                  <div data-v-d79474c9="">12</div>
+                  <div data-v-d79474c9="">9</div>
+                </div>
+              </div>
+              <div data-v-d79474c9="" class="Trend__C-body1-line">
+                <div data-v-d79474c9="">Max consecutive</div>
+                <div data-v-d79474c9="" class="Trend__C-body1-line-num">
+                  <div data-v-d79474c9="">2</div>
+                  <div data-v-d79474c9="">1</div>
+                  <div data-v-d79474c9="">2</div>
+                  <div data-v-d79474c9="">2</div>
+                  <div data-v-d79474c9="">2</div>
+                  <div data-v-d79474c9="">2</div>
+                  <div data-v-d79474c9="">2</div>
+                  <div data-v-d79474c9="">1</div>
+                  <div data-v-d79474c9="">2</div>
+                  <div data-v-d79474c9="">2</div>
+                </div>
+              </div>
+            </div>
+            <div style="position:relative;" id="trend_container">
+                <div data-v-d79474c9="" class="Trend__C-body2"><div data-v-d79474c9="" class="trend" issuenumber="2024070125626" number="8" colour="red" rowid="0">
+                            <div data-v-d79474c9="" class="van-row">
+                              <div data-v-d79474c9="" class="van-col van-col--8">
+                                <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125626</div>
+                              </div>
+                              <div data-v-d79474c9="" class="van-col van-col--16">
+                                <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">0</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action4">4</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">5</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">7</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isS">S</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125625" number="8" colour="red" rowid="0">
+                            <div data-v-d79474c9="" class="van-row">
+                              <div data-v-d79474c9="" class="van-col van-col--8">
+                                <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125625</div>
+                              </div>
+                              <div data-v-d79474c9="" class="van-col van-col--16">
+                                <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">0</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">5</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action7">7</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isB">B</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125624" number="8" colour="red" rowid="0">
+                            <div data-v-d79474c9="" class="van-row">
+                              <div data-v-d79474c9="" class="van-col van-col--8">
+                                <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125624</div>
+                              </div>
+                              <div data-v-d79474c9="" class="van-col van-col--16">
+                                <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">0</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action2">2</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">5</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">7</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isS">S</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125623" number="8" colour="red" rowid="0">
+                            <div data-v-d79474c9="" class="van-row">
+                              <div data-v-d79474c9="" class="van-col van-col--8">
+                                <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125623</div>
+                              </div>
+                              <div data-v-d79474c9="" class="van-col van-col--16">
+                                <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">0</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">5</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action7">7</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isB">B</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125622" number="8" colour="red" rowid="0">
+                            <div data-v-d79474c9="" class="van-row">
+                              <div data-v-d79474c9="" class="van-col van-col--8">
+                                <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125622</div>
+                              </div>
+                              <div data-v-d79474c9="" class="van-col van-col--16">
+                                <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">0</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">5</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action6">6</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">7</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isB">B</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125620" number="8" colour="red" rowid="0">
+                            <div data-v-d79474c9="" class="van-row">
+                              <div data-v-d79474c9="" class="van-col van-col--8">
+                                <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125620</div>
+                              </div>
+                              <div data-v-d79474c9="" class="van-col van-col--16">
+                                <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">0</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action5">5</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">7</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                                  <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isB">B</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125618" number="8" colour="red" rowid="0">
+                    <div data-v-d79474c9="" class="van-row">
+                      <div data-v-d79474c9="" class="van-col van-col--8">
+                        <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125618</div>
+                      </div>
+                      <div data-v-d79474c9="" class="van-col van-col--16">
+                        <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action0">0</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">5</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">7</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isS">S</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125617" number="8" colour="red" rowid="0">
+                    <div data-v-d79474c9="" class="van-row">
+                      <div data-v-d79474c9="" class="van-col van-col--8">
+                        <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125617</div>
+                      </div>
+                      <div data-v-d79474c9="" class="van-col van-col--16">
+                        <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action0">0</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">5</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">7</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isS">S</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125616" number="8" colour="red" rowid="0">
+                    <div data-v-d79474c9="" class="van-row">
+                      <div data-v-d79474c9="" class="van-col van-col--8">
+                        <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125616</div>
+                      </div>
+                      <div data-v-d79474c9="" class="van-col van-col--16">
+                        <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">0</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">3</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action5">5</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">7</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isB">B</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><div data-v-d79474c9="" class="trend" issuenumber="2024070125615" number="8" colour="red" rowid="0">
+                    <div data-v-d79474c9="" class="van-row">
+                      <div data-v-d79474c9="" class="van-col van-col--8">
+                        <div data-v-d79474c9="" class="Trend__C-body2-IssueNumber">2024070125615</div>
+                      </div>
+                      <div data-v-d79474c9="" class="van-col van-col--16">
+                        <div data-v-d79474c9="" class="Trend__C-body2-Num"><canvas data-v-d79474c9="" canvas="" id="myCanvas0" class="line-canvas"></canvas>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">0</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">1</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">2</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item active action3">3</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">4</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">5</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">6</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">7</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">8</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-item ">9</div>
+                          <div data-v-d79474c9="" class="Trend__C-body2-Num-BS isS">S</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div></div>
+                <canvas id="line_canvas" width="0" height="0"  ></canvas>
+            </div>
+          </div>
+        </div>
+    
+    <div data-v-a9660e98="" class="list-fooder"></div>
+  </div>
+  <div data-v-a9660e98="" class="page-nav c-row c-row-center c-tc" style="display:none;">
+    <div data-v-a9660e98="" class="arr c-row c-row-middle-center block-click">
+      <i data-v-a9660e98="" class="van-icon van-icon-arrow-left icon" style="font-size: 20px">
+        <!---->
+      </i>
+    </div>
+    <div data-v-a9660e98="" class="number"></div>
+    <div data-v-a9660e98="" class="arr c-row c-row-middle-center action">
+      <i data-v-a9660e98="" class="van-icon van-icon-arrow icon action" style="font-size: 20px">
+        <!---->
+      </i>
+    </div>
+  </div>
+</div>

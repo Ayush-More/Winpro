@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support Management</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+  <style>
+    .block-click {
+      pointer-events: none;
+    }
+    .status-badge {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .status-open { background-color: #17a2b8; color: white; }
+    .status-in_progress { background-color: #ffc107; color: black; }
+    .status-resolved { background-color: #28a745; color: white; }
+    .status-closed { background-color: #6c757d; color: white; }
+    .priority-low { color: #28a745; }
+    .priority-normal { color: #17a2b8; }
+    .priority-high { color: #ffc107; }
+    .priority-urgent { color: #dc3545; }
+    .nav-tabs .nav-link.active {
+      background-color: #007bff;
+      color: white;
+    }
+    .contact-status-online { background-color: #28a745; color: white; }
+    .contact-status-busy { background-color: #ffc107; color: black; }
+    .contact-status-offline { background-color: #dc3545; color: white; }
+  </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <%- include('nav') %>
+      <div class="content-wrapper">
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Support Management</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- Navigation Tabs -->
+          <div class="card">
+            <div class="card-header p-0">
+              <ul class="nav nav-tabs" id="supportTabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="tickets-tab" data-toggle="tab" href="#tickets" role="tab">
+                    <i class="fas fa-ticket-alt"></i> Support Tickets
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="faqs-tab" data-toggle="tab" href="#faqs" role="tab">
+                    <i class="fas fa-question-circle"></i> FAQs
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab">
+                    <i class="fas fa-address-book"></i> Contact Methods
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content" id="supportTabsContent">
+                
+                <!-- Support Tickets Tab -->
+                <div class="tab-pane fade show active" id="tickets" role="tabpanel">
+                  <div class="row mb-3">
+                    <div class="col-sm-8">
+                      <h4><i class="fas fa-ticket-alt text-primary"></i> Support Tickets</h4>
+                      <p class="text-muted">Manage customer support requests and inquiries</p>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="float-right">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-filter"></i></span>
+                          </div>
+                          <select class="form-control" id="ticketStatusFilter">
+                            <option value="">All Status</option>
+                            <option value="open">🔴 Open</option>
+                            <option value="in_progress">🟡 In Progress</option>
+                            <option value="resolved">🟢 Resolved</option>
+                            <option value="closed">⚫ Closed</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-header">
+                      <h5 class="card-title mb-0">
+                        <i class="fas fa-list text-info"></i> Ticket List
+                      </h5>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="ticketsTable">
+                          <thead class="thead-light">
+                            <tr>
+                              <th><i class="fas fa-hashtag"></i> Ticket ID</th>
+                              <th><i class="fas fa-user"></i> User</th>
+                              <th><i class="fas fa-folder"></i> Category</th>
+                              <th><i class="fas fa-envelope"></i> Subject</th>
+                              <th><i class="fas fa-exclamation-triangle"></i> Priority</th>
+                              <th><i class="fas fa-info-circle"></i> Status</th>
+                              <th><i class="fas fa-calendar"></i> Created</th>
+                              <th><i class="fas fa-cogs"></i> Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- Tickets will be loaded here -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <nav aria-label="Tickets pagination">
+                    <ul class="pagination ticketsTable">
+                      <li class="page-item previous">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                      </li>
+                      <div id="ticketNumbers" style="display: flex">
+                        <li class="page-item">
+                          <a class="page-link active text-white" id="ticket-text-page"></a>
+                        </li>
+                      </div>
+                      <li class="page-item next">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+                <!-- FAQs Tab -->
+                <div class="tab-pane fade" id="faqs" role="tabpanel">
+                  <div class="row mb-3">
+                    <div class="col-sm-8">
+                      <h4><i class="fas fa-question-circle text-info"></i> Frequently Asked Questions</h4>
+                      <p class="text-muted">Manage customer support FAQs and help content</p>
+                    </div>
+                    <div class="col-sm-4">
+                      <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#addFAQModal">
+                        <i class="fas fa-plus"></i> Add New FAQ
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-header">
+                      <h5 class="card-title mb-0">
+                        <i class="fas fa-list-alt text-success"></i> FAQ Management
+                      </h5>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="faqsTable">
+                          <thead class="thead-light">
+                            <tr>
+                              <th><i class="fas fa-question"></i> Question</th>
+                              <th><i class="fas fa-tag"></i> Category</th>
+                              <th><i class="fas fa-sort-numeric-up"></i> Order</th>
+                              <th><i class="fas fa-toggle-on"></i> Status</th>
+                              <th><i class="fas fa-calendar"></i> Created</th>
+                              <th><i class="fas fa-cogs"></i> Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- FAQs will be loaded here -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <nav aria-label="FAQs pagination">
+                    <ul class="pagination faqsTable">
+                      <li class="page-item previous">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                      </li>
+                      <div id="faqNumbers" style="display: flex">
+                        <li class="page-item">
+                          <a class="page-link active text-white" id="faq-text-page"></a>
+                        </li>
+                      </div>
+                      <li class="page-item next">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+                <!-- Contact Methods Tab -->
+                <div class="tab-pane fade" id="contacts" role="tabpanel">
+                  <div class="row mb-3">
+                    <div class="col-sm-6">
+                      <h4>Contact Methods</h4>
+                      <p class="text-muted">Manage customer support contact information</p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h5 class="card-title mb-0">
+                            <i class="fas fa-address-book text-primary"></i> Contact Information
+                          </h5>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table class="table table-hover" id="contactsTable">
+                              <thead class="thead-light">
+                                <tr>
+                                  <th><i class="fas fa-tag"></i> Type</th>
+                                  <th><i class="fas fa-heading"></i> Title</th>
+                                  <th><i class="fas fa-link"></i> Contact Value</th>
+                                  <th><i class="fas fa-info-circle"></i> Description</th>
+                                  <th><i class="fas fa-signal"></i> Status</th>
+                                  <th><i class="fas fa-sort-numeric-up"></i> Order</th>
+                                  <th><i class="fas fa-cogs"></i> Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- Contacts will be loaded here -->
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+  </div>
+
+  <!-- Ticket Details Modal -->
+  <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ticket Details</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="ticketDetails">
+            <!-- Ticket details will be loaded here -->
+          </div>
+          <hr>
+          <div class="form-group">
+            <label>Update Status:</label>
+            <select class="form-control" id="ticketStatusUpdate">
+              <option value="open">Open</option>
+              <option value="in_progress">In Progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Admin Response:</label>
+            <textarea class="form-control" id="adminResponse" rows="4" placeholder="Enter your response to the user..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="updateTicket()">Update Ticket</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add FAQ Modal -->
+  <div class="modal fade" id="addFAQModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add FAQ</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="addFAQForm">
+            <div class="form-group">
+              <label>Question</label>
+              <input type="text" class="form-control" id="faqQuestion" required>
+            </div>
+            <div class="form-group">
+              <label>Answer</label>
+              <textarea class="form-control" id="faqAnswer" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <input type="text" class="form-control" id="faqCategory" placeholder="e.g., general, deposit, withdrawal">
+            </div>
+            <div class="form-group">
+              <label>Display Order</label>
+              <input type="number" class="form-control" id="faqOrder" value="0">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="saveFAQ()">Save FAQ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Contact Modal -->
+  <div class="modal fade" id="editContactModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">
+            <i class="fas fa-edit"></i> Edit Contact Method
+          </h5>
+          <button type="button" class="close text-white" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="editContactForm">
+            <input type="hidden" id="editContactId">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-tag"></i> Contact Type</label>
+                  <select class="form-control" id="editContactType" disabled>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="telegram">Telegram</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                  </select>
+                  <small class="form-text text-muted">Contact type cannot be changed</small>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-heading"></i> Title</label>
+                  <input type="text" class="form-control" id="editContactTitle" required>
+                  <small class="form-text text-muted">Display name for this contact method</small>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-link"></i> Contact Value</label>
+              <input type="text" class="form-control" id="editContactValue" required>
+              <small class="form-text text-muted" id="contactValueHelp">Enter the contact information</small>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-info-circle"></i> Description</label>
+              <input type="text" class="form-control" id="editContactDescription" placeholder="e.g., Quick responses, 24/7 available">
+              <small class="form-text text-muted">Additional information about this contact method</small>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-signal"></i> Status</label>
+                  <select class="form-control" id="editContactStatus" required>
+                    <option value="online">🟢 Online</option>
+                    <option value="busy">🟡 Busy</option>
+                    <option value="offline">🔴 Offline</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-sort-numeric-up"></i> Display Order</label>
+                  <input type="number" class="form-control" id="editContactOrder" min="0" value="0">
+                  <small class="form-text text-muted">Lower numbers appear first</small>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="editContactActive" checked>
+                <label class="custom-control-label" for="editContactActive">
+                  <i class="fas fa-toggle-on"></i> Active (visible to users)
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+          <button type="button" class="btn btn-primary" onclick="updateContact()">
+            <i class="fas fa-save"></i> Update Contact
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit FAQ Modal -->
+  <div class="modal fade" id="editFAQModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <h5 class="modal-title">
+            <i class="fas fa-edit"></i> Edit FAQ
+          </h5>
+          <button type="button" class="close text-white" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="editFAQForm">
+            <input type="hidden" id="editFAQId">
+            <div class="form-group">
+              <label><i class="fas fa-question-circle"></i> Question</label>
+              <input type="text" class="form-control" id="editFAQQuestion" required>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-comment-alt"></i> Answer</label>
+              <textarea class="form-control" id="editFAQAnswer" rows="4" required></textarea>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-tag"></i> Category</label>
+                  <input type="text" class="form-control" id="editFAQCategory" placeholder="e.g., general, deposit, withdrawal">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><i class="fas fa-sort-numeric-up"></i> Display Order</label>
+                  <input type="number" class="form-control" id="editFAQOrder" value="0">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="editFAQStatus" checked>
+                <label class="custom-control-label" for="editFAQStatus">
+                  <i class="fas fa-toggle-on"></i> Active (visible to users)
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+          <button type="button" class="btn btn-info" onclick="updateFAQ()">
+            <i class="fas fa-save"></i> Update FAQ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/plugins/jquery/jquery.min.js"></script>
+  <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/dist/js/adminlte.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <script src="/js/admin/admin.js"></script>
+
+  <script>
+    let currentTicketPage = 0;
+    let currentFAQPage = 0;
+    let ticketLimit = 10;
+    let faqLimit = 10;
+    let totalTicketPages = 0;
+    let totalFAQPages = 0;
+    let currentTicketId = null;
+
+    $(document).ready(function() {
+      loadTickets();
+      loadFAQs();
+      loadContacts();
+      setupEventHandlers();
+    });
+
+    function setupEventHandlers() {
+      // Tab switching
+      $('#supportTabs a').on('click', function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+      });
+
+      // Ticket status filter
+      $('#ticketStatusFilter').on('change', function() {
+        currentTicketPage = 0;
+        loadTickets();
+      });
+
+      // Pagination for tickets
+      $('.ticketsTable .previous').click(function(e) {
+        e.preventDefault();
+        if (currentTicketPage > 0) {
+          currentTicketPage--;
+          loadTickets();
+        }
+      });
+
+      $('.ticketsTable .next').click(function(e) {
+        e.preventDefault();
+        if (currentTicketPage < totalTicketPages - 1) {
+          currentTicketPage++;
+          loadTickets();
+        }
+      });
+
+      // Pagination for FAQs
+      $('.faqsTable .previous').click(function(e) {
+        e.preventDefault();
+        if (currentFAQPage > 0) {
+          currentFAQPage--;
+          loadFAQs();
+        }
+      });
+
+      $('.faqsTable .next').click(function(e) {
+        e.preventDefault();
+        if (currentFAQPage < totalFAQPages - 1) {
+          currentFAQPage++;
+          loadFAQs();
+        }
+      });
+    }
+
+    function loadTickets() {
+      let statusFilter = $('#ticketStatusFilter').val();
+
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/tickets/list",
+        data: {
+          pageno: currentTicketPage,
+          limit: ticketLimit,
+          status: statusFilter
+        },
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            renderTicketsTable(response.datas);
+            totalTicketPages = response.page_total;
+            updateTicketPagination();
+          } else {
+            Swal.fire('Error', 'Failed to load tickets', 'error');
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to load tickets', 'error');
+        }
+      });
+    }
+
+    function renderTicketsTable(tickets) {
+      let tbody = $('#ticketsTable tbody');
+      tbody.empty();
+
+      if (tickets.length === 0) {
+        tbody.append('<tr><td colspan="8" class="text-center text-muted"><i class="fas fa-inbox fa-2x mb-2"></i><br>No tickets found</td></tr>');
+        return;
+      }
+
+      tickets.forEach((ticket, index) => {
+        let statusBadge = getTicketStatusBadge(ticket.status);
+        let priorityBadge = getPriorityBadge(ticket.priority);
+        let createdDate = new Date(ticket.created_at).toLocaleDateString();
+        let userName = ticket.name_user || ticket.user_phone || 'Guest';
+        let categoryDisplay = ticket.category.replace('_', ' ').toUpperCase();
+
+        let row = `
+          <tr>
+            <td><code>${ticket.ticket_id}</code></td>
+            <td><strong>${userName}</strong></td>
+            <td><span class="badge badge-secondary">${categoryDisplay}</span></td>
+            <td><span class="text-truncate" style="max-width: 200px;" title="${ticket.subject}">${ticket.subject}</span></td>
+            <td>${priorityBadge}</td>
+            <td>${statusBadge}</td>
+            <td><small>${createdDate}</small></td>
+            <td>
+              <div class="btn-group" role="group">
+                <button class="btn btn-sm btn-outline-info" onclick="viewTicket(${ticket.id})" title="View Details">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-success" onclick="quickResolve(${ticket.id})" title="Quick Resolve">
+                  <i class="fas fa-check"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+        tbody.append(row);
+      });
+    }
+
+    function getTicketStatusBadge(status) {
+      const statusConfig = {
+        'open': { color: 'danger', icon: 'fas fa-exclamation-circle', text: 'OPEN' },
+        'in_progress': { color: 'warning', icon: 'fas fa-clock', text: 'IN PROGRESS' },
+        'resolved': { color: 'success', icon: 'fas fa-check-circle', text: 'RESOLVED' },
+        'closed': { color: 'secondary', icon: 'fas fa-times-circle', text: 'CLOSED' }
+      };
+
+      const config = statusConfig[status] || statusConfig['open'];
+      return `<span class="badge badge-${config.color}"><i class="${config.icon}"></i> ${config.text}</span>`;
+    }
+
+    function getPriorityBadge(priority) {
+      const priorityConfig = {
+        'low': { color: 'success', icon: 'fas fa-arrow-down' },
+        'normal': { color: 'info', icon: 'fas fa-minus' },
+        'high': { color: 'warning', icon: 'fas fa-arrow-up' },
+        'urgent': { color: 'danger', icon: 'fas fa-exclamation-triangle' }
+      };
+
+      const config = priorityConfig[priority] || priorityConfig['normal'];
+      return `<span class="badge badge-${config.color}"><i class="${config.icon}"></i> ${priority.toUpperCase()}</span>`;
+    }
+
+    function quickResolve(ticketId) {
+      Swal.fire({
+        title: 'Quick Resolve',
+        text: 'Mark this ticket as resolved?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, resolve it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "/api/webapi/admin/support/tickets/update",
+            data: {
+              id: ticketId,
+              status: 'resolved',
+              admin_response: 'Ticket resolved by admin'
+            },
+            dataType: "json",
+            success: function(response) {
+              if (response.status === true) {
+                Swal.fire('Resolved!', 'Ticket has been marked as resolved.', 'success');
+                loadTickets();
+              } else {
+                Swal.fire('Error', response.message || 'Failed to resolve ticket', 'error');
+              }
+            },
+            error: function() {
+              Swal.fire('Error', 'Failed to resolve ticket', 'error');
+            }
+          });
+        }
+      });
+    }
+
+    function updateTicketPagination() {
+      $('#ticket-text-page').text(`Page ${currentTicketPage + 1} of ${totalTicketPages}`);
+
+      if (currentTicketPage === 0) {
+        $('.ticketsTable .previous').addClass('disabled');
+      } else {
+        $('.ticketsTable .previous').removeClass('disabled');
+      }
+
+      if (currentTicketPage >= totalTicketPages - 1) {
+        $('.ticketsTable .next').addClass('disabled');
+      } else {
+        $('.ticketsTable .next').removeClass('disabled');
+      }
+    }
+
+    function viewTicket(ticketId) {
+      // For now, we'll create a simple view. In a real implementation,
+      // you'd fetch the full ticket details from the server
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/tickets/list",
+        data: { pageno: 0, limit: 1000 },
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            let ticket = response.datas.find(t => t.id === ticketId);
+            if (ticket) {
+              currentTicketId = ticketId;
+              showTicketDetails(ticket);
+            }
+          }
+        }
+      });
+    }
+
+    function showTicketDetails(ticket) {
+      let details = `
+        <div class="row">
+          <div class="col-md-6">
+            <strong>Ticket ID:</strong> ${ticket.ticket_id}<br>
+            <strong>User:</strong> ${ticket.name_user || ticket.user_phone || 'Guest'}<br>
+            <strong>Category:</strong> ${ticket.category.replace('_', ' ')}<br>
+            <strong>Priority:</strong> ${ticket.priority.toUpperCase()}
+          </div>
+          <div class="col-md-6">
+            <strong>Status:</strong> ${ticket.status.replace('_', ' ').toUpperCase()}<br>
+            <strong>Created:</strong> ${new Date(ticket.created_at).toLocaleString()}<br>
+            <strong>Updated:</strong> ${new Date(ticket.updated_at).toLocaleString()}
+          </div>
+        </div>
+        <hr>
+        <div>
+          <strong>Subject:</strong> ${ticket.subject}
+        </div>
+        <div class="mt-3">
+          <strong>Description:</strong><br>
+          <div class="border p-3 bg-light">${ticket.description}</div>
+        </div>
+        ${ticket.admin_response ? `
+        <div class="mt-3">
+          <strong>Admin Response:</strong><br>
+          <div class="border p-3 bg-info text-white">${ticket.admin_response}</div>
+        </div>
+        ` : ''}
+      `;
+
+      $('#ticketDetails').html(details);
+      $('#ticketStatusUpdate').val(ticket.status);
+      $('#adminResponse').val(ticket.admin_response || '');
+      $('#ticketModal').modal('show');
+    }
+
+    function updateTicket() {
+      if (!currentTicketId) return;
+
+      let status = $('#ticketStatusUpdate').val();
+      let adminResponse = $('#adminResponse').val();
+
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/tickets/update",
+        data: {
+          id: currentTicketId,
+          status: status,
+          admin_response: adminResponse
+        },
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            Swal.fire('Success', 'Ticket updated successfully', 'success');
+            $('#ticketModal').modal('hide');
+            loadTickets();
+          } else {
+            Swal.fire('Error', response.message || 'Failed to update ticket', 'error');
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to update ticket', 'error');
+        }
+      });
+    }
+
+    function loadFAQs() {
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/faqs/list",
+        data: {
+          pageno: currentFAQPage,
+          limit: faqLimit
+        },
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            renderFAQsTable(response.datas);
+            totalFAQPages = response.page_total;
+            updateFAQPagination();
+          } else {
+            Swal.fire('Error', 'Failed to load FAQs', 'error');
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to load FAQs', 'error');
+        }
+      });
+    }
+
+    function renderFAQsTable(faqs) {
+      let tbody = $('#faqsTable tbody');
+      tbody.empty();
+
+      if (faqs.length === 0) {
+        tbody.append('<tr><td colspan="6" class="text-center text-muted"><i class="fas fa-question-circle fa-2x mb-2"></i><br>No FAQs found</td></tr>');
+        return;
+      }
+
+      faqs.forEach((faq, index) => {
+        let statusBadge = faq.status == 1 ?
+          '<span class="badge badge-success"><i class="fas fa-eye"></i> Active</span>' :
+          '<span class="badge badge-secondary"><i class="fas fa-eye-slash"></i> Inactive</span>';
+
+        let createdDate = new Date(faq.created_at).toLocaleDateString();
+        let questionPreview = faq.question.length > 60 ?
+          faq.question.substring(0, 60) + '...' :
+          faq.question;
+
+        let categoryBadge = `<span class="badge badge-primary">${faq.category}</span>`;
+        let orderBadge = `<span class="badge badge-light">${faq.display_order}</span>`;
+
+        let row = `
+          <tr>
+            <td>
+              <strong class="text-truncate d-block" style="max-width: 300px;" title="${faq.question}">
+                ${questionPreview}
+              </strong>
+              <small class="text-muted">${faq.answer.substring(0, 100)}${faq.answer.length > 100 ? '...' : ''}</small>
+            </td>
+            <td>${categoryBadge}</td>
+            <td>${orderBadge}</td>
+            <td>${statusBadge}</td>
+            <td><small>${createdDate}</small></td>
+            <td>
+              <div class="btn-group" role="group">
+                <button class="btn btn-sm btn-outline-primary" onclick="editFAQ(${faq.id})" title="Edit FAQ">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-info" onclick="previewFAQ(${faq.id})" title="Preview FAQ">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="deleteFAQItem(${faq.id})" title="Delete FAQ">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+        tbody.append(row);
+      });
+    }
+
+    function previewFAQ(id) {
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/faqs/list",
+        data: { pageno: 0, limit: 1000 },
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            let faq = response.datas.find(f => f.id === id);
+            if (faq) {
+              Swal.fire({
+                title: faq.question,
+                html: `
+                  <div class="text-left">
+                    <p><strong>Category:</strong> <span class="badge badge-primary">${faq.category}</span></p>
+                    <p><strong>Answer:</strong></p>
+                    <div class="border p-3 bg-light text-left">${faq.answer}</div>
+                  </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Close',
+                width: '600px'
+              });
+            }
+          }
+        }
+      });
+    }
+
+    function updateFAQPagination() {
+      $('#faq-text-page').text(`Page ${currentFAQPage + 1} of ${totalFAQPages}`);
+
+      if (currentFAQPage === 0) {
+        $('.faqsTable .previous').addClass('disabled');
+      } else {
+        $('.faqsTable .previous').removeClass('disabled');
+      }
+
+      if (currentFAQPage >= totalFAQPages - 1) {
+        $('.faqsTable .next').addClass('disabled');
+      } else {
+        $('.faqsTable .next').removeClass('disabled');
+      }
+    }
+
+    function saveFAQ() {
+      let question = $('#faqQuestion').val();
+      let answer = $('#faqAnswer').val();
+      let category = $('#faqCategory').val();
+      let display_order = $('#faqOrder').val();
+
+      if (!question || !answer) {
+        Swal.fire('Error', 'Please fill all required fields', 'error');
+        return;
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/faqs/create",
+        data: {
+          question: question,
+          answer: answer,
+          category: category,
+          display_order: display_order
+        },
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            Swal.fire('Success', 'FAQ created successfully', 'success');
+            $('#addFAQModal').modal('hide');
+            $('#addFAQForm')[0].reset();
+            loadFAQs();
+          } else {
+            Swal.fire('Error', response.message || 'Failed to create FAQ', 'error');
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to create FAQ', 'error');
+        }
+      });
+    }
+
+    function editFAQ(id) {
+      // Find the FAQ data
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/faqs/list",
+        data: { pageno: 0, limit: 1000 },
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            let faq = response.datas.find(f => f.id === id);
+            if (faq) {
+              showEditFAQModal(faq);
+            }
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to load FAQ details', 'error');
+        }
+      });
+    }
+
+    function showEditFAQModal(faq) {
+      $('#editFAQId').val(faq.id);
+      $('#editFAQQuestion').val(faq.question);
+      $('#editFAQAnswer').val(faq.answer);
+      $('#editFAQCategory').val(faq.category);
+      $('#editFAQOrder').val(faq.display_order);
+      $('#editFAQStatus').prop('checked', faq.status == 1);
+
+      $('#editFAQModal').modal('show');
+    }
+
+    function updateFAQ() {
+      let faqData = {
+        id: $('#editFAQId').val(),
+        question: $('#editFAQQuestion').val(),
+        answer: $('#editFAQAnswer').val(),
+        category: $('#editFAQCategory').val(),
+        display_order: $('#editFAQOrder').val(),
+        status: $('#editFAQStatus').is(':checked') ? 1 : 0
+      };
+
+      if (!faqData.question || !faqData.answer) {
+        Swal.fire('Error', 'Please fill all required fields', 'error');
+        return;
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/faqs/update",
+        data: faqData,
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            Swal.fire('Success', 'FAQ updated successfully', 'success');
+            $('#editFAQModal').modal('hide');
+            loadFAQs();
+          } else {
+            Swal.fire('Error', response.message || 'Failed to update FAQ', 'error');
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to update FAQ', 'error');
+        }
+      });
+    }
+
+    function deleteFAQItem(id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "/api/webapi/admin/support/faqs/delete",
+            data: { id: id },
+            dataType: "json",
+            success: function(response) {
+              if (response.status === true) {
+                Swal.fire('Deleted!', 'FAQ has been deleted.', 'success');
+                loadFAQs();
+              } else {
+                Swal.fire('Error', response.message || 'Failed to delete FAQ', 'error');
+              }
+            },
+            error: function() {
+              Swal.fire('Error', 'Failed to delete FAQ', 'error');
+            }
+          });
+        }
+      });
+    }
+
+    function loadContacts() {
+      $.ajax({
+        type: "GET",
+        url: "/api/webapi/admin/support/contacts/list",
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            renderContactsTable(response.datas);
+          } else {
+            Swal.fire('Error', 'Failed to load contacts', 'error');
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to load contacts', 'error');
+        }
+      });
+    }
+
+    function renderContactsTable(contacts) {
+      let tbody = $('#contactsTable tbody');
+      tbody.empty();
+
+      if (contacts.length === 0) {
+        tbody.append('<tr><td colspan="7" class="text-center text-muted"><i class="fas fa-inbox fa-2x mb-2"></i><br>No contacts found</td></tr>');
+        return;
+      }
+
+      contacts.forEach((contact, index) => {
+        let statusIcon = getStatusIcon(contact.status);
+        let statusBadge = `<span class="badge badge-${getStatusColor(contact.status)}">${statusIcon} ${contact.status.toUpperCase()}</span>`;
+        let activeStatus = contact.is_active == 1 ?
+          '<span class="badge badge-success"><i class="fas fa-check"></i> Active</span>' :
+          '<span class="badge badge-secondary"><i class="fas fa-times"></i> Inactive</span>';
+
+        let typeIcon = getContactTypeIcon(contact.type);
+        let typeDisplay = `<span class="badge badge-primary"><i class="${typeIcon}"></i> ${contact.type.toUpperCase()}</span>`;
+
+        let row = `
+          <tr>
+            <td>${typeDisplay}</td>
+            <td><strong>${contact.title}</strong></td>
+            <td><code>${contact.value}</code></td>
+            <td><small class="text-muted">${contact.description || '-'}</small></td>
+            <td>${statusBadge}</td>
+            <td><span class="badge badge-light">${contact.display_order}</span></td>
+            <td>
+              <div class="btn-group" role="group">
+                <button class="btn btn-sm btn-outline-primary" onclick="editContact(${contact.id})" title="Edit Contact">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-info" onclick="testContact('${contact.type}', '${contact.value}')" title="Test Contact">
+                  <i class="fas fa-external-link-alt"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+        tbody.append(row);
+      });
+    }
+
+    function getStatusIcon(status) {
+      const icons = {
+        'online': '🟢',
+        'busy': '🟡',
+        'offline': '🔴'
+      };
+      return icons[status] || '⚪';
+    }
+
+    function getStatusColor(status) {
+      const colors = {
+        'online': 'success',
+        'busy': 'warning',
+        'offline': 'danger'
+      };
+      return colors[status] || 'secondary';
+    }
+
+    function getContactTypeIcon(type) {
+      const icons = {
+        'whatsapp': 'fab fa-whatsapp',
+        'telegram': 'fab fa-telegram',
+        'email': 'fas fa-envelope',
+        'phone': 'fas fa-phone'
+      };
+      return icons[type] || 'fas fa-question';
+    }
+
+    function editContact(id) {
+      // Find the contact data
+      $.ajax({
+        type: "GET",
+        url: "/api/webapi/admin/support/contacts/list",
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            let contact = response.datas.find(c => c.id === id);
+            if (contact) {
+              showEditContactModal(contact);
+            }
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to load contact details', 'error');
+        }
+      });
+    }
+
+    function showEditContactModal(contact) {
+      $('#editContactId').val(contact.id);
+      $('#editContactType').val(contact.type);
+      $('#editContactTitle').val(contact.title);
+      $('#editContactValue').val(contact.value);
+      $('#editContactDescription').val(contact.description);
+      $('#editContactStatus').val(contact.status);
+      $('#editContactOrder').val(contact.display_order);
+      $('#editContactActive').prop('checked', contact.is_active == 1);
+
+      // Update help text based on contact type
+      updateContactValueHelp(contact.type);
+
+      $('#editContactModal').modal('show');
+    }
+
+    function updateContactValueHelp(type) {
+      const helpTexts = {
+        'whatsapp': 'Enter phone number with country code (e.g., +91 98765 43210)',
+        'telegram': 'Enter username with @ symbol (e.g., @username)',
+        'email': 'Enter email address (e.g., support@example.com)',
+        'phone': 'Enter phone number (e.g., 1800-123-4567)'
+      };
+      $('#contactValueHelp').text(helpTexts[type] || 'Enter the contact information');
+    }
+
+    function updateContact() {
+      let contactData = {
+        id: $('#editContactId').val(),
+        title: $('#editContactTitle').val(),
+        value: $('#editContactValue').val(),
+        description: $('#editContactDescription').val(),
+        status: $('#editContactStatus').val(),
+        display_order: $('#editContactOrder').val(),
+        is_active: $('#editContactActive').is(':checked') ? 1 : 0
+      };
+
+      if (!contactData.title || !contactData.value) {
+        Swal.fire('Error', 'Please fill all required fields', 'error');
+        return;
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/support/contacts/update",
+        data: contactData,
+        dataType: "json",
+        success: function(response) {
+          if (response.status === true) {
+            Swal.fire('Success', 'Contact updated successfully', 'success');
+            $('#editContactModal').modal('hide');
+            loadContacts();
+          } else {
+            Swal.fire('Error', response.message || 'Failed to update contact', 'error');
+          }
+        },
+        error: function() {
+          Swal.fire('Error', 'Failed to update contact', 'error');
+        }
+      });
+    }
+
+    function testContact(type, value) {
+      switch(type) {
+        case 'whatsapp':
+          let cleanNumber = value.replace(/[^\d]/g, '');
+          window.open(`https://wa.me/${cleanNumber}`, '_blank');
+          break;
+        case 'telegram':
+          let cleanUsername = value.replace('@', '');
+          window.open(`https://t.me/${cleanUsername}`, '_blank');
+          break;
+        case 'email':
+          window.location.href = `mailto:${value}`;
+          break;
+        case 'phone':
+          window.location.href = `tel:${value}`;
+          break;
+      }
+    }
+  </script>

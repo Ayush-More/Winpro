@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" data-dpr="1" style="font-size: 40.5px;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="shortcut icon" href="/images/bitbug_favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" crossorigin="" href="./index_files/index-BUBUniRp.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="noindex,nofollow">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        /* Custom CSS for slider, popups and enhancements */
+        
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: #d9d9d9;
+            opacity: 1;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--main-color);
+        }
+        /* Popup Styling */
+        
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--main-color);
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-popup:hover {
+            color: var(--main-color);
+            transform: scale(1.1);
+        }
+        
+        .popup-title {
+            color: var(--main-color);
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .popup-text {
+            color: #e6e6e6;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .popup-btn {
+            background: var(--main-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: bold;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .popup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        /* Notification Popup */
+        
+        .notification-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1a1a2e;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--main-color);
+            z-index: 10000;
+            transform: translateX(120%);
+            transition: transform 0.4s ease;
+        }
+        
+        .notification-popup.show {
+            transform: translateX(0);
+        }
+        /* Game Card Animation */
+        
+        .jili_games_card {
+            display: block;
+            overflow: hidden;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .jili_games_card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .jili_games_card img {
+            transition: transform 0.3s ease;
+        }
+        
+        .jili_games_card:hover img {
+            transform: scale(1.05);
+        }
+        /* Banner Animation */
+        
+        .swiper-slide {
+            transition: transform 0.5s ease;
+        }
+        
+        .swiper-slide-active {
+            transform: scale(1.05);
+            z-index: 1;
+        }
+        /* Active Nav Item */
+        
+        .tabbar__container-item.active {
+            position: relative;
+            color: var(--main-color);
+        }
+        
+        .tabbar__container-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--main-color);
+            border-radius: 50%;
+        }
+        /* Bottom Bar Animation */
+        
+        .bottombar {
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                box-shadow: 0 0 20px var(--main-color);
+            }
+        }
+        
+        .card {
+            padding: 6px 5px;
+        }
+        /* Category Card Hover */
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* Responsive Adjustments */
+        
+        @media (max-width: 768px) {
+            .swiper-slide {
+                height: 200px;
+            }
+            .popup-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+        /* Welcome Blast Animation Styles */
+        
+        .welcome-blast-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10000;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .blast-wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, rgba(255, 165, 0, 0.6) 30%, rgba(255, 69, 0, 0.4) 60%, transparent 100%);
+            animation: blastWave 2s ease-out forwards;
+        }
+        
+        .blast-wave:nth-child(2) {
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.6) 0%, rgba(0, 191, 255, 0.4) 30%, rgba(30, 144, 255, 0.3) 60%, transparent 100%);
+            animation-delay: 0.3s;
+        }
+        
+        .blast-wave:nth-child(3) {
+            background: radial-gradient(circle, rgba(255, 20, 147, 0.6) 0%, rgba(255, 105, 180, 0.4) 30%, rgba(255, 182, 193, 0.3) 60%, transparent 100%);
+            animation-delay: 0.6s;
+        }
+        
+        .blast-particles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: particleBlast 2.5s ease-out forwards;
+        }
+        
+        .welcome-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FFD700;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: welcomeTextAppear 1s ease-out 1.5s forwards;
+            z-index: 10001;
+        }
+        
+        @keyframes blastWave {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                width: 150vw;
+                height: 150vw;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes particleBlast {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes welcomeTextAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        .fade-out-animation {
+            animation: fadeOut 1s ease-out forwards;
+        }
+        
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        /* Sparkle effects */
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: sparkleAnimation 3s ease-out forwards;
+        }
+        
+        @keyframes sparkleAnimation {
+            0% {
+                opacity: 1;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
+        }
+        /* User Info Styling */
+        
+        #userInfo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+            animation: userInfoGlow 2s infinite alternate;
+        }
+        
+        #userWelcome {
+            color: #000 !important;
+            font-weight: bold !important;
+            font-size: 14px;
+            text-shadow: none;
+        }
+        
+        @keyframes userInfoGlow {
+            from {
+                box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+            }
+            to {
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
+            }
+        }
+        /* Announcement carousel styles */
+        
+        .middlecontent {
+            overflow: hidden;
+            white-space: normal;
+            height: 20px;
+            line-height: 20px;
+        }
+        
+        .middlecontent p {
+            display: inline-block;
+            animation: scroll-left 15s linear infinite;
+            margin: 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        @keyframes scroll-left {
+            0% {
+                transform: translate3d(100%, 0, 0);
+            }
+            100% {
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+        /* Pause animation on hover */
+        
+        .middlecontent:hover p {
+            animation-play-state: paused;
+        }
+    </style>
+
+    <body cz-shortcut-listen="true">
+        <style id="_goober">
+            @keyframes go2264125279 {
+                from {
+                    transform: scale(0) rotate(45deg);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1) rotate(45deg);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes go3020080000 {
+                from {
+                    transform: scale(0);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes go463499852 {
+                from {
+                    transform: scale(0) rotate(90deg);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1) rotate(90deg);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes go1268368563 {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            
+            @keyframes go1310225428 {
+                from {
+                    transform: scale(0) rotate(45deg);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1) rotate(45deg);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes go651618207 {
+                0% {
+                    height: 0;
+                    width: 0;
+                    opacity: 0;
+                }
+                40% {
+                    height: 0;
+                    width: 6px;
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 1;
+                    height: 10px;
+                }
+            }
+            
+            @keyframes go901347462 {
+                from {
+                    transform: scale(0.6);
+                    opacity: 0.4;
+                }
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+            
+            .go4109123758 {
+                z-index: 9999;
+            }
+            
+            .go4109123758>* {
+                pointer-events: auto;
+            }
+        </style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+        <!-- Notification Popup 
+    <div class="notification-popup" id="notification">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-bell me-2" style="color: var(--main-color);"></i>
+            <span>Welcome! Check out our new games</span>
+        </div>
+    </div>
+
+  
+    <div class="popup-overlay" id="mainPopup">
+        <div class="popup-content">
+            <span class="close-popup" id="closePopup">&times;</span>
+            <h2 class="popup-title">Special Offer!</h2>
+            <p class="popup-text">Get 50% bonus on your first deposit. Limited time offer for new members only.</p>
+            <div class="text-center mt-4">
+                <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="Bonus" style="width: 100px; height: auto; margin-bottom: 20px;">
+            </div>
+            <button class="popup-btn" id="claimOffer">Claim Bonus Now</button>
+        </div>
+    </div> -->
+        <!-- Welcome Blast Animation (only for logged-in users) -->
+        <div id="welcomeBlastContainer" class="welcome-blast-container" style="display: none;">
+            <div class="blast-wave"></div>
+            <div class="blast-wave"></div>
+            <div class="blast-wave"></div>
+            <div class="blast-particles" id="blastParticles"></div>
+            <div class="welcome-text" id="welcomeText"></div>
+        </div>
+
+        <div id="root">
+            <div class="mainApp">
+                <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
+                <nav class="container-fluid mainnavbar">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                               <div class="minlogobtn">
+    <div class="logo" 
+         style="">
+        <a class="anker" href="/">
+            <img style="width:85%; height:auto;" 
+                 src="././index_files/h5setting_202401100608011fs2.png" 
+                 alt="">
+        </a>
+    </div>
+     
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="Homecss">
+                   
+                 
+                    <style>
+                         .lotterySlotItem {
+    position: relative;
+    width: 31%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+                    </style>
+                    <div class="container-fluid OrignalSection my-3" id="Jdb">
+                        <div class="container">
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <div class="topcontent">
+                                        <div class="leftheading">JILI</div> </div>
+                                </div>
+                            </div>
+                            <div id="games-container" class="row g-3">
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/51.png" alt="Money Coming" onclick="rungame('51')" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/109.png" onclick="rungame('109')" alt="Fortune Gems" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/78.png" onclick="rungame('78')" alt="Secret Treasure" class="w-100 h-100"> 
+                                </div>
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/103.png" onclick="rungame('103')" alt="Golden Empire" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/223.png" onclick="rungame('223')" alt="Fortune Gems 2" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/32.png" onclick="rungame('32')" alt="JackPot Fishing" class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/49.png" onclick="rungame('49')" alt="Super Ace" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/77.png" onclick="rungame('77')" alt="Boxing King" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/35.png" onclick="rungame('35')" alt="Crazy777" class="w-100 h-100"> 
+                                </div>
+                                
+                                
+                                
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/181.png" onclick="rungame('181')" alt="Wild Ace" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/134.png" onclick="rungame('134')" alt="Mega Ace" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/47.png" onclick="rungame('47')" alt="Charge Buffalo" class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/110.png" onclick="rungame('110')" alt="Ali Baba" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/229.png" onclick="rungame('229')" alt="Mines" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/200.png" onclick="rungame('200')" alt="Pappu" class="w-100 h-100"> 
+                                </div>
+                                
+                                
+                                
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/82.png" onclick="rungame('82')" alt="Happy Fishing" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/236.png" onclick="rungame('236')" alt="Wheel" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/232.png" onclick="rungame('232')" alt="Tower" class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/74.png" onclick="rungame('74')" alt="Mega Fishing" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/224.png" onclick="rungame('224')" alt="Go Rush" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/197.png" onclick="rungame('197')" alt="Color Game" class="w-100 h-100"> 
+                                </div>
+              
+
+
+
+
+
+
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/235.png" onclick="rungame('235')" alt="Limbo"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/1.png" onclick="rungame('1')" alt="Royal Fishing"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/233.png" onclick="rungame('233')" alt="HILO"  class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/42.png" onclick="rungame('42')" alt="Dinosaur Tycoon"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/20.png" onclick="rungame('20')" alt="Bombing Fishing"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/27.png" onclick="rungame('27')" alt="SevenSevenSeven"  class="w-100 h-100"> 
+                                </div>  
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/23.png" onclick="rungame('23')" alt="Candy Baby"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/212.png" onclick="rungame('212')" alt="Dinosaur Tycoon II" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/45.png" onclick="rungame('45')" alt="Golden Bank" class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/71.png" onclick="rungame('71')" alt="Boom Legend" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/87.png" onclick="rungame('87')" alt="Book of Gold" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/100.png" onclick="rungame('100')" alt="Super Rich"  class="w-100 h-100"> 
+                                </div>  
+                    
+                   
+                               <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/16.png" onclick="rungame('16')" alt="Jungle King" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/6.png" onclick="rungame('6')" alt="Fortune Tree"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/193.png" onclick="rungame('193')" alt="Devil Fire" class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/119.png" onclick="rungame('119')" alt="All-star Fishing" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/60.png" onclick="rungame('60')" alt="Dragon Fortune" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/91.png" onclick="rungame('91')" alt="Lucky Coming" class="w-100 h-100"> 
+                                </div> 
+                                
+                                
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/144.png" onclick="rungame('144')" alt="JILI Caishen" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/126.png" onclick="rungame('126')" alt="Bone Fortune"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/172.png" onclick="rungame('172')" alt="ELF BINGO"  class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/137.png" onclick="rungame('137')" alt="Gold Rush" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/106.png" onclick="rungame('106')" alt="TWIN WINS" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/135.png" onclick="rungame('135')" alt="MAYAN EMPIRE" class="w-100 h-100"> 
+                                </div> 
+                                
+                                
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/48.png" onclick="rungame('48')" alt="Lucky Goldbricks" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/85.png" onclick="rungame('85')" alt="Pharaoh Treasure" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/108.png" onclick="rungame('108')" alt="MagicLamp" class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/92.png" onclick="rungame('92')" alt="Crazy Hunter"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/58.png" onclick="rungame('58')" alt="Golden Queen"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/164.png" onclick="rungame('164')" alt="Pirate Queen" class="w-100 h-100"> 
+                                </div> 
+                                
+                                
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/183.png" onclick="rungame('183')" alt="Golden Joker" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/142.png" onclick="rungame('142')" alt="Bonus Hunter" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/146.png" onclick="rungame('146')" alt="World Cup" class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/21.png" onclick="rungame('21')" alt="Fa Fa Fa" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/67.png" onclick="rungame('67')" alt="Monkey Party" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/30.png" onclick="rungame('30')" alt="Bubble Beauty" class="w-100 h-100"> 
+                                </div> 
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/44.png" onclick="rungame('44')" alt="Diamond Party"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/198.png" onclick="rungame('198')" alt="Sweet Land" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/145.png" onclick="rungame('145')" alt="Neko Fortune"  class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/176.png" onclick="rungame('176')" alt="Master Tiger" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/101.png" onclick="rungame('101')" alt="Medusa"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/13.png" onclick="rungame('13')" alt="Lucky Ball" class="w-100 h-100"> 
+                                </div> 
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/225.png" onclick="rungame('225')" alt="Cricket King 18"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/191.png" onclick="rungame('191')" alt="Golden Temple"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/136.png" onclick="rungame('136')" alt="Samba"  class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/38.png" onclick="rungame('38')" alt="Fengshen"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/40.png" onclick="rungame('40')" alt="Crazy FaFaFa" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/36.png" onclick="rungame('36')" alt="Bao boon chin" class="w-100 h-100"> 
+                                </div> 
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/43.png" onclick="rungame('43')" alt="XiYangYang"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/17.png" onclick="rungame('17')" alt="Shanghai Beauty"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/10.png" onclick="rungame('10')" alt="Gem Party"  class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/130.png" onclick="rungame('130')" alt="Thor X" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/33.png" onclick="rungame('33')" alt="FortunePig"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/46.png" onclick="rungame('46')" alt="Dragon Treasure"  class="w-100 h-100"> 
+                                </div> 
+                                
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/76.png" onclick="rungame('76')" alt="Party Night" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/116.png" onclick="rungame('116')" alt="Happy Taxi" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/115.png" onclick="rungame('115')" alt="Agent Ace"  class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/37.png" onclick="rungame('37')" alt="Night City" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/9.png" onclick="rungame('9')" alt="War Of Dragons"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/238.png" onclick="rungame('238')" alt="Bangla Beauty" class="w-100 h-100"> 
+                                </div> 
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/5.png" onclick="rungame('5')" alt="Hot Chilli"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/14.png" onclick="rungame('14')" alt="Hyper Burst"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/26.png" onclick="rungame('26')" alt="Hawaii Beauty"  class="w-100 h-100"> 
+                                </div>
+                                
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/166.png" onclick="rungame('166')" alt="Wild Racer"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/230.png" onclick="rungame('230')" alt="Cricket SAH 75"  class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/4.png" onclick="rungame('4')" alt="God Of Martial"  class="w-100 h-100"> 
+                                </div> 
+                                
+                                
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/102.png" onclick="rungame('102')" alt="Roma X" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/153.png" onclick="rungame('153')" alt="Crazy Pusher" class="w-100 h-100"> 
+                                </div>
+                                <div class="col-4 px-1">
+                                    <img  src="https://ossimg.yuk87k786d.com/sikkim/gamelogo/JILI/2.png" onclick="rungame('2')" alt="Chin Shi Huang" class="w-100 h-100"> 
+                                </div>
+                                
+                                 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                     
+                     
+                </div>
+                <footer class="container-fluid footermain mainApp px-1">
+                    <div class="row w-100">
+                        <div class="col-12 px-1 w-100">
+                            <div class="footerlist">
+                                <a class="tabbar__container-item text-decoration-none active" href="/">
+                                    <div class="icon"><img class="w-100 h-100" src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20opacity='0.3'%20d='M27%2046C36.9411%2046%2045%2037.9411%2045%2028C45%2018.0589%2036.9411%2010%2027%2010C17.0589%2010%209%2018.0589%209%2028C9%2037.9411%2017.0589%2046%2027%2046Z'%20fill='black'/%3e%3cpath%20d='M23.6599%205.27799L5.76039%2017.3574V42.8644H15.8404V32.4244C15.8404%2029.6409%2018.0969%2027.3844%2020.8804%2027.3844H27.2404C30.0239%2027.3844%2032.2804%2029.6409%2032.2804%2032.4244V36.8044H28.9204V32.4244C28.9204%2031.4965%2028.1682%2030.7444%2027.2404%2030.7444H20.8804C19.9526%2030.7444%2019.2004%2031.4965%2019.2004%2032.4244V43.5844C19.2004%2045.0424%2018.0184%2046.2244%2016.5604%2046.2244H5.04039C3.58236%2046.2244%202.40039%2045.0424%202.40039%2043.5844V16.9747C2.40039%2016.0973%202.83631%2015.2772%203.56361%2014.7863L22.4377%202.04925C23.1552%201.56501%2024.0926%201.55594%2024.8194%202.02622L44.5146%2014.7702C45.2664%2015.2567%2045.7204%2016.0911%2045.7204%2016.9866V43.5844C45.7204%2045.0424%2044.5384%2046.2244%2043.0804%2046.2244H30.6004V42.8644H42.3604V17.3783L23.6599%205.27799Z'%20fill='black'/%3e%3cpath%20d='M32.4%2044.5443C32.4%2045.4722%2031.6478%2046.2243%2030.72%2046.2243C29.7922%2046.2243%2029.04%2045.4722%2029.04%2044.5443C29.04%2043.6165%2029.7922%2042.8643%2030.72%2042.8643C31.6478%2042.8643%2032.4%2043.6165%2032.4%2044.5443Z'%20fill='black'/%3e%3cpath%20d='M32.2799%2036.7445C32.2799%2037.6724%2031.5277%2038.4245%2030.5999%2038.4245C29.6721%2038.4245%2028.9199%2037.6724%2028.9199%2036.7445C28.9199%2035.8167%2029.6721%2035.0645%2030.5999%2035.0645C31.5277%2035.0645%2032.2799%2035.8167%2032.2799%2036.7445Z'%20fill='black'/%3e%3c/svg%3e"
+                                            alt=""></div><span>Home</span></a>
+                                <a class="tabbar__container-item text-decoration-none" href="/checkIn">
+                                    <div class="icon"><img class="w-100 h-100" src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20opacity='0.3'%20d='M27%2042C36.9411%2042%2045%2033.9411%2045%2024C45%2014.0589%2036.9411%206%2027%206C17.0589%206%209%2014.0589%209%2024C9%2033.9411%2017.0589%2042%2027%2042Z'%20fill='black'/%3e%3cpath%20d='M17.4489%2016.6808C17.4491%2016.6697%2017.4492%2016.6586%2017.4492%2016.6475C17.4492%2015.681%2016.6833%2014.8975%2015.7168%2014.8975C14.7529%2014.8975%2013.9263%2015.6767%2013.9219%2016.6396C13.9222%2016.6432%2013.9215%2016.6469%2013.9219%2016.6505C13.9221%2016.7723%2013.9355%2016.8911%2013.9606%2017.0059C14.5925%2021.9877%2018.8462%2025.8397%2023.9996%2025.8397C29.1037%2025.8397%2033.3252%2022.0611%2034.0195%2017.1487C34.0666%2016.9905%2034.0918%2016.8229%2034.0918%2016.6494C34.0918%2015.6829%2033.3083%2014.8994%2032.3418%2014.8994C31.3753%2014.8994%2030.5469%2015.6829%2030.5469%2016.6494C30.5469%2016.6662%2030.5471%2016.6829%2030.5476%2016.6996C30.0741%2019.8911%2027.3228%2022.3397%2023.9996%2022.3397C20.67%2022.3397%2017.9144%2019.8815%2017.4489%2016.6808Z'%20fill='black'/%3e%3cpath%20d='M10.5119%205.2H37.487C40.0599%205.2%2042.1753%207.22874%2042.2828%209.79945L42.793%2022H42.7995C42.7995%2022.8836%2043.5158%2023.6005%2044.3995%2023.6005C45.2832%2023.6005%2045.9995%2022.8841%2045.9995%2022.0005C45.9995%2021.9341%2045.9955%2021.8686%2045.9876%2021.8044L45.48%209.66575C45.3008%205.38123%2041.7752%202%2037.487%202H10.5119C6.22361%202%202.69803%205.38123%202.51886%209.66575L1.34795%2037.6657C1.15787%2042.2112%204.79154%2046%209.34096%2046H38.6579C43.2073%2046%2046.841%2042.2112%2046.6509%2037.6657L46.3303%2030C46.3069%2029.1368%2045.5993%2028.4442%2044.7304%2028.4442C43.8615%2028.4442%2043.1544%2029.1368%2043.131%2030H43.1275L43.1307%2030.0763C43.1312%2030.1004%2043.1322%2030.1243%2043.1337%2030.148L43.4537%2037.7994C43.5677%2040.5267%2041.3875%2042.8%2038.6579%2042.8H9.34096C6.61131%2042.8%204.43111%2040.5267%204.54516%2037.7994L5.71607%209.79945C5.82357%207.22874%207.93892%205.2%2010.5119%205.2Z'%20fill='black'/%3e%3c/svg%3e"
+                                            alt=""></div><span>Activity</span></a>
+                                <a class="tabbar__container-item text-decoration-none " href="/promotion">
+                                    <div class="icon diamondimage">
+                                        <div class="image"><svg id="icon-promotion" viewBox="0 0 57 49" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.93876 1.50122C9.69785 0.55236 10.8471 0 12.0622 0H44.2172C45.4324 0 46.5816 0.552359 47.3407 1.50122L55.0792 11.1744C55.5056 11.7073 55.828 12.2943 56.0469 12.9092H0.232598C0.451468 12.2943 0.773925 11.7073 1.20023 11.1744L8.93876 1.50122ZM0 16.091H56.2795C56.0896 17.0496 55.664 17.9709 55.0034 18.7637L31.2126 47.3125C29.6134 49.2316 26.666 49.2316 25.0669 47.3125L1.27612 18.7637C0.615521 17.9709 0.189841 17.0496 0 16.091ZM20.5563 22.0266L27.7513 32.1286C27.9512 32.4093 28.3685 32.4083 28.5671 32.1267L35.6853 22.0338C36.1425 21.3856 36.8863 21 37.6795 21C39.0272 21 40.1198 22.0925 40.1198 23.4403V23.6393H39.8972C39.5712 23.6393 39.1148 23.8877 38.5931 24.5708C38.0874 25.2331 32.1271 33.2938 28.9417 37.6047C28.7578 37.8535 28.467 38 28.1577 38C27.8515 38 27.5632 37.8562 27.379 37.6117L17.3204 24.2603C17.3204 24.2603 16.9258 23.6393 16.2608 23.6393H16.1198V23.445C16.1198 22.0947 17.2144 21 18.5648 21C19.3556 21 20.0975 21.3825 20.5563 22.0266Z" fill="white"></path></svg></div>
+                                    </div><span class="permotiontext">Promotion</span></a>
+                                <a class="tabbar__container-item text-decoration-none" href="/wallet">
+                                    <div class="icon"><img src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20opacity='0.3'%20d='M28%2042C37.9411%2042%2046%2033.9411%2046%2024C46%2014.0589%2037.9411%206%2028%206C18.0589%206%2010%2014.0589%2010%2024C10%2033.9411%2018.0589%2042%2028%2042Z'%20fill='black'/%3e%3cpath%20d='M3%2023C3%2017.016%206.526%2012.836%2012.0085%2012.132C12.5675%2012.044%2013.148%2012%2013.75%2012H35.25C35.809%2012%2036.3465%2012.022%2036.8625%2012.11C42.4095%2012.77%2046%2016.972%2046%2023V34C46%2040.6%2041.7%2045%2035.25%2045H13.75C7.3%2045%203%2040.6%203%2034V31.822'%20stroke='black'/%3e%3cpath%20d='M46%2023.7241H39.548C37.1822%2023.7241%2035.2466%2025.5862%2035.2466%2027.8621C35.2466%2030.1379%2037.1822%2032%2039.548%2032H46M37%2012C36.4838%2011.9172%2035.8058%2012%2035.2466%2012H14C13.3978%2012%2012.5592%2011.9172%2012%2012C12%2012%2012.7312%2011.3517%2013.2474%2010.8551L20.2371%204.11027C21.6566%202.75836%2023.5733%202%2025.5708%202C27.5682%202%2029.4849%202.75836%2030.9044%204.11027L34.6681%207.77235C36.0445%209.0758%2039.548%2012%2037%2012Z'%20stroke='black'/%3e%3c/svg%3e"
+                                            alt="" class="w-100 h-100"></div><span>Wallet</span></a>
+                                <a class="tabbar__container-item text-decoration-none" href="/mian">
+                                    <div class="icon"><img src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20opacity='0.3'%20d='M28%2042C37.9411%2042%2046%2033.9411%2046%2024C46%2014.0589%2037.9411%206%2028%206C18.0589%206%2010%2014.0589%2010%2024C10%2033.9411%2018.0589%2042%2028%2042Z'%20fill='black'/%3e%3cpath%20d='M24.08%205.27992C13.7412%205.27992%205.36%2013.6612%205.36%2023.9999C5.36%2034.3387%2013.7412%2042.7199%2024.08%2042.7199C34.4188%2042.7199%2042.8%2034.3387%2042.8%2023.9999V15.2399H46.16V23.9999C46.16%2036.1944%2036.2744%2046.0799%2024.08%2046.0799C11.8856%2046.0799%202%2036.1944%202%2023.9999C2%2011.8055%2011.8856%201.91992%2024.08%201.91992H44.36V5.27992H24.08Z'%20fill='black'/%3e%3cpath%20d='M46.1598%203.59992C46.1598%204.52776%2045.4076%205.27992%2044.4798%205.27992C43.552%205.27992%2042.7998%204.52776%2042.7998%203.59992C42.7998%202.67208%2043.552%201.91992%2044.4798%201.91992C45.4076%201.91992%2046.1598%202.67208%2046.1598%203.59992Z'%20fill='black'/%3e%3cpath%20d='M46.1598%2015.1195C46.1598%2016.0474%2045.4076%2016.7995%2044.4798%2016.7995C43.552%2016.7995%2042.7998%2016.0474%2042.7998%2015.1195C42.7998%2014.1917%2043.552%2013.4395%2044.4798%2013.4395C45.4076%2013.4395%2046.1598%2014.1917%2046.1598%2015.1195Z'%20fill='black'/%3e%3cpath%20d='M15.8064%2029.5825C16.501%2028.9674%2017.5627%2029.0317%2018.1779%2029.7263C19.3275%2031.0242%2020.9265%2032.5202%2023.6403%2032.5202C26.5117%2032.5202%2028.4971%2031.0925%2029.4448%2029.9868C30.0486%2029.2824%2031.1092%2029.2008%2031.8136%2029.8046C32.5181%2030.4085%2032.5997%2031.469%2031.9959%2032.1735C30.5435%2033.8679%2027.6809%2035.8802%2023.6403%2035.8802C19.4421%2035.8802%2016.9931%2033.4562%2015.6627%2031.9541C15.0475%2031.2595%2015.1118%2030.1977%2015.8064%2029.5825Z'%20fill='black'/%3e%3c/svg%3e"
+                                            alt="" class="w-100 h-100"></div><span>Account</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <!-- Bootstrap JS Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            // Initialize Swiper slider
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize Swiper
+                var swiper = new Swiper(".mySwiper", {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 1.2,
+                            spaceBetween: 20,
+                        },
+                        992: {
+                            slidesPerView: 1.5,
+                            spaceBetween: 30,
+                        }
+                    }
+                });
+
+                // Generate random member counts and winning amounts
+                function generateRandomMemberCount() {
+                    // Generate random number between 100,000 and 999,999
+                    return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+                }
+
+                function generateRandomWinningAmount() {
+                    // Generate random number between 100,000 and 999,999
+                    return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+                }
+
+                function updateRandomValues() {
+                    // Update all member counts
+                    const memberElements = [
+                        'member-wingo',
+                        'member-k3',
+                        'member-5d',
+                        'member-trx',
+                        'member-aviator'
+                    ];
+
+                    // Update all winning amounts
+                    const winningElements = [
+                        'winning-wingo',
+                        'winning-k3',
+                        'winning-5d',
+                        'winning-trx',
+                        'winning-aviator'
+                    ];
+
+                    // Set random values for member counts
+                    memberElements.forEach(elementId => {
+                        const element = document.getElementById(elementId);
+                        if (element) {
+                            element.textContent = generateRandomMemberCount().toLocaleString();
+                        }
+                    });
+
+                    // Set random values for winning amounts
+                    winningElements.forEach(elementId => {
+                        const element = document.getElementById(elementId);
+                        if (element) {
+                            element.textContent = generateRandomWinningAmount().toLocaleString();
+                        }
+                    });
+                }
+
+                // Initialize random values on page load
+                updateRandomValues();
+
+                // Update random values every 30 seconds to make it more dynamic
+                setInterval(updateRandomValues, 30000);
+
+                // Show main popup after 2 seconds (only if popup exists)
+                const mainPopup = document.getElementById('mainPopup');
+                if (mainPopup) {
+                    setTimeout(function() {
+                        mainPopup.classList.add('active');
+                    }, 2000);
+                }
+
+                // Show notification after 4 seconds (only if notification exists)
+                const notification = document.getElementById('notification');
+                if (notification) {
+                    setTimeout(function() {
+                        notification.classList.add('show');
+
+                        // Hide notification after 5 seconds
+                        setTimeout(function() {
+                            notification.classList.remove('show');
+                        }, 5000);
+                    }, 4000);
+                }
+
+                // Close popup functionality (only if elements exist)
+                const closePopup = document.getElementById('closePopup');
+                if (closePopup && mainPopup) {
+                    closePopup.addEventListener('click', function() {
+                        mainPopup.classList.remove('active');
+                    });
+                }
+
+                // Claim offer button (only if elements exist)
+                const claimOffer = document.getElementById('claimOffer');
+                if (claimOffer && mainPopup) {
+                    claimOffer.addEventListener('click', function() {
+                        alert('Bonus claimed successfully!');
+                        mainPopup.classList.remove('active');
+                    });
+                }
+
+
+
+                // Game card interactions
+                const gameCards = document.querySelectorAll('.jili_games_card');
+                gameCards.forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert('Game loading...');
+                    });
+                });
+
+                // Category card interactions
+                const categoryCards = document.querySelectorAll('.card');
+                categoryCards.forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        if (this.getAttribute('href') === '#') {
+                            e.preventDefault();
+                            alert('Category selected!');
+                        }
+                    });
+                });
+
+                // Footer navigation
+                const navItems = document.querySelectorAll('.tabbar__container-item');
+                navItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        navItems.forEach(i => i.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+
+                // Bottom bar animation and detail button
+                const bottomBar = document.querySelector('.bottombar');
+                const detailButton = document.querySelector('.bottombar .mainbtn');
+
+                if (detailButton) {
+                    detailButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Show detailed announcement information
+                        const currentText = middleContent ? middleContent.textContent : announcements[0];
+                        const detailInfo = `
+                            📢 Announcement Details:
+
+                            ${currentText}
+
+                            🕒 Posted: ${new Date().toLocaleDateString()}
+                            📍 Category: General Announcement
+                            🎯 Target: All Users
+
+                            Thank you for being part of Dubaideck!
+                        `;
+
+                        alert(detailInfo);
+                    });
+                }
+
+                // Auto-scrolling for middle content
+                const middleContent = document.querySelector('.middlecontent p');
+
+                // Array of dummy announcements
+                const announcements = [
+                    "🎉 Welcome to Dubaideck! Enjoy exciting games and win big rewards! 💰",
+                    "🎁 New users get special bonuses! Register now and claim your rewards!",
+                    "🏆 Daily tournaments with amazing prizes! Join now and compete!",
+                    "💎 VIP members get exclusive benefits and higher rewards!",
+                    "🎮 Play responsibly and have fun! Good luck to all players!",
+                    "🔥 Hot games available now! Try your luck and win big!",
+                    "⭐ Rate us 5 stars and get bonus coins! Thank you for your support!",
+                    "🚀 New games added weekly! Check out our latest additions!",
+                    "💸 Instant withdrawals available 24/7! Fast and secure!",
+                    "🎊 Weekend special offers! Double your winnings this weekend!",
+                    "🔒 Your security is our priority! 100% safe and encrypted!",
+                    "📱 Download our mobile app for better gaming experience!"
+                ];
+
+                let currentAnnouncementIndex = 0;
+
+                // Function to update announcement text with fade effect
+                function updateAnnouncement() {
+                    if (middleContent) {
+                        // Fade out
+                        middleContent.style.opacity = '0';
+
+                        setTimeout(() => {
+                            // Change text
+                            middleContent.textContent = announcements[currentAnnouncementIndex];
+                            currentAnnouncementIndex = (currentAnnouncementIndex + 1) % announcements.length;
+
+                            // Fade in
+                            middleContent.style.opacity = '1';
+                        }, 250);
+                    }
+                }
+
+                // Start with first announcement
+                if (middleContent) {
+                    middleContent.textContent = announcements[0];
+                    currentAnnouncementIndex = 1;
+                }
+
+                // Change announcement every 8 seconds (to allow full scroll animation)
+                setInterval(updateAnnouncement, 8000);
+
+                // Check user login status and handle UI accordingly
+                checkUserLoginAndUpdateUI();
+            });
+
+            // Function to check user login status and update UI accordingly
+            function checkUserLoginAndUpdateUI() {
+                console.log('checkUserLoginAndUpdateUI function called');
+
+                // First check if auth cookie exists
+                const authCookie = getCookie('auth');
+                console.log('Auth cookie found:', !!authCookie);
+
+                if (!authCookie) {
+                    console.log('No auth cookie, user not logged in');
+                    showLoginButton();
+                    return;
+                }
+
+                // If auth cookie exists, try to get user info
+                fetch('/api/webapi/GetUserInfo', {
+                        method: 'GET',
+                        credentials: 'include', // Include cookies
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    })
+                    .then(response => {
+                        console.log('API response status:', response.status);
+                        if (response.status === 302 || response.redirected) {
+                            console.log('User redirected to login, not authenticated');
+                            showLoginButton();
+                            return null;
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data && data.status === true && data.data) {
+                            // User is logged in
+                            const userName = data.data.name_user || 'Member';
+                            console.log('User is logged in:', userName);
+
+                            // Hide login button and show user info
+                            hideLoginButtonShowUserInfo(userName);
+
+                            // Show welcome blast animation (only once per session)
+                            if (!sessionStorage.getItem('welcomeBlastShown')) {
+                                showWelcomeBlast(userName);
+                                sessionStorage.setItem('welcomeBlastShown', 'true');
+                            }
+                        } else {
+                            // User is not logged in, show login button
+                            console.log('User is not logged in or invalid response');
+                            showLoginButton();
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Error checking login status:', error);
+                        // Show login button on error (user not logged in)
+                        showLoginButton();
+                    });
+            }
+
+            // Helper function to get cookie value
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+                return null;
+            }
+
+            // Function to hide login button and show user info
+            function hideLoginButtonShowUserInfo(userName) {
+                console.log('hideLoginButtonShowUserInfo called for:', userName);
+
+                const loginButton = document.getElementById('loginButton');
+                const downloadButton = document.getElementById('downloadButton');
+                const userInfo = document.getElementById('userInfo');
+                const userWelcome = document.getElementById('userWelcome');
+
+                console.log('Elements found:', {
+                    loginButton: !!loginButton,
+                    downloadButton: !!downloadButton,
+                    userInfo: !!userInfo,
+                    userWelcome: !!userWelcome
+                });
+
+                if (loginButton) {
+                    loginButton.style.display = 'none';
+                    console.log('Login button hidden');
+                }
+
+
+
+
+            }
+
+            // Function to show login button (for non-logged in users)
+            function showLoginButton() {
+                console.log('showLoginButton called');
+
+                const loginButton = document.getElementById('loginButton');
+                const downloadButton = document.getElementById('downloadButton');
+                const userInfo = document.getElementById('userInfo');
+
+                console.log('Elements found:', {
+                    loginButton: !!loginButton,
+                    downloadButton: !!downloadButton,
+                    userInfo: !!userInfo
+                });
+
+                if (loginButton) {
+                    loginButton.style.display = 'inline-block';
+                    console.log('Login button shown');
+                }
+
+                if (downloadButton) {
+                    downloadButton.style.display = 'inline-block';
+                    console.log('Download button shown');
+                }
+
+                if (userInfo) {
+                    userInfo.style.display = 'none';
+                    console.log('User info hidden');
+                }
+            }
+
+            // Function to show the welcome blast animation
+            function showWelcomeBlast(userName) {
+                const blastContainer = document.getElementById('welcomeBlastContainer');
+                const welcomeText = document.getElementById('welcomeText');
+                const particlesContainer = document.getElementById('blastParticles');
+
+
+
+                // Show the blast container
+                blastContainer.style.display = 'block';
+
+                // Create particles for the blast effect
+                createBlastParticles(particlesContainer);
+
+                // Create sparkles
+                createSparkles(blastContainer);
+
+                // Hide the animation after 4 seconds
+                setTimeout(() => {
+                    blastContainer.classList.add('fade-out-animation');
+                    setTimeout(() => {
+                        blastContainer.style.display = 'none';
+                        blastContainer.classList.remove('fade-out-animation');
+                    }, 1000);
+                }, 4000);
+            }
+
+            // Function to create blast particles
+            function createBlastParticles(container) {
+                const particleCount = 50;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+
+                    // Random position around the center
+                    const angle = (Math.PI * 2 * i) / particleCount;
+                    const distance = Math.random() * 200 + 50;
+                    const x = Math.cos(angle) * distance;
+                    const y = Math.sin(angle) * distance;
+
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+
+                    // Random colors
+                    const colors = ['#FFD700', '#FF6B35', '#00BFFF', '#FF1493', '#32CD32', '#FF4500'];
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+                    // Random animation delay
+                    particle.style.animationDelay = Math.random() * 0.5 + 's';
+
+                    container.appendChild(particle);
+                }
+
+                // Clean up particles after animation
+                setTimeout(() => {
+                    container.innerHTML = '';
+                }, 3000);
+            }
+
+            // Function to create sparkle effects
+            function createSparkles(container) {
+                const sparkleCount = 30;
+
+                for (let i = 0; i < sparkleCount; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+
+                    // Random position
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+
+                    // Random animation delay
+                    sparkle.style.animationDelay = Math.random() * 2 + 's';
+
+                    container.appendChild(sparkle);
+                }
+
+                // Clean up sparkles after animation
+                setTimeout(() => {
+                    const sparkles = container.querySelectorAll('.sparkle');
+                    sparkles.forEach(sparkle => sparkle.remove());
+                }, 4000);
+            }
+            
+            
+            async function rungame(gameId) {
+                try {
+                    const response = await axios.get('/api/webapi/GetUserInfo');
+                    const userData = response?.data?.data;
+                    if (!userData) throw new Error("User data not found!");
+            
+                    const mobile = encodeURIComponent(userData.phoneNumber);  // Directly use the property name
+                    const agentId = 'Imitatorbhai_Seamless';
+                    const agentKey = '118e35769483ef7508b4616c308d84458b26a5e7';
+                    const referrerUrl = 'https://api.tirangalive.com';
+                    const baseUrl = "/jili/game_link?game_id=" + gameId;
+            
+                    const gameUrl = baseUrl;
+                    
+                    window.location.href = gameUrl;
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        </script>
+
+    </body>
+
+</html>

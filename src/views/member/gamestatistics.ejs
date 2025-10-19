@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Statistics - SecureTrade AI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          180deg,
+          #ff4757 0%,
+          #ff6b35 50%,
+          #ff8c42 100%
+        );
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .main-container {
+        min-height: 100vh;
+        max-width: 430px !important;
+        position: relative;
+      }
+
+      .header {
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .header-left i {
+        color: white;
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .header-title {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        flex: 1;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .refresh-btn {
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .refresh-btn:hover {
+        transform: rotate(180deg);
+      }
+
+      .content {
+        padding: 15px;
+        padding-bottom: 100px;
+      }
+
+      .overall-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-value {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ff4757;
+        margin-bottom: 5px;
+      }
+
+      .stat-label {
+        font-size: 11px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .game-type-tabs {
+        display: flex;
+        overflow-x: auto;
+        gap: 8px;
+        margin-bottom: 15px;
+        padding: 0 5px;
+      }
+
+      .game-type-tab {
+        min-width: 80px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 12px 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .game-type-tab.active {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+      }
+
+      .game-tab-icon {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .game-tab-text {
+        font-size: 10px;
+        font-weight: 600;
+        color: white;
+        line-height: 1.2;
+      }
+
+      .time-filter-tabs {
+        display: flex;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 3px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .time-filter-tab {
+        flex: 1;
+        text-align: center;
+        padding: 8px;
+        border-radius: 17px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .time-filter-tab.active {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+      }
+
+      .game-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .game-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .game-section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .game-section-title {
+        display: flex;
+        align-items: center;
+      }
+
+      .game-section-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        color: white;
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .game-section-icon.wingo1 {
+        background: linear-gradient(135deg, #ff4757, #ff6b35);
+      }
+      .game-section-icon.wingo3 {
+        background: linear-gradient(135deg, #3742fa, #5352ed);
+      }
+      .game-section-icon.wingo5 {
+        background: linear-gradient(135deg, #2ed573, #7bed9f);
+      }
+      .game-section-icon.wingo10 {
+        background: linear-gradient(135deg, #ffa502, #ff9f43);
+      }
+      .game-section-icon.wingo30 {
+        background: linear-gradient(135deg, #ff6348, #ff7675);
+      }
+
+      .game-section-info h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 4px 0;
+      }
+
+      .game-section-stats {
+        font-size: 12px;
+        color: #666;
+      }
+
+      .game-section-summary {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        text-align: center;
+      }
+
+      .summary-item {
+        padding: 8px;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+
+      .summary-value {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .summary-label {
+        font-size: 10px;
+        color: #666;
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+
+      .game-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .game-card {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 12px;
+        border-left: 4px solid #ff4757;
+        transition: all 0.3s ease;
+      }
+
+      .game-card:hover {
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .game-card.win {
+        border-left-color: #2ed573;
+      }
+
+      .game-card.loss {
+        border-left-color: #ff4757;
+      }
+
+      .game-card.pending {
+        border-left-color: #ffa502;
+      }
+
+      .game-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      .game-info {
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+
+      .game-details h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 2px 0;
+      }
+
+      .game-time {
+        font-size: 11px;
+        color: #999;
+      }
+
+      .game-result {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .game-status {
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .status-win {
+        background: #2ed573;
+        color: white;
+      }
+
+      .status-loss {
+        background: #ff4757;
+        color: white;
+      }
+
+      .status-pending {
+        background: #ffa502;
+        color: white;
+      }
+
+      .game-amount {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .amount-win {
+        color: #2ed573;
+      }
+
+      .amount-loss {
+        color: #ff4757;
+      }
+
+      .amount-pending {
+        color: #ffa502;
+      }
+
+      .game-details-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .bet-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: #666;
+      }
+
+      .bet-type {
+        background: #e9ecef;
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .period-info {
+        font-size: 11px;
+        color: #999;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .empty-icon {
+        font-size: 64px;
+        margin-bottom: 20px;
+        opacity: 0.5;
+      }
+
+      .empty-text {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .loading-spinner {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f0f0f0;
+        border-top: 4px solid #ff4757;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-text {
+        color: #666;
+        font-weight: 500;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 480px) {
+        .content {
+          padding: 10px;
+        }
+
+        .overall-stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
+        }
+
+        .stat-card {
+          padding: 12px;
+        }
+
+        .stat-value {
+          font-size: 18px;
+        }
+
+        .game-type-tabs {
+          gap: 6px;
+        }
+
+        .game-type-tab {
+          min-width: 70px;
+          padding: 10px 6px;
+        }
+
+        .game-tab-text {
+          font-size: 9px;
+        }
+
+        .game-section {
+          padding: 15px;
+        }
+
+        .game-section-summary {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+
+  <!-- 
+  time details code
+        <div class="time-filter-tabs">
+          <div class="time-filter-tab active" data-filter="all">All Time</div>
+          <div class="time-filter-tab" data-filter="today">Today</div>
+          <div class="time-filter-tab" data-filter="week">7 Days</div>
+          <div class="time-filter-tab" data-filter="month">30 Days</div>
+        </div>
+
+        <div class="game-sections" id="game-sections">
+        </div>
+      </div>
+
+      <div class="loading-overlay" style="display: none">
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <div class="loading-text">Loading statistics...</div>
+        </div>
+      </div> 
+  -->
+
+  <body>
+    <div class="main-container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-left" onclick="history.back()">
+          <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="header-title">Game Statistics</div>
+        <div class="header-right">
+          <div class="refresh-btn" onclick="loadGameStats()">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- Overall Statistics -->
+        <div class="overall-stats">
+          <div class="stat-card">
+            <div class="stat-value" id="total-games">0</div>
+            <div class="stat-label">Total Games</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="total-amount">₹0</div>
+            <div class="stat-label">Total Bet</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="total-profit">₹0</div>
+            <div class="stat-label">Net Profit</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="win-rate">0%</div>
+            <div class="stat-label">Win Rate</div>
+          </div>
+        </div>
+
+        <!-- Game Selection Tabs -->
+        <div class="game-type-tabs">
+          <div class="game-type-tab active" data-game="wingo">
+            <div class="game-tab-icon">🎮</div>
+            <div class="game-tab-text">Win Go</div>
+          </div>
+          <div class="game-type-tab" data-game="k3">
+            <div class="game-tab-icon">🎲</div>
+            <div class="game-tab-text">K3</div>
+          </div>
+          <div class="game-type-tab" data-game="5d">
+            <div class="game-tab-icon">🎯</div>
+            <div class="game-tab-text">5D</div>
+          </div>
+          <div class="game-type-tab" data-game="trx">
+            <div class="game-tab-icon">💎</div>
+            <div class="game-tab-text">Trx Win Go</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+
+    <script>
+      let allGameData = [];
+      let apiStatistics = null;
+      let currentGame = "wingo";
+      let currentTimeFilter = "today";
+
+      $(document).ready(function () {
+        loadGameStats();
+        initializeEventHandlers();
+      });
+
+      function loadGameStats() {
+        $(".loading-overlay").fadeIn(10);
+
+        // Fetch game statistics from API with game parameter
+        fetch(`/api/webapi/StatisticsGame?game=${currentGame}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((response) => {
+            console.log("Game Stats Response:", response);
+            if (response.status === true) {
+              allGameData = response.data || [];
+              apiStatistics = response.statistics || null;
+
+              if (response.userInfo) {
+                window.userInfo = response.userInfo;
+              }
+
+              renderAllStats();
+            } else {
+              showError(response.message || "Failed to load game statistics");
+            }
+            $(".loading-overlay").fadeOut(300);
+          })
+          .catch((error) => {
+            console.error("Error loading game statistics:", error);
+            showError("Failed to load statistics. Please try again.");
+            $(".loading-overlay").fadeOut(300);
+          });
+      }
+
+      function renderAllStats() {
+        updateOverviewStats();
+        renderGameSections();
+      }
+
+      function renderGameSections() {
+        const container = $("#game-sections");
+        container.empty();
+
+        const filteredData = getFilteredData();
+
+        if (filteredData.length === 0) {
+          container.html(`
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="empty-text">No game statistics available</div>
+                        <div class="empty-subtext">Start playing to see your statistics</div>
+                    </div>
+                `);
+          return;
+        }
+
+        // Show all games in a single list
+        const gameListHtml = filteredData
+          .map((game) => createGameCard(game))
+          .join("");
+        container.html(`
+                <div class="game-section">
+                    <div class="game-list">
+                        ${gameListHtml}
+                    </div>
+                </div>
+            `);
+      }
+
+      function createGameCard(game) {
+        const gameStatus = getGameStatus(game.status, game.get);
+        const gameTime = formatTime(game.date_time);
+        const betType = getBetType(game.bet);
+        const profit = game.get > 0 ? game.get - game.amount : -game.amount;
+
+        return `
+                <div class="game-card ${gameStatus.class.replace(
+                  "status-",
+                  ""
+                )}" data-game="${game.game}" data-date="${game.date_time}">
+                    <div class="game-header">
+                        <div class="game-info">
+                            <div class="game-details">
+                                <h4>Period: ${game.stage}</h4>
+                                <div class="game-time">${gameTime} • ${betType}</div>
+                            </div>
+                        </div>
+                        <div class="game-result">
+                            <div class="game-status ${gameStatus.class}">
+                                ${gameStatus.text}
+                            </div>
+                            <div class="game-amount ${
+                              profit >= 0 ? "amount-win" : "amount-loss"
+                            }">
+                                ${
+                                  profit >= 0 ? "+" : ""
+                                }₹${profit.toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-details-row">
+                        <div class="bet-info">
+                            <span class="bet-type">${betType}</span>
+                            <span>Bet: ₹${game.amount.toLocaleString()}</span>
+                            <span>Result: ${game.result}</span>
+                        </div>
+                        <div class="period-info">
+                            Period: ${game.stage.slice(-6)}
+                        </div>
+                    </div>
+                </div>
+            `;
+      }
+
+      function getFilteredData() {
+        let filtered = allGameData;
+
+        if (currentTimeFilter !== "all") {
+          const now = new Date();
+          filtered = filtered.filter((game) => {
+            const gameDate = new Date(game.date_time);
+            switch (currentTimeFilter) {
+              case "today":
+                return gameDate.toDateString() === now.toDateString();
+              case "week":
+                const weekAgo = new Date(
+                  now.getTime() - 7 * 24 * 60 * 60 * 1000
+                );
+                return gameDate >= weekAgo;
+              case "month":
+                const monthAgo = new Date(
+                  now.getTime() - 30 * 24 * 60 * 60 * 1000
+                );
+                return gameDate >= monthAgo;
+              default:
+                return true;
+            }
+          });
+        }
+
+        return filtered.sort(
+          (a, b) => new Date(b.date_time) - new Date(a.date_time)
+        );
+      }
+
+      function updateOverviewStats() {
+        const filteredData = getFilteredData();
+
+        let totalGames, totalAmount, netProfit, winRate;
+
+        if (apiStatistics) {
+          const stats = getStatsForFilter();
+          totalGames = stats.totalGames || 0;
+          totalAmount = stats.totalBetAmount || 0;
+          netProfit = stats.netProfit || 0;
+          winRate = stats.winRate || 0;
+        } else {
+          totalGames = filteredData.length;
+          totalAmount = filteredData.reduce(
+            (sum, game) => sum + game.amount,
+            0
+          );
+          const totalWinnings = filteredData.reduce(
+            (sum, game) => sum + (game.get > 0 ? game.get : 0),
+            0
+          );
+          netProfit = totalWinnings - totalAmount;
+          const wins = filteredData.filter((game) => game.get > 0).length;
+          winRate = totalGames > 0 ? ((wins / totalGames) * 100).toFixed(1) : 0;
+        }
+
+        $("#total-games").text(totalGames.toLocaleString());
+        $("#total-amount").text(`₹${totalAmount.toLocaleString()}`);
+        $("#total-profit").text(`₹${netProfit.toLocaleString()}`);
+        $("#win-rate").text(`${winRate}%`);
+
+        const profitElement = $("#total-profit");
+        profitElement.removeClass("amount-win amount-loss");
+        if (netProfit > 0) {
+          profitElement.addClass("amount-win");
+        } else if (netProfit < 0) {
+          profitElement.addClass("amount-loss");
+        }
+      }
+
+      function getStatsForFilter() {
+        if (!apiStatistics) return {};
+
+        switch (currentTimeFilter) {
+          case "today":
+            return apiStatistics.today || {};
+          case "week":
+            return apiStatistics.week || {};
+          case "all":
+          default:
+            return apiStatistics.overall || {};
+        }
+      }
+
+      function getGameStatus(status, get) {
+        if (get > 0) {
+          return { class: "status-win", text: "Win" };
+        } else {
+          return { class: "status-loss", text: "Loss" };
+        }
+      }
+
+      function getBetType(bet) {
+        const betTypes = {
+          l: "Large (6-9)",
+          s: "Small (0-4)",
+          d: "Double",
+          n: "Number",
+          r: "Red",
+          g: "Green",
+          v: "Violet",
+          0: "Number 0",
+          1: "Number 1",
+          2: "Number 2",
+          3: "Number 3",
+          4: "Number 4",
+          5: "Number 5",
+          6: "Number 6",
+          7: "Number 7",
+          8: "Number 8",
+          9: "Number 9",
+        };
+        return betTypes[bet] || bet.toUpperCase();
+      }
+
+      function formatTime(dateTime) {
+        const date = new Date(dateTime);
+        const now = new Date();
+        const diffTime = Math.abs(now - date);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) {
+          return date.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          });
+        } else if (diffDays === 1) {
+          return "Yesterday";
+        } else if (diffDays < 7) {
+          return `${diffDays} days ago`;
+        } else {
+          return date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+          });
+        }
+      }
+
+      function initializeEventHandlers() {
+        // Game tab switching
+        $(".game-type-tab").click(function () {
+          $(".game-type-tab").removeClass("active");
+          $(this).addClass("active");
+
+          currentGame = $(this).data("game");
+          loadGameStats();
+        });
+
+        // Time filter tab switching
+        $(".time-filter-tab").click(function () {
+          $(".time-filter-tab").removeClass("active");
+          $(this).addClass("active");
+
+          currentTimeFilter = $(this).data("filter");
+          updateDisplay();
+        });
+      }
+
+      function updateDisplay() {
+        updateOverviewStats();
+        renderGameSections();
+      }
+
+      function showError(message) {
+        $("#game-sections").html(`
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="empty-text">${message}</div>
+                    <button onclick="loadGameStats()" style="margin-top: 15px; padding: 10px 20px; background: #ff4757; color: white; border: none; border-radius: 20px; cursor: pointer;">Retry</button>
+                </div>
+            `);
+      }
+    </script>
+  </body>
+</html>

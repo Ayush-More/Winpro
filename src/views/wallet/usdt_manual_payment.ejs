@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>USDT Crypto Payment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <style>
+         :root {
+            --black: #000000;
+            --dark-bg: #0a0a0a;
+            --panel-bg: #111111;
+            --gold: #ffd700;
+            --gold-gradient: linear-gradient(135deg, #ffd700, #ffcc00, #ffd700);
+            --gold-glow: 0 0 10px rgba(255, 215, 0, 0.5);
+            --border-glow: 0 0 5px rgba(255, 215, 0, 0.3);
+            --button-glow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.03) 0%, transparent 20%), linear-gradient(to bottom, var(--dark-bg), #050505);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+        /* Animated background particles */
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.01) 0%, transparent 5%), radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.01) 0%, transparent 5%), radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.01) 0%, transparent 5%);
+            animation: shimmer 15s infinite linear;
+            z-index: -1;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+        
+        .msg {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .msg-content {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 25px;
+            border-radius: 5px;
+            box-shadow: var(--gold-glow);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .v-enter-to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 20px 15px;
+            flex: 1;
+        }
+        
+        header {
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: var(--gold-gradient);
+            box-shadow: var(--gold-glow);
+        }
+        
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: var(--gold-glow);
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: 1px solid var(--gold);
+            border-radius: 5px;
+            color: var(--gold);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: var(--gold-glow);
+        }
+        
+        .back-icon {
+            width: 16px;
+            height: 16px;
+            filter: invert(83%) sepia(91%) saturate(1000%) hue-rotate(359deg) brightness(105%) contrast(107%);
+        }
+        
+        .crypto-panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--border-glow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .crypto-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold-gradient);
+        }
+        
+        .crypto-panel h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .wallet-address-container {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .wallet-address-container:hover {
+            border-color: var(--gold);
+            box-shadow: var(--border-glow);
+        }
+        
+        .wallet-address-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .wallet-address {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            color: white;
+            word-break: break-all;
+            margin-right: 25px;
+        }
+        
+        .copy-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            filter: invert(83%) sepia(91%) saturate(1000%) hue-rotate(359deg) brightness(105%) contrast(107%);
+            transition: all 0.3s ease;
+        }
+        
+        .copy-icon:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .qr-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .qr-code {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: var(--border-glow);
+            position: relative;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .qr-code img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .qr-code::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 12px;
+            background: var(--gold-gradient);
+            z-index: -1;
+        }
+        
+        .amount-display {
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .amount-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: var(--gold-glow);
+            display: block;
+        }
+        
+        .amount-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .check-payment-btn {
+            background: var(--gold-gradient);
+            color: black;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--button-glow);
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .check-payment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+        }
+        
+        .check-payment-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .check-payment-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            transition: all 0.3s ease;
+        }
+        
+        .check-payment-btn:hover::after {
+            transform: rotate(30deg) translate(10%, 10%);
+        }
+        
+        .transaction-status {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .transaction-status p {
+            color: var(--gold);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .loader {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .steps-container {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--border-glow);
+            margin-top: 20px;
+        }
+        
+        .steps-container h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: var(--gold-gradient);
+            color: black;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .step-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: var(--gold-gradient);
+            box-shadow: var(--gold-glow);
+        }
+        
+        .copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+        }
+        /* Game-like elements and animations */
+        
+        .crypto-panel::after,
+        .steps-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        /* Glowing corners */
+        
+        .crypto-panel::before,
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold-gradient);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            z-index: 1;
+        }
+        /* Animated corner accents */
+        
+        .crypto-panel .corner,
+        .steps-container .corner {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 2px solid var(--gold);
+            z-index: 2;
+        }
+        
+        .corner-top-left {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-top-right {
+            top: -2px;
+            right: -2px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bottom-left {
+            bottom: -2px;
+            left: -2px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-bottom-right {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+        /* Pulse animation for corners */
+        
+        @keyframes cornerPulse {
+            0% {
+                box-shadow: 0 0 0 rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 0 rgba(255, 215, 0, 0.5);
+            }
+        }
+        
+        .corner {
+            animation: cornerPulse 3s infinite;
+        }
+        /* Staggered animations for corners */
+        
+        .corner-top-left {
+            animation-delay: 0s;
+        }
+        
+        .corner-top-right {
+            animation-delay: 0.75s;
+        }
+        
+        .corner-bottom-left {
+            animation-delay: 1.5s;
+        }
+        
+        .corner-bottom-right {
+            animation-delay: 2.25s;
+        }
+        /* Panel entrance animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes glowIn {
+            0% {
+                box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+            }
+            100% {
+                box-shadow: var(--border-glow);
+            }
+        }
+        
+        .crypto-panel,
+        .steps-container {
+            animation: fadeIn 0.5s ease-out forwards, glowIn 1s ease-out forwards;
+            position: relative;
+        }
+        
+        .crypto-panel {
+            animation-delay: 0.1s, 0.6s;
+        }
+        
+        .steps-container {
+            animation-delay: 0.3s, 0.8s;
+        }
+        /* Button hover effect */
+        
+        .check-payment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+            animation: btnPulse 1.5s infinite;
+        }
+        
+        @keyframes btnPulse {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            }
+        }
+    </style>
+
+    <main>
+        <header>
+            <button class="back-button" onclick="window.history.back()">
+                <img class="back-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1hcnJvdy1sZWZ0Ij48cGF0aCBkPSJtMTIgMTktNy03IDctNyIvPjxwYXRoIGQ9Ik0xOSAxMkg1Ii8+PC9zdmc+">
+                BACK
+            </button>
+            <h1>CRYPTO PAYMENT</h1>
+        </header>
+
+        <div class="crypto-panel">
+            <div class="corner corner-top-left"></div>
+            <div class="corner corner-top-right"></div>
+            <div class="corner corner-bottom-left"></div>
+            <div class="corner corner-bottom-right"></div>
+            <h2>SEND USDT (BEP-20)</h2>
+
+          
+
+            <div class="wallet-address-container" id="copy_wallet_address_btn">
+                <span class="wallet-address-label">WALLET ADDRESS</span>
+                <div class="wallet-address" id="wallet_address_field">
+                    <%= _address %>
+                </div>
+                <img class="copy-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jb3B5Ij48cmVjdCB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHg9IjgiIHk9IjgiIHJ4PSIyIiByeT0iMiIvPjxwYXRoIGQ9Ik00IDE2YzAtMS4xLjktMiAyLTJoMlY2YzAtMS4xLjktMiAyLTJoOGMxLjEgMCAyIC45IDIgMnYyIi8+PC9zdmc+"
+                    alt="Copy Address">
+            </div>
+
+            <div class="qr-container">
+                <div class="qr-code">
+                    <img id="qr_code_img" src="https://qrcode.tec-it.com/API/QRCode?data=<%= _address %>&backcolor=%23ffffff&size=small&quietzone=1&errorcorrection=H">
+                </div>
+            </div>
+
+            <div id="transaction_status" class="transaction-status" style="display: none;">
+                <p>VERIFYING TRANSACTION...</p>
+                <div class="loader"></div>
+            </div>
+
+            <button id="check_payment_button" class="check-payment-btn">UPDATE PAYMENT STATUS</button>
+        </div>
+
+        <div class="steps-container">
+            <div class="corner corner-top-left"></div>
+            <div class="corner corner-top-right"></div>
+            <div class="corner corner-bottom-left"></div>
+            <div class="corner corner-bottom-right"></div>
+            <h3>HOW TO COMPLETE PAYMENT</h3>
+
+            
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Complete Transaction</div>
+                    <div class="step-description">Confirm and send the payment from your wallet</div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Verify Payment</div>
+                    <div class="step-description">After sending, click the "CHECK PAYMENT STATUS" button to verify your transaction</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="copyright">© 2025 GLOBALWIN - All Rights Reserved</div>
+        </footer>
+    </main>
+
+    <script>
+        const alertMessage = (text) => {
+            const msg = document.createElement('div');
+            msg.setAttribute('data-v-1dcba851', '');
+            msg.className = 'msg';
+
+            const msgContent = document.createElement('div');
+            msgContent.setAttribute('data-v-1dcba851', '');
+            msgContent.className = 'msg-content v-enter-active v-enter-to';
+            msgContent.style = '';
+            msgContent.textContent = text;
+
+            msg.appendChild(msgContent);
+            document.body.appendChild(msg);
+
+            setTimeout(() => {
+                msgContent.classList.remove('v-enter-active', 'v-enter-to');
+                msgContent.classList.add('v-leave-active', 'v-leave-to');
+
+                setTimeout(() => {
+                    document.body.removeChild(msg);
+                }, 100);
+            }, 1000);
+        }
+
+        const copyUpiId = document.getElementById("copy_wallet_address_btn");
+
+        copyUpiId.addEventListener("click", function() {
+            let upi_id = document.getElementById("wallet_address_field").innerText;
+            console.log(upi_id);
+            navigator.clipboard.writeText(upi_id);
+        });
+
+        // Check if wallet address is empty and generate a new one if needed
+        document.addEventListener("DOMContentLoaded", async function() {
+            const walletAddressField = document.getElementById("wallet_address_field");
+            const walletAddress = walletAddressField.innerText.trim();
+
+            if (!walletAddress) {
+                try {
+                    // First call generateWallet route
+                    const generateResponse = await axios.get('/generateWallet');
+
+                    if (generateResponse && generateResponse.data && generateResponse.data.status === true) {
+                        const newWallet = generateResponse.data.wallet;
+
+                        // If wallet generation is successful, save the wallet
+                        const saveResponse = await axios.post('/saveWallet', {
+                            walletAddress: newWallet.address,
+                            walletPrivateKey: newWallet.privateKey
+                        });
+
+                        if (saveResponse && saveResponse.data && saveResponse.data.status === true) {
+                            // Update the wallet address on the page
+                            walletAddressField.innerText = newWallet.address;
+
+                            // Store the private key in localStorage for later use with the monitor function
+                            localStorage.setItem("walletPrivateKey_" + newWallet.address, newWallet.privateKey);
+
+                            // Update QR code
+                            const qrCodeImg = document.querySelector('.verification_form__root img');
+                            if (qrCodeImg) {
+                                qrCodeImg.src = `https://qrcode.tec-it.com/API/QRCode?data=${newWallet.address}&backcolor=%23ffffff&size=small&quietzone=1&errorcorrection=H`;
+                            }
+
+                            alertMessage("New wallet generated and saved successfully!");
+                        } else {
+                            alertMessage("Failed to save wallet: " + (saveResponse && saveResponse.data && saveResponse.data.message || "Unknown error"));
+                        }
+                    } else {
+                        alertMessage("Failed to generate wallet: " + (generateResponse && generateResponse.data && generateResponse.data.message || "Unknown error"));
+                    }
+                } catch (error) {
+                    console.error("Error generating/saving wallet:", error);
+                    alertMessage("Error generating wallet. Please try again later.");
+                }
+            }
+        });
+
+        const checkPaymentButton = document.getElementById("check_payment_button");
+        if (checkPaymentButton) {
+            checkPaymentButton.addEventListener("click", async(event) => {
+                try {
+                    event.preventDefault();
+                    const walletAddressField = document.getElementById("wallet_address_field");
+                    const walletAddress = walletAddressField.innerText.trim();
+                    const amount = '<%=Amount%>';
+                    const privateKey = '<%=pay_privatekey%>';
+
+                    if (!walletAddress) {
+                        alertMessage("No wallet address found!");
+                        return;
+                    }
+
+                    // Show the transaction status indicator
+                    const transactionStatus = document.getElementById("transaction_status");
+                    transactionStatus.style.display = "block";
+
+                    // Disable the check button while processing
+                    checkPaymentButton.disabled = true;
+                    checkPaymentButton.textContent = "Checking...";
+
+                    // Call the monitorWallet endpoint
+                    const response = await axios.post("/monitorWallet", {
+                        walletAddress: walletAddress,
+                        walletPrivateKey: privateKey || ""
+                    });
+
+                    // Hide the transaction status indicator
+                    transactionStatus.style.display = "none";
+
+                    // Re-enable the check button
+                    checkPaymentButton.disabled = false;
+                    checkPaymentButton.textContent = "Check Payment Status";
+
+                    if (!response || !response.data) {
+                        alertMessage("Something went wrong while checking payment!");
+                        return;
+                    }
+
+                    if (response.data.status === false) {
+                        alertMessage(response.data.message || "No payment detected");
+                        return;
+                    }
+
+                    if (response.data.result && response.data.result.found) {
+                        alertMessage(`Payment of ${response.data.result.amount} ${response.data.result.currency} detected! Processing your recharge.`);
+
+                        // Wait 2 seconds before redirecting
+                        setTimeout(() => {
+                            window.location.href = "/wallet/rechargerecord";
+                        }, 2000);
+                    } else {
+                        alertMessage("No payment detected yet. Please try again after sending USDT.");
+                    }
+                } catch (error) {
+                    console.error("Error checking payment:", error);
+
+                    // Hide the transaction status indicator
+                    const transactionStatus = document.getElementById("transaction_status");
+                    transactionStatus.style.display = "none";
+
+                    // Re-enable the check button
+                    checkPaymentButton.disabled = false;
+                    checkPaymentButton.textContent = "Check Payment Status";
+
+                    alertMessage("Error checking payment: " + (error.response && error.response.data && error.response.data.message || error.message || "Unknown error"));
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

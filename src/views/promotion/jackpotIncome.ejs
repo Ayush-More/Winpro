@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Bonus - DeltInWin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+</head>
+
+<body style="font-size: 12px;">
+    <div id="root">
+        <div class="mainApp">
+            <div class="container-fluid" style="padding: 4px 12px;">
+                <div class="row align-items-center mb-3">
+                    <div class="col-2">
+                        <a href="/promotion" class="text-decoration-none">
+                            <i class="fa-solid fa-arrow-left text-theme1" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h5 class="mb-0 text-theme1 fw-bold">Community Bonus</h5>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card bg-gradient-success text-white border-0 rounded-3">
+                            <div class="card-body text-center" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <h6 class="card-title mb-2">Total Community Bonus</h6>
+                                <h2 class="mb-0" id="total-bonus">₹0.00</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3">
+                            <div class="card-header bg-theme1 text-white">
+                                <h6 class="mb-0">Community Bonus History</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="bonus-list" class="list-group list-group-flush">
+                                    <div class="list-group-item text-center py-4">
+                                        <i class="fa-solid fa-users text-muted" style="font-size: 48px;"></i>
+                                        <p class="mt-2 mb-0 text-muted">No community bonus data available</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        $(document).ready(function() {
+            console.log('Community Bonus page loaded');
+            loadCommunityBonusData();
+        });
+
+        function loadCommunityBonusData() {
+            // Show loading state
+            $('#total-bonus').text('Loading...');
+            $('#bonus-list').html('<div class="list-group-item text-center py-4"><i class="fa-solid fa-spinner fa-spin text-muted" style="font-size: 48px;"></i><p class="mt-2 mb-0 text-muted">Loading community bonus data...</p></div>');
+
+            // Fetch promotion data for community bonuses
+            $.ajax({
+                type: "POST",
+                url: "/api/webapi/promotion",
+                data: {},
+                dataType: "json",
+                success: function(response) {
+                    console.log('Promotion response:', response);
+                    if (response.status === true) {
+                        updateCommunityBonusUI(response);
+                    } else {
+                        showError('Failed to load community bonus data');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading community bonus data:', error);
+                    showError('Error loading community bonus data');
+                }
+            });
+        }
+
+        function updateCommunityBonusUI(data) {
+            // Calculate community bonus from invite bonuses
+            const inviteBonus = parseFloat(data.inviteBonuss || 0);
+            const levelCommission = parseFloat(data.levelCommission || 0);
+
+            // Community bonus is typically a percentage of total team performance
+            const communityBonus = inviteBonus + (levelCommission * 0.1); // 10% of level commission as community bonus
+
+            // Update summary cards
+            $('#total-bonus').text(`₹${communityBonus.toFixed(2)}`);
+
+            // Create mock community bonus records for display
+            const bonusRecords = [];
+            if (inviteBonus > 0) {
+                bonusRecords.push({
+                    id: 1,
+                    type: 'Invite Bonus',
+                    amount: inviteBonus,
+                    date: new Date().toISOString(),
+                    description: 'Community invite bonus'
+                });
+            }
+            if (levelCommission > 0) {
+                bonusRecords.push({
+                    id: 2,
+                    type: 'Level Commission',
+                    amount: levelCommission * 0.1,
+                    date: new Date().toISOString(),
+                    description: 'Community level commission bonus'
+                });
+            }
+
+            // Render bonus list
+            renderCommunityBonusList(bonusRecords);
+        }
+
+        function renderCommunityBonusList(bonusRecords) {
+            const bonusList = $('#bonus-list');
+
+            if (bonusRecords.length === 0) {
+                bonusList.html(`
+                    <div class="list-group-item text-center py-4">
+                        <i class="fa-solid fa-users text-muted" style="font-size: 48px;"></i>
+                        <p class="mt-2 mb-0 text-muted">No community bonus data available</p>
+                    </div>
+                `);
+                return;
+            }
+
+            let bonusHTML = '';
+            bonusRecords.forEach((bonus, index) => {
+                        const amount = parseFloat(bonus.amount || 0);
+                        const date = bonus.date ? formatDate(bonus.date) : 'N/A';
+
+                        bonusHTML += `
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-users text-success"></i>
+                            <div class="ms-3">
+                                <h6 class="mb-0">${bonus.type} #${bonus.id || (index + 1)}</h6>
+                                <small class="text-muted">Amount: ₹${amount.toFixed(2)}</small>
+                                ${bonus.description ? `<br><small class="text-muted">${bonus.description}</small>` : ''}
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-success">Earned</span>
+                            <br><small class="text-muted">${date}</small>
+                        </div>
+                    </div>
+                `;
+            });
+
+            bonusList.html(bonusHTML);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-IN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function showError(message) {
+            $('#total-bonus').text('₹0.00');
+            $('#bonus-list').html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-exclamation-triangle text-danger" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-danger">${message}</p>
+                    <button class="btn btn-sm btn-outline-primary mt-2" onclick="loadCommunityBonusData()">Retry</button>
+                </div>
+            `);
+        }
+    </script>
+</body>
+
+</html>

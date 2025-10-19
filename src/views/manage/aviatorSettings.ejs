@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
+        integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+    <style>
+        .form-group {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #2ecc71;
+        }
+
+        .form-group button {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <%- include('nav') %>
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Settings</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </section>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="padding: 10px 20px;margin-bottom: 200px;">
+                              
+
+
+                                <div class="form-group">
+                                    <div class="text-center">
+                                        <label for="telegram">Aviator Settings</label>
+                                    </div>
+                                    
+                                        
+                                    <label for="game_status" style="color: #3498db;">Aviator Status</label>
+                                    <select  class="form-control" id="game_status">
+                                        <option value="Y">ON</option>
+                                        <option value="N">OFF</option>
+                                    </select>
+                                    <br>    
+                                    <div style="display:none">
+                                    <label for="min_bet_amount" style="color: #3498db;">Minimum Bet</label>
+                                    <input type="text" class="form-control" id="min_bet_amount"
+                                        placeholder="Minimum Bet" value=""><br>
+                                        
+                                    <label for="max_bet_amount" style="color: #3498db;">Maxmimum Bet</label>
+                                    <input type="text" class="form-control" id="max_bet_amount"
+                                        placeholder="Maxmimum Bet" value=""><br>  
+                                        </div>
+                                    <label for="aviator_profit_pool" style="color: #3498db;">Spare Wallet</label>
+                                    <input type="text" class="form-control" id="aviator_profit_pool"
+                                        placeholder="Spare Wallet" value=""><br>    
+                                    
+                                    <button type="submit" class="btn btn-primary avi_settings"
+                                        style="width: 100%;">Submit</button>
+                                </div>
+                                
+                              
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/dist/js/adminlte.min.js"></script>
+    <script src="/js/admin/admin.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script>
+        $.ajax({
+            type: "POST",
+            url: "/admin/manager/settings/get",
+            data: "data",
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $('#game_status').val(response.game_status);
+                $('#min_bet_amount').val(response.min_bet_amount);
+                $('#max_bet_amount').val(response.max_bet_amount);
+                $('#aviator_profit_pool').val(response.aviator_profit_pool);
+                
+            }
+        });
+    </script>
+    <script>
+        function sendRequest(params1, params2, typer) {
+            $.ajax({
+                type: "POST",
+                url: "/manage/admin/settings",
+                data: {
+                    params1: params1,
+                    params2: params2,
+                    typer: typer,
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.message == 1) {
+                        Swal.fire(
+                            'Good job!',
+                            'You clicked the button!',
+                            'success'
+                        )
+                    } else if (response.message == 2) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Phone number does not exist',
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'An unknown error !',
+                        })
+                    }
+                }
+            });
+        }
+
+        function sendRequestBank(name_bank = '', name = '', info = '', qr = '', typer = '') {
+            $.ajax({
+                type: "POST",
+                url: "/admin/manager/settings/bank",
+                data: {
+                    name_bank: name_bank,
+                    name: name,
+                    info: info,
+                    qr: qr,
+                    typer: typer
+                },
+                dataType: "json",
+                success: function (response) {
+                
+              
+                    Swal.fire(
+                        'Good job!',
+                        'Updated Successfully!',
+                        'success'
+                    )
+                }
+            });
+        }
+        $('.buff-money').click(function (e) {
+            e.preventDefault();
+            const phone = $('#buff-phone').val();
+            const money = $('#buff-money').val();
+            const checkMoney = $.isNumeric(money);
+            if (phone && checkMoney) {
+                sendRequest(phone, money, "buff");
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Empty or Wrong Details',
+                })
+            }
+        });
+
+        const alertMessage = (text) => {
+            const msg = document.createElement('div');
+            msg.setAttribute('data-v-1dcba851', '');
+            msg.className = 'msg';
+
+            const msgContent = document.createElement('div');
+            msgContent.setAttribute('data-v-1dcba851', '');
+            msgContent.className = 'msg-content v-enter-active v-enter-to';
+            msgContent.style = '';
+            msgContent.textContent = text;
+
+            msg.appendChild(msgContent);
+            document.body.appendChild(msg);
+
+            setTimeout(() => {
+                msgContent.classList.remove('v-enter-active', 'v-enter-to');
+                msgContent.classList.add('v-leave-active', 'v-leave-to');
+
+                setTimeout(() => {
+                    document.body.removeChild(msg);
+                }, 100);
+            }, 1000);
+        }
+
+        
+
+
+
+        $('.avi_settings').click(function (e) {
+            e.preventDefault();
+            const game_status = $('#game_status').val();
+            const min_bet_amount   = $('#min_bet_amount').val();   
+            const max_bet_amount   = $('#max_bet_amount').val();   
+            const aviator_profit_pool   = $('#aviator_profit_pool').val();   
+            
+            
+            
+            $.ajax({
+                type: "POST",
+                url: "/admin/manager/settings/aviSettings",
+                data: {
+                    game_status: game_status,
+                    min_bet_amount :min_bet_amount,
+                    max_bet_amount :max_bet_amount,
+                    aviator_profit_pool:aviator_profit_pool,
+                    
+
+
+                },
+                dataType: "json",
+                success: function (response) {
+                
+                console.log(response);
+                    if (response.status == true) {
+                        Swal.fire(
+                            'Good job!',
+                            'Updated Successfully!',
+                            'success'
+                        )
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Empty or Wrong',
+                        })
+                    }
+                }
+            });
+        });
+        
+    </script>
+</body>
+
+</html>

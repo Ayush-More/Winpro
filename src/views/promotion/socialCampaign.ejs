@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.24px;">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex,nofollow">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>Social Campaign</title>
+    <link href="/css/promotion/app.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_1.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_2.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_3.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_4.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_5.css" rel="stylesheet" />
+    <link href="/css/promotion/chunk-0_6.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/bitbug_favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            background-color: #0c0c14;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3QgaWQ9InBhdHRlcm4tYmFja2dyb3VuZCIgd2lkdGg9IjQwMCUiIGhlaWdodD0iNDAwJSIgZmlsbD0icmdiYSgxMiwgMTIsIDIwLDEpIj48L3JlY3Q+IDxjaXJjbGUgZmlsbD0icmdiYSg2MCwgMjE1LCAxNDUsIDAuMDUpIiBjeD0iMjAiIGN5PSIyMCIgcj0iMSI+PC9jaXJjbGU+PGNpcmNsZSBmaWxsPSJyZ2JhKDI1NSwgMTAwLCAyNTUsIDAuMDUpIiBjeD0iMCIgY3k9IjIwIiByPSIxIj48L2NpcmNsZT48Y2lyY2xlIGZpbGw9InJnYmEoMjU1LCAxMDAsIDI1NSwgMC4wNSkiIGN4PSI0MCIgY3k9IjIwIiByPSIxIj48L2NpcmNsZT48L3BhdHRlcm4+PC9kZWZzPiA8cmVjdCBmaWxsPSJ1cmwoI3BhdHRlcm4pIiBoZWlnaHQ9IjEwMCUiIHdpZHRoPSIxMDAlIj48L3JlY3Q+PC9zdmc+');
+            padding: 0;
+            margin: 0;
+            font-family: 'Rajdhani', sans-serif;
+            color: #e0e0e0;
+        }
+
+        .social-campaign-box {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid #3cefb1;
+            position: relative;
+            overflow: hidden;
+            animation: borderGlow 4s infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% {
+                border-color: #3cefb1;
+                box-shadow: 0 0 10px rgba(60, 239, 177, 0.5);
+            }
+            50% {
+                border-color: #ff64ff;
+                box-shadow: 0 0 15px rgba(255, 100, 255, 0.5);
+            }
+            100% {
+                border-color: #3cefb1;
+                box-shadow: 0 0 10px rgba(60, 239, 177, 0.5);
+            }
+        }
+
+        .social-campaign-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(60, 239, 177, 0.1) 0%, transparent 60%);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .campaign-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #3cefb1;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(60, 239, 177, 0.5);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .campaign-description {
+            font-size: 16px;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .campaign-reward {
+            font-size: 20px;
+            color: #ff64ff;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 0 10px rgba(255, 100, 255, 0.5);
+        }
+
+        .campaign-reward::before {
+            content: '🎮';
+            margin-right: 8px;
+            font-size: 24px;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-top: 1px solid rgba(60, 239, 177, 0.3);
+            border-bottom: 1px solid rgba(60, 239, 177, 0.3);
+        }
+
+        .share-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(60, 239, 177, 0.3);
+            background-color: rgba(26, 26, 46, 0.8);
+        }
+
+        .share-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            filter: brightness(1.2);
+            border-color: #ff64ff;
+            box-shadow: 0 0 15px rgba(255, 100, 255, 0.5);
+        }
+
+        .share-button i {
+            font-size: 32px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+        }
+
+        .facebook {
+            color: #1877F2;
+        }
+
+        .twitter {
+            color: #1DA1F2;
+        }
+
+        .instagram {
+            color: #0af716;
+        }
+
+        .submit-form {
+            margin-top: 25px;
+        }
+
+        .submit-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid rgba(60, 239, 177, 0.3);
+            background-color: rgba(26, 26, 46, 0.8);
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-input:focus {
+            outline: none;
+            border-color: #ff64ff;
+            box-shadow: 0 0 15px rgba(255, 100, 255, 0.5);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(45deg, #3cefb1, #2bb894);
+            color: #0c0c14;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(60, 239, 177, 0.3);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: buttonShine 3s infinite;
+        }
+
+        @keyframes buttonShine {
+            0% {
+                left: -100%;
+            }
+            20%, 100% {
+                left: 100%;
+            }
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(60, 239, 177, 0.5);
+            background: linear-gradient(45deg, #ff64ff, #d64fd6);
+        }
+
+        .submit-button:active {
+            transform: translateY(1px);
+        }
+
+        .submissions-list {
+            margin-top: 30px;
+        }
+
+        .submission-item {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(60, 239, 177, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .submission-item:hover {
+            transform: translateY(-3px);
+            border-color: #ff64ff;
+            box-shadow: 0 8px 20px rgba(255, 100, 255, 0.2);
+        }
+
+        .submission-status {
+            font-size: 14px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-pending {
+            background: linear-gradient(45deg, #FFC107, #FF9800);
+            color: #000;
+        }
+
+        .status-approved {
+            background: linear-gradient(45deg, #3cefb1, #2bb894);
+            color: #0c0c14;
+        }
+
+        .status-rejected {
+            background: linear-gradient(45deg, #ff64ff, #d64fd6);
+            color: #fff;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            margin: 20px 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(60, 239, 177, 0.7);
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .page-title::before, .page-title::after {
+            content: '';
+            position: absolute;
+            height: 4px;
+            width: 30px;
+            background: linear-gradient(90deg, #3cefb1, #ff64ff);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .page-title::before {
+            left: -40px;
+        }
+
+        .page-title::after {
+            right: -40px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .box {
+            background: rgba(26, 26, 46, 0.7) !important;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(60, 239, 177, 0.3);
+            border-radius: 12px !important;
+            padding: 25px !important;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #3cefb1, #ff64ff, transparent);
+        }
+
+        .tit {
+            color: #3cefb1 !important;
+            font-size: 26px !important;
+            font-weight: 700 !important;
+            margin-bottom: 20px !important;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(60, 239, 177, 0.5);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .navbar-title {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(60, 239, 177, 0.7);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Gaming-style scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: #0c0c14;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #3cefb1, #ff64ff);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #ff64ff, #3cefb1);
+        }
+
+        /* Glowing effect for icons */
+        .fa-facebook-f {
+            text-shadow: 0 0 10px rgba(24, 119, 242, 0.7);
+        }
+
+        .fa-twitter {
+            text-shadow: 0 0 10px rgba(29, 161, 242, 0.7);
+        }
+
+        .fa-instagram {
+            text-shadow: 0 0 10px rgba(228, 64, 95, 0.7);
+        }
+
+        /* Weekly Task Styles */
+        .campaign-status {
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .campaign-status i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .campaign-status.available {
+            background: rgba(60, 239, 177, 0.1);
+            border: 1px solid rgba(60, 239, 177, 0.3);
+            color: #3cefb1;
+        }
+
+        .campaign-status.unavailable {
+            background: rgba(255, 100, 255, 0.1);
+            border: 1px solid rgba(255, 100, 255, 0.3);
+            color: #ff64ff;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .countdown-timer {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #aaa;
+        }
+
+        .countdown-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff64ff;
+            text-shadow: 0 0 10px rgba(255, 100, 255, 0.5);
+            display: flex;
+            justify-content: space-between;
+            max-width: 200px;
+        }
+
+        .countdown-value span {
+            display: inline-block;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .countdown-complete {
+            color: #3cefb1;
+            font-weight: 600;
+            animation: pulse 1.5s infinite;
+        }
+
+        .week-badge {
+            background: linear-gradient(45deg, #3cefb1, #2bb894);
+            color: #0c0c14;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .week-badge i {
+            margin-right: 5px;
+        }
+
+        .week-badge.current-week {
+            background: linear-gradient(45deg, #ff64ff, #d64fd6);
+            animation: pulse 2s infinite;
+        }
+
+        .next-available-info {
+            margin-top: 10px;
+            color: #aaa;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 5px;
+            background: rgba(60, 239, 177, 0.05);
+            border: 1px dashed rgba(60, 239, 177, 0.2);
+        }
+
+        .next-available-info i {
+            margin-right: 5px;
+            color: #3cefb1;
+        }
+
+        .resubmit-info {
+            margin-top: 10px;
+            color: #ff64ff;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 5px;
+            background: rgba(255, 100, 255, 0.05);
+            border: 1px dashed rgba(255, 100, 255, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .resubmit-info i {
+            margin-right: 5px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-size: 12px;">
+    <div id="app">
+        <div data-v-7c8bbbf4="" class="mian">
+            <div data-v-106b99c8="" data-v-7c8bbbf4="" class="navbar">
+                <div data-v-106b99c8="" class="navbar-left" onclick="location.href='/home'">
+                    <div data-v-a9660e98="" data-v-106b99c8="" class="c-row c-row-middle-center">
+                        <i class="fa-light fa-angle-left fa-fade fa-xl center" style="color: #FFF"></i>
+                    </div>
+                </div>
+                <div data-v-106b99c8="" class="navbar-title"> Social Campaign </div>
+                <div data-v-106b99c8="" class="navbar-right" onclick="location.href='/promotion/bonusrecord'">
+                    <div data-v-7c8bbbf4="" data-v-106b99c8="" class="c-row">
+                        <i class="fa-duotone fa-calendar-lines fa-fade fa-lg"
+                            style="--fa-primary-color: #fff; --fa-secondary-color: #fff;"></i>
+                    </div>
+                </div>
+            </div>
+            <div data-v-7c8bbbf4="" class="promotion">
+                <h1 class="page-title">LEVEL UP YOUR EARNINGS</h1>
+                <p class="page-subtitle">Share, Submit, Earn! Complete social media quests to unlock real money rewards!</p>
+
+                <div data-v-7c8bbbf4="" class="box">
+                    <div data-v-7c8bbbf4="" class="tit">🎮 ACTIVE QUESTS</div>
+                    <div data-v-7c8bbbf4="" class="info">
+                        <div id="campaigns-container">
+                            <!-- Campaigns will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div data-v-7c8bbbf4="" class="box">
+                    <div data-v-7c8bbbf4="" class="tit">🏆 YOUR QUEST LOG</div>
+                    <div data-v-7c8bbbf4="" class="info">
+                        <div id="submissions-container" class="submissions-list">
+                            <!-- Submissions will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div data-v-7c8bbbf4="" class="box">
+                    <div data-v-7c8bbbf4="" class="tit">� QUEST GUIDE</div>
+                    <div data-v-7c8bbbf4="" class="info">
+                        <div class="social-campaign-box">
+                            <div class="campaign-title" style="text-align: center; margin-bottom: 20px;">HOW TO COMPLETE QUESTS</div>
+                            <ol style="color: #e0e0e0; line-height: 1.8; padding-left: 20px; font-size: 16px;">
+                                <li><strong style="color: #3cefb1;">SELECT A QUEST</strong> from the Active Quests section above.</li>
+                                <li><strong style="color: #3cefb1;">SHARE THE LINK</strong> on your social media platform of choice.</li>
+                                <li><strong style="color: #3cefb1;">COPY YOUR POST URL</strong> after sharing.</li>
+                                <li><strong style="color: #3cefb1;">SUBMIT FOR VERIFICATION</strong> using the form below each quest.</li>
+                                <li><strong style="color: #3cefb1;">AWAIT APPROVAL</strong> - our Game Masters will verify your submission.</li>
+                                <li><strong style="color: #ff64ff;">COLLECT YOUR REWARD!</strong> Approved quests instantly add coins to your balance!</li>
+                            </ol>
+
+                            <div class="campaign-title" style="text-align: center; margin: 30px 0 20px;">WEEKLY QUEST SYSTEM</div>
+                            <ul style="color: #e0e0e0; line-height: 1.8; padding-left: 20px; font-size: 16px;">
+                                <li><strong style="color: #3cefb1;">NEW QUESTS EVERY MONDAY</strong> - Fresh quests become available at the start of each week.</li>
+                                <li><strong style="color: #3cefb1;">ONE SUBMISSION PER QUEST PER WEEK</strong> - You can complete each quest once per week.</li>
+                                <li><strong style="color: #ff64ff;">REJECTED? TRY AGAIN!</strong> - If your submission is rejected, you can resubmit during the same week.</li>
+                                <li><strong style="color: #ff64ff;">APPROVED? WAIT FOR NEXT WEEK</strong> - Successfully completed quests will become available again next Monday.</li>
+                            </ul>
+
+                            <div style="text-align: center; margin-top: 20px; padding: 15px; border: 1px dashed rgba(60, 239, 177, 0.5); border-radius: 8px; background-color: rgba(60, 239, 177, 0.05);">
+                                <p style="margin: 0; font-size: 18px; font-weight: 600; font-family: 'Orbitron', sans-serif; color: #ff64ff;">
+                                    <i class="fas fa-gem" style="margin-right: 8px; color: #3cefb1;"></i> COMPLETE ALL QUESTS EVERY WEEK TO MAXIMIZE YOUR EARNINGS! <i class="fas fa-gem" style="margin-left: 8px; color: #3cefb1;"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../nav') -%>
+    </div>
+
+    <div class="van-overlay" style="z-index: 2003; display: none;">
+        <div data-v-7692a079="" data-v-42f27458="" class="Loading c-row c-row-middle-center" style="position: fixed;height: 100vh;width: 100vw;top: 0;left: 0;background: rgba(0,0,0,.6);z-index: 99999;">
+            <div data-v-7692a079="" class="van-loading van-loading--circular">
+                <span data-v-7692a079="" class="van-loading__spinner van-loading__spinner--circular" style="width: auto; height: auto; -webkit-animation-duration: 1s; animation-duration: 1s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" width="200" height="200" preserveAspectRatio="xMidYMid meet" style="width: 100%;height: 100%;transform: translate3d(0px, 0px, 0px);content-visibility: visible;">
+                        <g transform="matrix(-0.5984085202217102,0.8011911511421204,-0.8011911511421204,-0.5984085202217102,239.9599609375,79.72173309326172)" style="display: block;">
+                            <image width="200px" height="200px" preserveAspectRatio="xMidYMid slice" xlink:href="/index_files/loadingspinner.png"></image>
+                        </g>
+                    </svg>
+                </span>
+                <img src="/index_files/h5setting_202401100608011fs2.png" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 168px; height: 44px;">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.van-overlay').fadeIn(10);
+
+            // Function to show alert messages with animation
+            function alertMess(text, type = 'info') {
+                let bgColor = '#00a2ff';
+                let icon = 'info-circle';
+
+                if (type === 'success') {
+                    bgColor = '#4CAF50';
+                    icon = 'check-circle';
+                } else if (type === 'error') {
+                    bgColor = '#F44336';
+                    icon = 'exclamation-circle';
+                } else if (type === 'warning') {
+                    bgColor = '#FF9800';
+                    icon = 'exclamation-triangle';
+                }
+
+                $('body').append(
+                    `<div data-v-1dcba851="" class="msg" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 80%; max-width: 400px;">
+                        <div data-v-1dcba851="" class="msg-content v-enter-active v-enter-to"
+                            style="background: ${bgColor}; color: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; align-items: center;">
+                            <i class="fas fa-${icon}" style="margin-right: 10px; font-size: 20px;"></i>
+                            ${text}
+                        </div>
+                    </div>`
+                );
+
+                // Animate in
+                $('.msg').css('opacity', '0').animate({opacity: 1}, 300);
+
+                setTimeout(() => {
+                    // Animate out
+                    $('.msg').animate({opacity: 0}, 300, function() {
+                        $(this).remove();
+                    });
+                }, 3000);
+            }
+
+            // Load campaigns with animation
+            $.ajax({
+                type: "GET",
+                url: "/api/webapi/social-campaigns",
+                dataType: "json",
+                success: function(response) {
+                    $('.van-overlay').fadeOut(10);
+                    if (response.status) {
+                        renderCampaigns(response.campaigns);
+                        // Add animation to campaigns after rendering
+                        $('.social-campaign-box').each(function(index) {
+                            $(this).css({
+                                'opacity': '0',
+                                'transform': 'translateY(20px)'
+                            }).delay(index * 100).animate({
+                                opacity: 1
+                            }, 500, function() {
+                                $(this).css('transform', 'translateY(0)');
+                            });
+                        });
+                    } else {
+                        alertMess(response.message, 'error');
+                    }
+                },
+                error: function() {
+                    $('.van-overlay').fadeOut(10);
+                    alertMess("Failed to load campaigns", 'error');
+                }
+            });
+
+            // Load user submissions
+            $.ajax({
+                type: "GET",
+                url: "/api/webapi/social-shares/my",
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        renderSubmissions(response.submissions);
+                        // Add animation to submissions after rendering
+                        $('.submission-item').each(function(index) {
+                            $(this).css({
+                                'opacity': '0',
+                                'transform': 'translateY(20px)'
+                            }).delay(index * 100 + 300).animate({
+                                opacity: 1
+                            }, 500, function() {
+                                $(this).css('transform', 'translateY(0)');
+                            });
+                        });
+                    }
+                }
+            });
+
+            // Render campaigns with enhanced UI
+            function renderCampaigns(campaigns) {
+                let html = '';
+                if (campaigns.length === 0) {
+                    html = '<div class="social-campaign-box"><p class="campaign-description">No active campaigns available at the moment. Please check back later!</p></div>';
+                } else {
+                    campaigns.forEach(campaign => {
+                        html += `
+                            <div class="social-campaign-box" data-id="${campaign.id}">
+                                <div class="campaign-title">${campaign.title}</div>
+                                <div class="campaign-description">${campaign.description}</div>
+                                <div class="campaign-reward">Reward: ₹${campaign.reward}</div>
+
+                                ${campaign.available ?
+                                    `<div class="campaign-status available">
+                                        <i class="fas fa-check-circle"></i> ${campaign.message}
+                                    </div>
+                                    <div class="share-buttons">
+                                        <a href="${campaign.share_url}" class="share-button instagram">
+                                            <i class="fas fa-share"></i>
+                                            <span>Share Now</span>
+                                        </a>
+                                    </div>
+                                    <div class="submit-form">
+                                        <input type="text" class="submit-input" placeholder="📋 Paste your shared link here..." data-campaign-id="${campaign.id}">
+                                        <button class="submit-button" onclick="submitShare(${campaign.id})">
+                                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> SUBMIT FOR REVIEW
+                                        </button>
+                                    </div>`
+                                :
+                                    `<div class="campaign-status unavailable">
+                                        <i class="fas fa-clock"></i> ${campaign.message}
+                                        ${campaign.next_available_date ?
+                                            `<div class="countdown-timer" data-target="${campaign.next_available_date}">
+                                                <div class="countdown-label">Next available in:</div>
+                                                <div class="countdown-value">
+                                                    <span class="days">0</span>d
+                                                    <span class="hours">0</span>h
+                                                    <span class="minutes">0</span>m
+                                                    <span class="seconds">0</span>s
+                                                </div>
+                                            </div>`
+                                        : ''}
+                                    </div>`
+                                }
+                            </div>
+                        `;
+                    });
+                }
+                $('#campaigns-container').html(html);
+
+                // Initialize countdown timers
+                initCountdownTimers();
+            }
+
+            // Initialize countdown timers
+            function initCountdownTimers() {
+                $('.countdown-timer').each(function() {
+                    const $this = $(this);
+                    const targetDate = parseInt($this.data('target'));
+
+                    // Update the countdown every second
+                    const countdownInterval = setInterval(function() {
+                        const now = new Date().getTime();
+                        const distance = targetDate - now;
+
+                        // Time calculations
+                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        // Update the countdown display
+                        $this.find('.days').text(days);
+                        $this.find('.hours').text(hours);
+                        $this.find('.minutes').text(minutes);
+                        $this.find('.seconds').text(seconds);
+
+                        // If the countdown is finished, reload the campaigns
+                        if (distance < 0) {
+                            clearInterval(countdownInterval);
+                            $this.html('<div class="countdown-complete">Available now! Refreshing...</div>');
+
+                            // Reload campaigns after a short delay
+                            setTimeout(function() {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/api/webapi/social-campaigns",
+                                    dataType: "json",
+                                    success: function(response) {
+                                        if (response.status) {
+                                            renderCampaigns(response.campaigns);
+                                        }
+                                    }
+                                });
+                            }, 2000);
+                        }
+                    }, 1000);
+                });
+            }
+
+            // Render submissions with enhanced UI
+            function renderSubmissions(submissions) {
+                let html = '';
+                if (submissions.length === 0) {
+                    html = '<div class="social-campaign-box" style="text-align: center;"><p class="campaign-description">You have not submitted any shares yet. Start sharing to earn rewards!</p></div>';
+                } else {
+                    submissions.forEach(submission => {
+                        let statusClass = '';
+                        let statusText = '';
+                        let statusIcon = '';
+
+                        if (submission.status === 0) {
+                            statusClass = 'status-pending';
+                            statusText = 'Pending';
+                            statusIcon = 'clock';
+                        } else if (submission.status === 1) {
+                            statusClass = 'status-approved';
+                            statusText = 'Approved';
+                            statusIcon = 'check-circle';
+                        } else {
+                            statusClass = 'status-rejected';
+                            statusText = 'Rejected';
+                            statusIcon = 'times-circle';
+                        }
+
+                        const date = new Date(parseInt(submission.created_at));
+                        const formattedDate = date.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+
+                        // Add week badge and next available info
+                        const weekBadge = submission.week_label ?
+                            `<span class="week-badge ${submission.is_current_week ? 'current-week' : ''}">
+                                <i class="fas fa-calendar-week"></i> ${submission.week_label}
+                            </span>` : '';
+
+                        const nextAvailableInfo = submission.next_available_text ?
+                            `<div class="next-available-info">
+                                <i class="fas fa-clock"></i> ${submission.next_available_text}
+                            </div>` : '';
+
+                        html += `
+                            <div class="submission-item">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                    <div style="font-weight: 600; color: #00d9ff;">${submission.campaign_title}</div>
+                                    ${weekBadge}
+                                </div>
+                                <div style="color: #aaa; font-size: 13px; margin-bottom: 10px;">
+                                    <i class="far fa-calendar-alt" style="margin-right: 5px;"></i> ${formattedDate}
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <span class="submission-status ${statusClass}">
+                                            <i class="fas fa-${statusIcon}" style="margin-right: 5px;"></i> ${statusText}
+                                        </span>
+                                    </div>
+                                    ${submission.status === 1 ?
+                                        `<div style="color: #4CAF50; font-weight: 600; display: flex; align-items: center;">
+                                            <i class="fas fa-coins" style="margin-right: 5px; color: #ff9d00;"></i> +₹${submission.reward}
+                                        </div>` :
+                                        ''}
+                                </div>
+                                ${submission.status === 1 ? nextAvailableInfo : ''}
+                                ${submission.status === 2 ?
+                                    `<div class="resubmit-info">
+                                        <i class="fas fa-redo"></i> You can resubmit this task
+                                    </div>` : ''}
+                            </div>
+                        `;
+                    });
+                }
+                $('#submissions-container').html(html);
+            }
+
+            // Copy to clipboard function for Instagram with enhanced feedback
+            window.copyToClipboard = function(text) {
+                navigator.clipboard.writeText(text).then(function() {
+                    alertMess('Link copied! Share it on Instagram and submit the link to your post', 'success');
+                }, function() {
+                    alertMess('Failed to copy link', 'error');
+                });
+            };
+
+            // Submit share function with enhanced validation and feedback
+            window.submitShare = function(campaignId) {
+                const inputElement = $(`.submit-input[data-campaign-id="${campaignId}"]`);
+                const shareLink = inputElement.val().trim();
+
+                // Validate input
+                if (!shareLink) {
+                    inputElement.css('border-color', '#F44336').focus();
+                    alertMess('Please paste your shared link', 'warning');
+
+                    // Reset border after a delay
+                    setTimeout(() => {
+                        inputElement.css('border-color', 'rgba(255, 255, 255, 0.1)');
+                    }, 3000);
+                    return;
+                }
+
+                // Validate URL format
+                if (!isValidURL(shareLink)) {
+                    inputElement.css('border-color', '#F44336').focus();
+                    alertMess('Please enter a valid URL', 'warning');
+
+                    // Reset border after a delay
+                    setTimeout(() => {
+                        inputElement.css('border-color', 'rgba(255, 255, 255, 0.1)');
+                    }, 3000);
+                    return;
+                }
+
+                // Show loading
+                $('.van-overlay').fadeIn(10);
+
+                // Disable button during submission
+                const button = $(`.submit-input[data-campaign-id="${campaignId}"]`).next('.submit-button');
+                button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SUBMITTING...');
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/webapi/social-shares/submit",
+                    data: {
+                        campaign_id: campaignId,
+                        share_link: shareLink
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('.van-overlay').fadeOut(10);
+
+                        // Re-enable button
+                        button.prop('disabled', false).html('<i class="fas fa-paper-plane" style="margin-right: 8px;"></i> SUBMIT FOR REVIEW');
+
+                        if (response.status) {
+                            // Success animation
+                            inputElement.css('border-color', '#4CAF50');
+                            setTimeout(() => {
+                                inputElement.css('border-color', 'rgba(255, 255, 255, 0.1)');
+                            }, 3000);
+
+                            // Clear input
+                            inputElement.val('');
+
+                            // Show success message
+                            alertMess(response.message, 'success');
+
+                            // Reload submissions
+                            $.ajax({
+                                type: "GET",
+                                url: "/api/webapi/social-shares/my",
+                                dataType: "json",
+                                success: function(response) {
+                                    if (response.status) {
+                                        renderSubmissions(response.submissions);
+                                        // Add animation to new submission
+                                        $('.submission-item:first').css({
+                                            'opacity': '0',
+                                            'transform': 'translateY(20px)'
+                                        }).animate({
+                                            opacity: 1
+                                        }, 500, function() {
+                                            $(this).css('transform', 'translateY(0)');
+                                        });
+                                    }
+                                }
+                            });
+                        } else {
+                            alertMess(response.message, 'error');
+                        }
+                    },
+                    error: function() {
+                        $('.van-overlay').fadeOut(10);
+                        button.prop('disabled', false).html('<i class="fas fa-paper-plane" style="margin-right: 8px;"></i> SUBMIT FOR REVIEW');
+                        alertMess("Failed to submit share. Please try again.", 'error');
+                    }
+                });
+            };
+
+            // Helper function to validate URL
+            function isValidURL(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            // Add smooth scrolling
+            $('a[href^="#"]').on('click', function(event) {
+                event.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $($.attr(this, 'href')).offset().top - 100
+                }, 500);
+            });
+        });
+    </script>
+</body>
+
+</html>

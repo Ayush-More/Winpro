@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game History</title>
+    <link rel="stylesheet" href="/css/client.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .game-history-container {
+            padding: 20px;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+        
+        .filter-section {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .filter-tab {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-tab.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .date-filter {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .date-filter input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .history-list {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .history-item {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        
+        .game-info {
+            flex: 1;
+        }
+        
+        .game-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .game-details {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .game-result {
+            text-align: right;
+        }
+        
+        .result-amount {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .result-amount.win {
+            color: #28a745;
+        }
+        
+        .result-amount.loss {
+            color: #dc3545;
+        }
+        
+        .result-status {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .status-win {
+            background: #28a745;
+        }
+        
+        .status-loss {
+            background: #dc3545;
+        }
+        
+        .status-pending {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .load-more {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .load-more button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container-fluid p-0">
+            <div class="header-section">
+                <div class="container">
+                    <div class="row align-items-center py-3">
+                        <div class="col-2">
+                            <a href="/mian" class="text-white">
+                                <i class="fas fa-arrow-left fa-lg"></i>
+                            </a>
+                        </div>
+                        <div class="col-8 text-center">
+                            <h5 class="mb-0 text-white">Game History</h5>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-history-container">
+                <div class="filter-section">
+                    <div class="filter-tabs">
+                        <div class="filter-tab active" data-game="all">All Games</div>
+                        <div class="filter-tab" data-game="wingo">Wingo</div>
+                        <div class="filter-tab" data-game="k3">K3</div>
+                        <div class="filter-tab" data-game="5d">5D</div>
+                        <div class="filter-tab" data-game="trx">TRX</div>
+                    </div>
+                    <div class="date-filter">
+                        <input type="date" id="start-date" />
+                        <span>to</span>
+                        <input type="date" id="end-date" />
+                        <button onclick="applyDateFilter()" class="btn btn-sm btn-primary">Filter</button>
+                    </div>
+                </div>
+
+                <div class="history-list" id="history-list">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading game history...
+                    </div>
+                </div>
+
+                <div class="load-more" id="load-more" style="display: none;">
+                    <button onclick="loadMoreHistory()">Load More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../nav') -%>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        let currentPage = 1;
+        let currentFilter = 'all';
+        let startDate = '';
+        let endDate = '';
+        let allData = [];
+
+        $(document).ready(function() {
+            loadGameHistory();
+            
+            // Set default dates (last 30 days)
+            const today = new Date();
+            const thirtyDaysAgo = new Date(today.getTime() - (30 * 24 * 60 * 60 * 1000));
+            
+            $('#end-date').val(today.toISOString().split('T')[0]);
+            $('#start-date').val(thirtyDaysAgo.toISOString().split('T')[0]);
+        });
+
+        // Filter tab click handlers
+        $('.filter-tab').click(function() {
+            $('.filter-tab').removeClass('active');
+            $(this).addClass('active');
+            currentFilter = $(this).data('game');
+            currentPage = 1;
+            loadGameHistory();
+        });
+
+        function loadGameHistory() {
+            const params = {
+                page: currentPage,
+                limit: 50,
+                game: currentFilter,
+                startDate: startDate,
+                endDate: endDate
+            };
+
+            $.ajax({
+                type: "GET",
+                url: "/api/webapi/gameHistory",
+                data: params,
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        allData = response.data;
+                        displayHistory(allData);
+
+                        // Show/hide load more button
+                        if (response.pagination && response.pagination.hasNext) {
+                            $('#load-more').show();
+                        } else {
+                            $('#load-more').hide();
+                        }
+                    } else {
+                        $('#history-list').html('<div class="no-data">Failed to load game history</div>');
+                    }
+                },
+                error: function() {
+                    $('#history-list').html('<div class="no-data">Error loading game history</div>');
+                }
+            });
+        }
+
+        function displayHistory(data) {
+            let filteredData = filterData(data);
+            
+            if (filteredData.length === 0) {
+                $('#history-list').html('<div class="no-data"><i class="fas fa-history"></i><br>No game history found</div>');
+                return;
+            }
+
+            let html = '';
+            filteredData.forEach(game => {
+                html += createHistoryItem(game);
+            });
+
+            $('#history-list').html(html);
+        }
+
+        function filterData(data) {
+            let filtered = data;
+
+            // Filter by game type
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(game => game.game === currentFilter);
+            }
+
+            // Filter by date range
+            if (startDate && endDate) {
+                filtered = filtered.filter(game => {
+                    const gameDate = new Date(game.date_time).toISOString().split('T')[0];
+                    return gameDate >= startDate && gameDate <= endDate;
+                });
+            }
+
+            return filtered.sort((a, b) => new Date(b.date_time) - new Date(a.date_time));
+        }
+
+        function createHistoryItem(game) {
+            const gameNames = {
+                'wingo': 'Wingo',
+                'k3': 'K3',
+                '5d': '5D',
+                'trx': 'TRX'
+            };
+
+            const profit = game.get > 1 ? (game.get - game.amount) : -game.amount;
+            const isWin = profit > 0;
+            const isPending = game.status === 0;
+            
+            const statusClass = isPending ? 'pending' : (isWin ? 'win' : 'loss');
+            const statusText = isPending ? 'Pending' : (isWin ? 'Win' : 'Loss');
+            
+            const gameTime = new Date(game.date_time).toLocaleString();
+            const betType = getBetType(game.bet);
+
+            return `
+                <div class="history-item">
+                    <div class="game-info">
+                        <div class="game-title">${gameNames[game.game] || game.game.toUpperCase()}</div>
+                        <div class="game-details">
+                            Period: ${game.stage} • ${betType}<br>
+                            ${gameTime}
+                        </div>
+                    </div>
+                    <div class="game-result">
+                        <div class="result-amount ${statusClass}">
+                            ${profit >= 0 ? '+' : ''}₹${Math.abs(profit).toLocaleString()}
+                        </div>
+                        <div class="result-status status-${statusClass}">
+                            ${statusText}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getBetType(bet) {
+            const betTypes = {
+                'l': 'Big',
+                's': 'Small',
+                'c': 'Even',
+                'le': 'Odd',
+                't': 'Total',
+                'x': 'Color'
+            };
+            
+            if (betTypes[bet]) {
+                return betTypes[bet];
+            }
+            
+            // If it's a number
+            if (!isNaN(bet)) {
+                return `Number ${bet}`;
+            }
+            
+            return bet || 'Unknown';
+        }
+
+        function applyDateFilter() {
+            startDate = $('#start-date').val();
+            endDate = $('#end-date').val();
+            displayHistory(allData);
+        }
+
+        function loadMoreHistory() {
+            // This would load more data in a real implementation
+            // For now, we'll just show all data
+        }
+    </script>
+</body>
+</html>

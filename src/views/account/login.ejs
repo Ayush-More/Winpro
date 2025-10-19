@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" data-dpr="1" style="font-size: 40px;">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="shortcut icon" href="/images/bitbug_favicon.ico" type="image/x-icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Login</title>
+
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="shortcut icon" href="/images/bitbug_favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" crossorigin="" href="./index_files/index-BUBUniRp.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="noindex,nofollow">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            background-color: #090909;
+            padding: 0;
+            margin: 0;
+        }
+        .loginapp .navsectiontab .tab-content .remindersection .form-check .form-check-label {
+            font-size: 13px;
+            color: #90929e !important;
+            margin-left: 11px;
+            padding-top: 1px;
+        }
+
+        .form-check {
+            position: relative;
+            display: block;
+            padding-left: 0px !important; 
+        }
+        .form-control{
+        font-size:14px;
+        }
+        .form-select{
+        font-size:14px;
+        .msg-content {
+            animation: zoom-in 0.45s ease reverse;
+        }
+        
+        @keyframes zoom-in {
+            0% {
+                opacity: 1;
+                transform: scale(1, 1);
+            }
+            50% {
+                transform: scale(0.6, 0.6);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1, 1);
+            }
+        }
+        
+        .btn {
+            border: 1px solid red;
+            background-color: white;
+            color: black;
+            padding: 14px 28px;
+            font-size: 20px;
+            height: 43px;
+            cursor: pointer;
+            box-shadow: 1px 1px 10px #888888;
+            width: 90%;
+            margin-left: 16px;
+        }
+        
+        .success {
+            font-weight: 600;
+            color: red;
+        }
+        
+        .footer {
+            margin-top: 1vw;
+            display: flex;
+            width: 100%;
+        }
+        
+        .footer .footer_data {
+            width: 50%;
+        }
+        
+        .footer .footer_data img {
+            width: 4vw;
+            margin-left: 4.2vw;
+        }
+        
+        .footer .footer_data p {
+            text-align: center;
+        }
+        
+        @media (max-width:600px) {
+            .footer {
+                margin-top: 5vw;
+                display: flex;
+                width: 100%;
+            }
+            .footer .footer_data img {
+                width: 10vw;
+                margin-left: 15vw;
+            }
+        }
+    </style>
+</head>
+
+<body style="font-size: 12px">
+
+    <div id="root">
+        <div class="">
+            <a href="/customerSupport">
+                <div class="iconrob" style="position: fixed; right: 0px; bottom: 0px; width: 40px; height: 40px;"><img src="/images/icon-BMOz9JeZ.png" alt="Draggable Icon" style="position: absolute; left: -50px; top: -50px; cursor: move;"></div>
+            </a>
+        </div>
+        <div class="mainApp">
+            <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
+            <div class="loginapp">
+                <div class="headerlogin py-1 px-3">
+                    <div class="d-flex align-items-center justify-content-between"><a class="arrowshine" href="/"><i class="fa-solid fa-angle-left text-white"></i></a>
+                        <a class="loginimage" href="/"><img class="w-100 h-100" src="./index_files/h5setting_202401100608011fs2.png" alt="logo"></a><button data-bs-toggle="modal" data-bs-target="#exampleModal"><span><img class="w-100 h-100" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAUUSURBVHgB1ZpNTBtHFMf/axvKRxsZ5UNRaJslUVOiHjCqmmNjJ80pUQMKvaWEnEqUSDa3cqhsTjliS43anmjooYd+QKTeKsXmUAklbVlaRVSphJcGqiopYgnhQ21h+t4ah7V3MbtmF/BPWq93Ztc7b+bNf9/OswQ3kGNB1Ky0QUgt8EGGECFIIkjHwfQfo/mzVEi0AQqdMwI/lIimqNgmEsqFG1271AXhu0hHYWNVtPMMRu4/hDIxDYMBVndX6DOFKmTKNcYHp3DDm7vjDYd82bYzrf0oajzT1LgfwZfqtv4tgRBtA/gH2XR9aCAdDMlwiLMRoIaTa8TYNexekn40moETJPRFnikZ+6fbobmb/FoaosaHgvvqoD1dgl3ExCcog6QkST12TtzahU5ca6OGj3HjY51nESP/LkYmlxn6uBvhUyfgEjEhRJY2easTSxtw8oMofGIo7zLqzN/6xCxGnZnFyL2H+t5FZNrSghWtBJu7EPs7kMA2mXj7ELbD6tKy9uSb7xORZSVlVW9tALsN9Ty7Rn/ve+i79Z2p56PrrnR7eNQ0J2zLqAN8ErpOLyq3TeWmM3nC+tcG+CsbIG8iia3NLyO4r9ZyQjfQRJePHICbrAkkrWTWPALN3Vnk/M8V3BoBHXrwRRaVVmNRwHjw5qWbAz89mJK5151OyM3kNbw4BhcJCaDfKLEbLkSuM6s962IpzEnia6arE9cvIHHjgqmcDU5+2OGmjJaCJTacPzCOQDzf6z03v0Lm3u+mK9U/Zy1HhnteW1iG8ts0dghWyAx/yc0B6n1ygayTJ6xdZlOXVXjA059/jTT1XlPzIxAOvd6IzP3CXmfXiHZGkBpMF/Q8+3uouRFHSWnu3B0v8P18nT4iJKO/tN+Q4Q1dtCX0OdDTfira9o75gccGcPhQ7Nvc4Lg+H86bruG66Pt0zVsezwcJp3M71n0ga6UiXJZvVDGlgjpjnasyWkw1GgJvHDscfjD5l8kN9IlZYk7YrWv+rA9eUX1wf1cgUOW/aCxkd+nv7UDkStLUSJZRbWEJycG7BeW5kKOD1Otrk0odvvwuPKQlMPN4XjaWcAOu9g5a9nCG4hs2oBg+d5wmrMvRqB3C0rFzH81NPnpi+w3LKWW+0NhFC0xOPybZewVtZ1uQ/CJd0POlotH49fO6VFpFo1zH8srXZOpbVXiFRAbwy4rceMBSVdgAfvO2vFaS9HorV5tfWNGj0XWjZXiFyMmogId4KqPgWEgSmpNVBqfUHD0Cr5B8Pk2iyG6OvntmgMdoHEqoqFxUNmAclctUYObWl8q/2vwVVCD1J48PS/SiHKS1yTlUItVo8tGqsEZimkHloS/P596J13AHlYaEVG5HsBu1fPtpVgr4K0ZOtR9+bOJXyucF9DxIiMphIN9uyWAA9z4vau31UVBpi1AsxvuNZRUq0JazMymx+t+eltTa46/25RvPmJYWKdUzpqd+9iZqZElpMhaYF3dX0U6fGvYeGul+pLjQZEBkReF0qK30zo7ix1WrTOamCY50bSh28NK5uL+udlcn9XqCo48SHEk4hZQpJHK5qt1iTmyRYrJjhLxLRmSFjSSfE0OSYufge9lyXUeJ7vSLoTBJbBxeIUhpfEi5n+g2kK6hPJVPz166+cBj2U6RTCb16NgBZf/ZQzfEr/9PIlr2g4/DeI6EX8DnThu+8RMuoBtTRUas6Qa1kEEyCteDtPVNoTtO6fsqDJfbaCP/Aw67Kk5AEjuGAAAAAElFTkSuQmCC" alt="fleg"></span>EN</button></div>
+                    <div
+                        class="navheading">Log in</div>
+                <p class="mb-0">Please log in with your phone number or email</p>
+                <p class="mb-0">If you forget your password, please contact customer service</p>
+            </div>
+            <div class="row navsectiontab mx-0 pb-4">
+                <div class="col-12">
+                    <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation"><button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><div class="iconmob"><i class="fa-solid fa-mobile-screen-button"></i></div><div class="phonelogin">Log in with phone</div></button></li>
+                        <li
+                            class="nav-item" role="presentation"><button class="nav-link mb-1" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><div class="iconmob"><i class="fa-solid fa-envelope"></i></div><div class="phonelogin">Email Login</div></button></li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active phonelogintab" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                            <form action="" class="row mx-0">
+                                <div class="col-12 mb-1"><label for="exampleFormControlInputnumber" class="form-label text-black lebal"><span><i class="fa-solid fa-mobile text-theme1 pe-2"></i></span>Phone number</label>
+                                    <div class="d-flex align-items-center gap-3"><select style="padding-right:24px;" class="form-select  slectinput" aria-label="+91"><option value='91'>+91</option><option value="1">+66 </option><option value="2">+1 USA</option><option value="3">+975 </option></select>
+                                        <input
+                                            type="text" class="form-control text-black bg-white formControl" id="exampleFormControlInputnumber" placeholder="Please enter the phone number" maxlength="15" value=""></div>
+                                </div>
+                                <div class="col-12 mb-1"><label for="exampleFormControlInputpasswoerd" class="form-label text-black lebal"><span><i class="fa-solid fa-lock text-theme1 pe-2"></i></span>Password</label>
+                                    <div class="d-flex align-items-center gap-3 position-relative"><input type="password" class="form-control text-black formControl password" id="exampleFormControlInputpasswoerd" placeholder="Password" maxlength="20" value=""><button type="button" id="eyeicon" onclick="showPass()" style="margin-left: 10px; border-width: 0px;">👁️</button></div>
+                                </div>
+                                <div class="col-12 remindersection">
+                                    <div class="form-check gap-3"><input class="form-check-input rounded-pill shadow-none" type="checkbox" id="flexCheckDefault" value=""><label class="form-check-label text-black mt-1" for="flexCheckDefault">Remember password</label></div>
+                                </div>
+                                <div class="col-12 buttonsection my-1"><button class="btn">Log in</button></div>
+                                <div class="col-12 buttonsection2 my-1 w-100"><a class="btn border-theme1 w-100 text-theme1 bg-transparent buttonin" href="/register">Register</a></div>
+                                <div class="col-6 my-2"><a class="btn border-0 shadow-none forgetbtn" href="/forgetPassword"><span><svg id="icon-clock_b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none"><path d="M49.9046 27.0391C50.0517 27.7139 50.3656 28.3391 50.8158 28.8554H28.6882V25.7923C28.6882 20.1291 33.3609 15.6107 39.5384 15.6107C45.4703 15.6107 49.8701 19.9903 49.8701 25.8288V26.7195V26.8812L49.9046 27.0391ZM56.7053 28.9486C57.2005 28.4152 57.5444 27.755 57.7005 27.0391L57.7349 26.8812V26.7195V25.8559C57.7752 23.4025 57.3256 20.9657 56.4129 18.6958C55.4985 16.4217 54.1382 14.3621 52.4141 12.646L52.4042 12.6362L52.3941 12.6265C48.9558 9.32933 44.4187 7.49241 39.7005 7.50002L39.4816 7.50002L39.4809 7.50002C34.707 7.50203 30.106 9.30237 26.5465 12.55L26.5465 12.55L26.5429 12.5532C24.7253 14.2225 23.276 16.267 22.2885 18.5501C21.3016 20.8319 20.7978 23.3014 20.8092 25.7958V29.6025C18.5861 30.3692 16.6212 31.7782 15.1551 33.6654C13.4403 35.8728 12.507 38.6062 12.5 41.42V41.4237L12.5 59.939L12.5 59.9428C12.5085 63.2588 13.7938 66.4444 16.0873 68.8006C18.3821 71.1582 21.5008 72.4934 24.7634 72.5H24.7665L55.2406 72.5L55.2437 72.5C58.5059 72.4934 61.6239 71.1579 63.9177 68.7998C66.21 66.4432 67.4936 63.2573 67.5 59.9419V59.939L67.5 41.4237L67.5 41.4208C67.4936 38.1049 66.2104 34.9184 63.9184 32.5607C61.9702 30.5565 59.4269 29.2898 56.7053 28.9486Z" fill="var(--main-color)" stroke="#333333" stroke-width="3"></path><path d="M40.0473 39H40.0125C37.8143 39.0425 35.7039 39.888 34.0647 41.3828C32.4254 42.8777 31.366 44.9228 31.0787 47.1467C30.7915 49.3706 31.2956 51.6259 32.4994 53.503C33.7032 55.38 35.5269 56.7543 37.6393 57.3763V61.0402C37.7072 61.3594 37.8362 61.6616 38.0189 61.9297C38.2016 62.1978 38.4345 62.4264 38.7041 62.6024C39.0953 62.8626 39.5524 63.0008 40.0195 63C40.1926 62.9987 40.3651 62.9796 40.5345 62.9432C40.9997 62.8434 41.4263 62.6076 41.7624 62.2647C42.0986 61.9217 42.3296 61.4864 42.4275 61.0118V57.355C44.5245 56.7199 46.3306 55.3423 47.5209 53.4698C48.7112 51.5973 49.2075 49.3529 48.9206 47.1404C48.6337 44.9279 47.5824 42.8924 45.9558 41.4002C44.3292 39.9079 42.2341 39.0568 40.0473 39ZM44.4179 48.3444C44.4188 48.9318 44.3063 49.5137 44.0868 50.0568C43.8673 50.5999 43.5452 51.0936 43.1387 51.5096C42.7322 51.9257 42.2493 52.256 41.7177 52.4816C41.1861 52.7073 40.6161 52.8239 40.0404 52.8249C38.8787 52.8249 37.7645 52.3545 36.9425 51.5171C36.1204 50.6798 35.6577 49.5438 35.6558 48.3586C35.6503 47.1722 36.1069 46.0321 36.9253 45.1892C37.7436 44.3463 38.8566 43.8696 40.0195 43.8639C41.1823 43.8583 42.2998 44.3241 43.1259 45.1591C43.9521 45.994 44.4194 47.1296 44.4249 48.316L44.4179 48.3444Z" fill="#fff"></path></svg></span>Forgot password</a></div>
+                                <div
+                                    class="col-6 my-2"><a class="btn border-0 shadow-none forgetbtn" href="/customerSupport"><span><svg id="icon-customer_b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none"><path d="M67 69V32.995C67 18.6387 55.1352 7 40.5 7C25.8648 7 14 18.6387 14 32.995V69H67Z" fill="var(--main-color)"></path><path d="M66.7456 71H14.2527C13.5609 71 13 70.4314 13 69.7301V32.8776C13 17.5058 25.3364 5 40.5 5C55.6636 5 68 17.5058 68 32.8776V69.7301C67.9983 70.4314 67.4374 71 66.7456 71ZM15.5055 68.4593H65.4921V32.8776C65.4921 18.9067 54.28 7.5407 40.4983 7.5407C26.7167 7.5407 15.5055 18.9067 15.5055 32.8776V68.4593Z" fill="#333333"></path><path d="M49.7097 19C49.6927 19.0617 44.433 38.0444 19.0017 38.0452C19.0017 38.0669 19 38.0886 19 38.1102V51.854C19 63.5328 28.6257 73 40.5 73C52.3743 73 62 63.5328 62 51.854V38.1102C62 38.0886 61.9983 38.0669 61.9983 38.0452C48.6252 38.0436 49.7063 19.0675 49.7097 19Z" fill="white"></path><path d="M48.1738 22.339C48.7436 22.8348 49.2835 23.3623 49.7969 23.9139C49.4666 21.1199 49.5873 19.0225 49.5881 19C49.5839 19.0167 49.2057 20.3658 48.1738 22.339ZM62 38.1099C62 38.0883 61.9983 38.0666 61.9983 38.045C59.1764 38.045 56.9937 37.2142 55.3029 35.9025C55.3808 36.6283 55.4244 37.3641 55.4244 38.1108V51.8543C55.4244 62.4438 47.4311 71.2151 37 72.7583H37.0009C37.3157 72.805 37.634 72.8433 37.9532 72.8758C38.0567 72.8867 38.1611 72.895 38.2646 72.905C38.5016 72.9267 38.7404 72.9442 38.9799 72.9583C39.0818 72.9642 39.1836 72.9708 39.2854 72.975C39.6174 72.99 39.9511 73 40.2874 73C42.9107 73 45.4246 72.5467 47.7528 71.7167C52.4083 70.0568 56.3177 66.8878 58.8564 62.8188C59.2192 62.2372 59.5537 61.638 59.8583 61.0214C61.2308 58.2482 61.9991 55.1383 61.9991 51.8535V38.1099H62Z" fill="var(--icon1)"></path><path d="M71.4825 54H61.7478V38H71.4817C71.7681 38 72 38.2408 72 38.5381V53.461C72.0008 53.7592 71.7689 54 71.4825 54ZM9.5183 54H19.2522V38H9.5183C9.23194 38 9 38.2408 9 38.5381V53.461C9 53.7592 9.23194 54 9.5183 54Z" fill="var(--main-color)"></path><path d="M67.5549 55H61.5798C60.8903 55 60.3313 54.4343 60.3313 53.7366V38.2651C60.3313 37.5674 60.8903 37.0017 61.5798 37.0017H67.5549C70.557 37.0017 73 39.473 73 42.5116V49.4917C72.9992 52.5287 70.557 55 67.5549 55ZM62.8283 52.4724H67.5549C69.1797 52.4724 70.5021 51.1342 70.5021 49.4901V42.5099C70.5021 40.8658 69.1797 39.5276 67.5549 39.5276H62.8283V52.4724ZM19.4202 55H13.4451C10.443 55 8 52.5287 8 49.4901V42.5099C8 39.4721 10.4422 37 13.4451 37H19.4202C20.1097 37 20.6687 37.5657 20.6687 38.2634V53.7349C20.6696 54.4343 20.1105 55 19.4202 55ZM13.4451 39.5284C11.8203 39.5284 10.4979 40.8666 10.4979 42.5108V49.4909C10.4979 51.1351 11.8203 52.4732 13.4451 52.4732H18.1717V39.5284H13.4451Z" fill="#333333"></path><path d="M40.5 75C28.0936 75 18 64.8638 18 52.4049V38.5405C18 38.5127 18.0008 38.485 18.0017 38.4573C18.005 37.7612 18.5675 37.2106 19.2598 37.2106C29.2764 37.2106 37.2144 34.1465 42.8547 28.105C47.0778 23.5808 48.3719 18.9767 48.3845 18.9304C48.5553 18.3067 49.1672 17.9124 49.8025 18.0167C50.4379 18.1217 50.8924 18.6892 50.8556 19.3348C50.8497 19.4348 50.3475 29.4802 55.0376 34.4618C56.7788 36.3112 58.9711 37.2098 61.7402 37.2106C62.4291 37.2106 62.99 37.7671 62.9983 38.4581C62.9992 38.4892 63 38.5153 63 38.5405V52.4049C63.0008 64.8638 52.9073 75 40.5 75ZM20.5171 39.7224V52.4049C20.5171 63.47 29.4815 72.4722 40.5 72.4722C51.5185 72.4722 60.4829 63.47 60.4829 52.4049V39.6837C57.5849 39.4248 55.1406 38.2538 53.2028 36.1935C50.1951 32.9949 49.0198 28.2698 48.5745 24.6088C47.6638 26.1749 46.424 27.9629 44.7658 29.7526C40.6808 34.1634 33.1881 39.3954 20.5171 39.7224Z" fill="#333333"></path><path d="M66.7365 64H40.2635C39.5658 64 39 63.441 39 62.7517C39 62.0623 39.5658 61.5033 40.2635 61.5033H65.4729V54.2483C65.4729 53.559 66.0387 53 66.7365 53C67.4342 53 68 53.559 68 54.2483V62.7525C68 63.441 67.4342 64 66.7365 64Z" fill="#333333"></path><path d="M42.7986 66H38.2014C36.4333 66 35 64.4331 35 62.5C35 60.5669 36.4333 59 38.2014 59H42.7986C44.5667 59 46 60.5669 46 62.5C46 64.4331 44.5667 66 42.7986 66Z" fill="var(--main-color)"></path><path d="M42.393 67H37.6079C35.0677 67 33 64.9811 33 62.5C33 60.0189 35.0669 58 37.6079 58H42.393C44.9331 58 47 60.0189 47 62.5C47.0008 64.9811 44.934 67 42.393 67ZM37.6087 60.4902C36.4739 60.4902 35.5512 61.3916 35.5512 62.5C35.5512 63.6084 36.4739 64.5098 37.6087 64.5098H42.3938C43.5286 64.5098 44.4514 63.6084 44.4514 62.5C44.4514 61.3916 43.5286 60.4902 42.3938 60.4902H37.6087Z" fill="#333333"></path></svg></span>Customer Service</a></div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade phonelogintab" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                        <form action="" class="row mx-0">
+                            <div class="col-12 mb-1"><label for="exampleFormControlInputnumber" class="form-label text-black lebal"><span><i class="fa-solid fa-envelope text-theme1 pe-2"></i></span>Mail</label>
+                                <div class="d-flex align-items-center gap-3"><input type="email" class="form-control text-black formControl" id="exampleFormControlInputnumber" maxlength="50" placeholder="please input your email" value=""></div>
+                            </div>
+                            <div class="col-12 mb-1"><label for="exampleFormControlInputPassword" class="form-label text-black lebal"><span><i class="fa-solid fa-lock text-theme1 pe-2"></i></span>Password</label>
+                                <div class="d-flex align-items-center gap-3"><input type="password" class="form-control text-black formControl password" id="exampleFormControlInputPassword" placeholder="Password" maxlength="20" value=""></div>
+                            </div>
+                            <div class="col-12 remindersection">
+                                <div class="form-check gap-3"><input class="form-check-input rounded-pill shadow-none" type="checkbox" id="flexCheckDefault" value=""><label class="form-check-label text-white mt-1" for="flexCheckDefault">Remember password</label></div>
+                            </div>
+                            <div class="col-12 buttonsection my-1"><button class="btn">Log in</button></div>
+                            <div class="col-12 buttonsection2 my-1 w-100"><a class="btn border-theme1 w-100 text-theme1 bg-transparent buttonin" href="/register">Register</a></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>  
+    <script>
+        $(document).ready(function() {
+            // Select the overlay element
+            $('.van-overlay').fadeIn(10);
+        });
+        $(window).on('load', function() {
+            // Select the overlay element
+            $('.van-overlay').fadeIn(10);
+            setTimeout(function() {
+                $('.van-overlay').fadeOut(300);
+            }, 600);
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function unsetCookie() {
+            setCookie('token', '', 0);
+            setCookie('auth', '', 0);
+        }
+        // $.ajax({
+        //     type: "GET",
+        //     url: "/api/webapi/GetUserInfo",
+        //     data: {
+
+        //     },
+        //     dataType: "json",
+        //     success: function (response) {
+        //         if (data.status === false) {
+        //             unsetCookie();
+        //             return false;
+        //         };
+        //         location.href = "/";
+        //     }
+        // });
+        // fetch('/api/webapi/GetUserInfo')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         if (data.status === false) {
+        //             unsetCookie();
+        //             return false;
+        //         };
+        //         location.href = "/";
+        //     });
+    </script>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function alertMess(text) {
+            let length = $('.alert-toast .msg').length;
+            if (length == 0) {
+                $('.alert-toast').append(
+                    `
+                    <div data-v-1dcba851="" class="msg">
+                        <div data-v-1dcba851="" class="msg-content" style=""> ${text} </div>
+                    </div>
+                    `
+                );
+                setTimeout(() => {
+                    $('.msg').fadeOut();
+                    setTimeout(() => {
+                        $('.alert-toast .msg').remove();
+                    }, 100);
+                }, 1500);
+            }
+        }
+
+        function validateForm(username, password, text) {
+            if (!username || !password) {
+                alertMess(text);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        $('button').click(async(e) => {
+            e.preventDefault();
+            let username = $('input:eq(0)').val().trim();
+            let password = $('input:eq(1)').val().trim();
+
+            {
+                $('.van-overlay').fadeIn(10);
+                $.ajax({
+                    type: "POST",
+                    url: "/api/webapi/login",
+                    data: {
+                        username: username,
+                        pwd: password,
+                    },
+                    dataType: "json",
+                    success: function(response) {
+
+
+                        //console.log(response);
+                        if (response.status === true) {
+                            $('.van-overlay').fadeOut(300);
+                            $('.Loading').fadeIn(10);
+                            setCookie('token', response.token, 1);
+                            setCookie('auth', response.value, 1);
+
+                            // alertMess(response.message);
+                            setTimeout(() => {
+                                location.href = '/home';
+                            }, 500);
+                        } else {
+                            $('.van-overlay').fadeOut(300);
+                            alertMess(response.message);
+
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
+    <script>
+        let getWBody = $('.mian').width();
+
+        $('html').css('font-size', `${getWBody / 10}px`);
+        $('.van-tabbar .van-tabbar-item').css({
+            'transform': 'scale(0.9)',
+        });
+        $(window).resize(() => {
+            let getWBody = $('.mian').width();
+            $('html').css('font-size', `${getWBody / 10}px`);
+            $('.van-tabbar .van-tabbar-item').css({
+                'transform': 'scale(0.9)',
+            });
+        });
+
+        function showPass() {
+            var x = document.getElementById("exampleFormControlInputpasswoerd");
+            var y = document.getElementById("eyeicon");
+            if (x.type === "password") {
+                x.type = "text";
+                y.src = "./index_files/eyeVisible-7bc1c956.png";
+            } else {
+                x.type = "password";
+                y.src = "./index_files/eyeInvisible-2fa5c152.png";
+            }
+        }
+    </script>
+</body>
+
+</html>

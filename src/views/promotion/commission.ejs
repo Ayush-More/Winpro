@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commission Detail - DeltInWin</title>
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+</head>
+
+<body style="font-size: 12px;">
+    <div id="root">
+        <div class="mainApp">
+            <div class="container-fluid" style="padding: 4px 12px;">
+                <!-- Header -->
+                <div class="row align-items-center mb-3">
+                        <a href="/promotion" class="text-decoration-none">
+                            <i class="fa-solid fa-arrow-left text-theme1" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h5 class="mb-0 text-theme1 fw-bold">Commission Detail</h5>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+                <!-- Commission Summary -->
+                <div class="row mb-3" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                    <div class="col-12" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                        <div class="card bg-gradient-primary text-white border-0 rounded-3" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                            <div class="card-body" style="
+    background: linear-gradient(90deg, #E67302 0%, #ee0a24 100%);
+">
+                                <div class="row text-center" style="
+">
+                                    <div class="col-4">
+                                        <h6 class="card-title mb-1">Today</h6>
+                                        <h4 class="mb-0" id="today-commission">₹0.00</h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="card-title mb-1">This Week</h6>
+                                        <h4 class="mb-0" id="week-commission">₹0.00</h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="card-title mb-1">Total</h6>
+                                        <h4 class="mb-0" id="total-commission">₹26589.21</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commission Types -->
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body text-center py-2">
+                                <i class="fa-solid fa-user-plus text-primary mb-2" style="font-size: 24px;"></i>
+                                <h6 class="card-title mb-1">Referral Commission</h6>
+                                <h5 class="mb-0 text-success" id="referral-commission">₹0.00</h5>
+                                <small class="text-muted">Direct referral earnings</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body text-center py-2">
+                                <i class="fa-solid fa-layer-group text-warning mb-2" style="font-size: 24px;"></i>
+                                <h6 class="card-title mb-1">Level Commission</h6>
+                                <h5 class="mb-0 text-success" id="level-commission">₹0.00</h5>
+                                <small class="text-muted">Multi-level earnings</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Commission Types -->
+                <div class="row mb-3">
+                    <!-- <div class="col-6">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body text-center py-2">
+                                <i class="fa-solid fa-credit-card text-info mb-2" style="font-size: 24px;"></i>
+                                <h6 class="card-title mb-1">Recharge Commission</h6>
+                                <h5 class="mb-0 text-success" id="recharge-commission">₹0.00</h5>
+                                <small class="text-muted">Recharge bonuses</small>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-6">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body text-center py-2">
+                                <i class="fa-solid fa-gift text-success mb-2" style="font-size: 24px;"></i>
+                                <h6 class="card-title mb-1">Invite Bonus</h6>
+                                <h5 class="mb-0 text-success" id="invite-bonus">₹0.00</h5>
+                                <small class="text-muted">Invitation rewards</small>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="row mb-3 d-none">
+                    <div class="col-12">
+                        <ul class="nav nav-pills nav-fill bg-light rounded-3 p-1">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-period="today" href="javascript:void(0)">Today</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-period="week" href="javascript:void(0)">This Week</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-period="month" href="javascript:void(0)">This Month</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-period="all" href="javascript:void(0)">All Time</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Commission History -->
+                <div class="row d-none">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3">
+                            <div class="card-header bg-theme1 text-white">
+                                <h6 class="mb-0">Commission History</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="commission-list" class="list-group list-group-flush">
+                    <div class="list-group-item text-center py-4">
+                        <i class="fa-solid fa-chart-line text-muted" style="font-size: 48px;"></i>
+                        <p class="mt-2 mb-0 text-muted">No commission history found</p>
+                    </div>
+                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salary Information -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-theme1 mb-3">Salary Information</h6>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="badge bg-primary mb-1">Daily</div>
+                                            <div class="fw-bold" id="daily-salary">₹0.00</div>
+                                            <small class="text-muted">Daily Salary</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="badge bg-success mb-1">Weekly</div>
+                                            <div class="fw-bold" id="weekly-salary">₹0.00</div>
+                                            <small class="text-muted">Weekly Salary</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="badge bg-warning mb-1">Monthly</div>
+                                            <div class="fw-bold" id="monthly-salary">₹0.00</div>
+                                            <small class="text-muted">Monthly Salary</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commission Rates -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card border-0 rounded-3 bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-theme1 mb-3">Commission Rates</h6>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="text-center">
+                                            <div class="badge bg-primary mb-1">Level 1</div>
+                                            <div class="fw-bold">5%</div>
+                                            <small class="text-muted">Direct Referrals</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-center">
+                                            <div class="badge bg-secondary mb-1">Level 2</div>
+                                            <div class="fw-bold">2%</div>
+                                            <small class="text-muted">Indirect Referrals</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="van-overlay" style="z-index: 2000; display: none;">
+                <div class="Loading">
+                    <div class="van-loading van-loading--spinner van-loading--vertical">
+                        <span class="van-loading__spinner van-loading__spinner--spinner" style="width: 30px; height: 30px;">
+                            <svg viewBox="25 25 50 50" class="circular">
+                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                            </svg>
+                        </span>
+                        <span class="van-loading__text">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/client.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            loadCommissionData();
+
+            // Period filter functionality
+            $('.nav-link[data-period]').on('click', function() {
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+                const period = $(this).data('period');
+                filterCommissions(period);
+            });
+        });
+
+        function loadCommissionData() {
+            $('.van-overlay').fadeIn(10);
+
+            // Fetch commission data
+            $.ajax({
+                type: "POST",
+                url: "/api/webapi/commission",
+                data: {},
+                dataType: "json",
+                success: function(response) {
+                    console.log('Commission Data:', response);
+
+                    if (response.status === true) {
+                        updateCommissionUI(response);
+                    } else {
+                        showNoData();
+                    }
+                    $('.van-overlay').fadeOut(10);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching commission data:', error);
+                    showError('Failed to load commission data');
+                    $('.van-overlay').fadeOut(10);
+                }
+            });
+        }
+
+        function updateCommissionUI(data) {
+            // Update commission summary using the correct API response structure
+            const todayCommission = parseFloat(data.totalTodayIncome|| 0  );
+             const totalWeekIncome = parseFloat(data.totalWeekIncome|| 0  );
+            
+            const totalCommission = parseFloat(data.totalCommission || 0);
+            const referralCommission = parseFloat(data.refCommission || 0);
+            const levelCommission = parseFloat(data.levelCommission || 0);
+            const rechargeCommission = parseFloat(data.rechargeCommission || 0);
+            const inviteBonus = parseFloat(data.inviteBonuss || 0);
+
+            // Calculate team commission (level + recharge + other commissions)
+            const teamCommission = levelCommission + rechargeCommission;
+
+ 
+//
+            // Update main commission display
+            $('#today-commission').text(`₹${todayCommission.toFixed(2)}`);
+            $('#total-commission').text(`₹${totalCommission.toFixed(2)}`);
+            $('#referral-commission').text(`₹${referralCommission.toFixed(2)}`);
+            $('#team-commission').text(`₹${teamCommission.toFixed(2)}`);
+
+            // Calculate week commission estimate (today * 7)
+            $('#week-commission').text(`₹${(totalWeekIncome).toFixed(2)}`);
+
+            // Update additional commission types if elements exist
+            if ($('#level-commission').length) {
+                $('#level-commission').text(`₹${levelCommission.toFixed(2)}`);
+            }
+            if ($('#recharge-commission').length) {
+                $('#recharge-commission').text(`₹${rechargeCommission.toFixed(2)}`);
+            }
+            if ($('#invite-bonus').length) {
+                $('#invite-bonus').text(`₹${inviteBonus.toFixed(2)}`);
+            }
+
+            // Update salary information
+            if ($('#daily-salary').length) {
+                $('#daily-salary').text(`₹${parseFloat(data.totalDailySalary || 0).toFixed(2)}`);
+            }
+            if ($('#weekly-salary').length) {
+                $('#weekly-salary').text(`₹${parseFloat(data.totalWeeklySalary || 0).toFixed(2)}`);
+            }
+            if ($('#monthly-salary').length) {
+                $('#monthly-salary').text(`₹${parseFloat(data.totalMonthlySalary || 0).toFixed(2)}`);
+            }
+
+            // Render commission history
+            renderCommissionHistory(data.history || []);
+        }
+
+        function renderCommissionHistory(history) {
+            const listContainer = $('#commission-list');
+            listContainer.empty();
+
+            if (history.length === 0) {
+                listContainer.html(`
+                    <div class="list-group-item text-center py-4">
+                        <i class="fa-solid fa-chart-line text-muted" style="font-size: 48px;"></i>
+                        <p class="mt-2 mb-0 text-muted">No commission history found</p>
+                    </div>
+                `);
+                return;
+            }
+
+            history.forEach(item => {
+                const date = new Date(item.time || 0).toLocaleDateString();
+                const amount = parseFloat(item.amount || 0);
+                const type = item.type || 'Commission';
+
+                const listItem = `
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">${type}</h6>
+                                <small class="text-muted">${date}</small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-success">+₹${amount.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listContainer.append(listItem);
+            });
+        }
+
+        function filterCommissions(period) {
+            console.log('Filtering by period:', period);
+            // Implement period filtering logic here
+            // You might need to make another API call with the period parameter
+        }
+
+        function showNoData() {
+            $('#commission-list').html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-chart-line text-muted" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-muted">No commission data available</p>
+                </div>
+            `);
+        }
+
+        function showError(message) {
+            $('#commission-list').html(`
+                <div class="list-group-item text-center py-4">
+                    <i class="fa-solid fa-exclamation-triangle text-danger" style="font-size: 48px;"></i>
+                    <p class="mt-2 mb-0 text-danger">${message}</p>
+                    <button class="btn btn-primary btn-sm mt-2" onclick="loadCommissionData()">Retry</button>
+                </div>
+            `);
+        }
+    </script>
+</body>
+
+</html>

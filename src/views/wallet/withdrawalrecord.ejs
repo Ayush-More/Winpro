@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.16px;">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw History</title>
+    <!-- Foontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" crossorigin="" href="/index_files/index-BUBUniRp.css">
+    <style id="_goober">
+        @keyframes go2264125279 {
+            from {
+                transform: scale(0) rotate(45deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go3020080000 {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go463499852 {
+            from {
+                transform: scale(0) rotate(90deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(90deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go1268368563 {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes go1310225428 {
+            from {
+                transform: scale(0) rotate(45deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes go651618207 {
+            0% {
+                height: 0;
+                width: 0;
+                opacity: 0;
+            }
+            40% {
+                height: 0;
+                width: 6px;
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                height: 10px;
+            }
+        }
+        
+        @keyframes go901347462 {
+            from {
+                transform: scale(0.6);
+                opacity: 0.4;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .go4109123758 {
+            z-index: 9999;
+        }
+        
+        .go4109123758>* {
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body style="font-size: 12px; background-color: #f8f9fa;">
+
+    <body cz-shortcut-listen="true">
+        <div id="root">
+            <div class="">
+                <a href="/customerSupport">
+                    <div class="iconrob" style="position: fixed; right: 0px; bottom: 0px; width: 40px; height: 40px;"><img src="/images/icon-BMOz9JeZ.png" alt="Draggable Icon" style="position: absolute; left: -50px; top: -50px; cursor: move;"></div>
+                </a>
+            </div>
+            <div class="mainApp">
+                <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
+                <div class="container-fluid subordinate headertop bg-white rounded-0 py-0" style="
+    background: var(--main_gradient-color);
+    color: #fff !important;
+">
+                    <div class="row align-items-center">
+                        <div class="col-auto text-center" style="
+    padding: 0;
+"><a class="btn hedbtn text-end shadow-none me-auto" href="/wallet"><span><i class="fa-solid fa-angle-left text-center text-black" style="
+    color: #fff;
+"></i></span></a></div>
+                        <div class="col">
+                            <div class="headertext text-center fw-bold">Withdraw History</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Loading State -->
+                <div id="loading-state" class="container-fluid lotterysectionsection1 mb-1" style="display: none;">
+                    <div class="row">
+                        <div class="col-12 text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2 text-muted">Loading withdrawal history...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="container-fluid lotterysectionsection1 mb-1" style="display: none;">
+                    <div class="row">
+                        <div class="col-12 text-center py-5">
+                            <i class="fa-solid fa-receipt fa-3x text-muted mb-1"></i>
+                            <h6 class="text-muted">No withdrawal records found</h6>
+                            <p class="text-muted small">Your withdrawal history will appear here</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Withdrawal Records Container -->
+                <div id="withdrawal-records-container" class="container-fluid lotterysectionsection1 mb-1" style="">
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        // Global variables
+        let allWithdrawals = [];
+
+        $(document).ready(function() {
+            loadWithdrawalHistory();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Copy text functionality
+            $(document).on('click', '.copytext', function() {
+                const text = $(this).text().trim();
+                copyToClipboard(text);
+            });
+
+            // Hash link clicks
+            $(document).on('click', '.hash-link', function(e) {
+                e.preventDefault();
+                const hash = $(this).data('hash');
+                if (hash && hash !== 'N/A') {
+                    window.open(`https://bscscan.com/tx/${hash}`, '_blank');
+                }
+            });
+        }
+
+        function loadWithdrawalHistory() {
+            $('#loading-state').show();
+            $('#empty-state').hide();
+            $('#withdrawal-records-container').hide();
+
+            $.ajax({
+                type: "GET",
+                url: "/api/webapi/withdraw/list",
+                dataType: "json",
+                success: function(response) {
+                    console.log('Withdrawal history response:', response);
+
+                    if (response.datas && response.datas.length > 0) {
+                        allWithdrawals = response.datas;
+                        renderWithdrawals(allWithdrawals);
+                    } else {
+                        showEmptyState();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading withdrawal history:', error);
+                    showError('Failed to load withdrawal history');
+                },
+                complete: function() {
+                    $('#loading-state').hide();
+                }
+            });
+        }
+
+        function renderWithdrawals(withdrawals) {
+            if (withdrawals.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            let html = '';
+            withdrawals.forEach((withdrawal, index) => {
+                        const amount = parseFloat(withdrawal.money) || 0;
+                        const usdtAmount = parseFloat(withdrawal.usdt_amount) || 0;
+                        const requestedDate = formatDate(withdrawal.time);
+                        const paidDate = formatDate(withdrawal.paid_time || withdrawal.updated_at);
+                        const status = getStatusInfo(withdrawal.status);
+                        const txnHash = withdrawal.txn_hash || 'N/A';
+                        const remark = withdrawal.remark || withdrawal.reason || 'No remarks';
+                        const withdrawMethod = withdrawal.mode || (usdtAmount > 0 ? 'usdt' : 'bank');
+
+                        html += `
+                    <div class="row">
+                        <div class="col-12 px-1 px-2">
+                            <div class="card withdrwalcard border-0 mb-1">
+                                <div class="card-body p-1 p-sm-2">
+                                    <div class="buttonfiledsection pb-2 mb-1">
+                                        <button class="btn depositbtn">${withdrawMethod === 'usdt' ? 'USDT Withdraw' : 'Bank Withdraw'}</button>
+                                    </div>
+
+                                    <div class="text-section mb-1">
+                                        <div class="heading">Requested Amount (INR)</div>
+                                        <div class="subheading text-success fw-bold">₹ ${amount.toFixed(2)}</div>
+                                    </div>
+
+                                    <div class="text-section mb-1">
+                                        <div class="heading">Requested Amount (USDT)</div>
+                                        <div class="subheading text-success fw-bold">$ ${usdtAmount.toFixed(2)}</div>
+                                    </div>
+
+                                    <div class="text-section mb-1">
+                                        <div class="heading">Txn Hash</div>
+                                        <div class="subheading text-black">
+                                            ${txnHash !== 'N/A' ?
+                                                `<a href="#" class="hash-link" data-hash="${txnHash}" target="_blank" style="text-decoration: none;">View Hash</a>` :
+                                                'N/A'
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="text-section mb-1">
+                                        <div class="heading">Requested Date</div>
+                                        <div class="subheading text-black">${requestedDate}</div>
+                                    </div>
+
+                                    <div class="text-section mb-1">
+                                        <div class="heading">Status</div>
+                                        <div class="subheading ${status.colorClass}">${status.text}</div>
+                                    </div>
+
+                                    <div class="text-section mb-1">
+                                        <div class="heading">Paid Date</div>
+                                        <div class="subheading text-black">${paidDate}</div>
+                                    </div>
+
+                                    <div class="text-section mb-1">
+                                        <div class="heading">Remark</div>
+                                        <div class="subheading copytext text-black" style="cursor: pointer;">${remark}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            $('#withdrawal-records-container').html(html).show();
+            $('#empty-state').hide();
+        }
+
+        function getStatusInfo(status) {
+            switch(parseInt(status)) {
+                case 1:
+                    return {
+                        text: 'Success',
+                        colorClass: 'text-success'
+                    };
+                case 2:
+                    return {
+                        text: 'Cancel',
+                        colorClass: 'text-danger'
+                    };
+                case 0:
+                default:
+                    return {
+                        text: 'Pending',
+                        colorClass: 'text-warning'
+                    };
+            }
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return 'N/A';
+
+            try {
+                const date = new Date(Number(timestamp));
+                if (isNaN(date.getTime())) return 'N/A';
+
+                return date.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                });
+            } catch (error) {
+                console.error('Date formatting error:', error);
+                return 'N/A';
+            }
+        }
+
+        function copyToClipboard(text) {
+            if (!text || text.trim() === '') {
+                showAlert('No text to copy', 'warning');
+                return;
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() {
+                    showAlert('Text copied to clipboard!', 'success');
+                }).catch(function(err) {
+                    console.error('Could not copy text: ', err);
+                    fallbackCopyTextToClipboard(text);
+                });
+            } else {
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showAlert('Text copied to clipboard!', 'success');
+                } else {
+                    showAlert('Failed to copy text', 'error');
+                }
+            } catch (err) {
+                console.error('Fallback: Could not copy text: ', err);
+                showAlert('Copy not supported on this browser', 'error');
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        function showEmptyState() {
+            $('#withdrawal-records-container').hide();
+            $('#empty-state').show();
+        }
+
+        function showError(message) {
+            showAlert(message, 'error');
+            showEmptyState();
+        }
+
+        function showAlert(message, type = 'info') {
+            // Remove any existing alerts first
+            $('.custom-alert').remove();
+
+            const alertClass = type === 'success' ? 'alert-success' :
+                              type === 'error' ? 'alert-danger' :
+                              type === 'warning' ? 'alert-warning' : 'alert-info';
+
+            const iconClass = type === 'success' ? 'fa-check-circle' :
+                             type === 'error' ? 'fa-exclamation-triangle' :
+                             type === 'warning' ? 'fa-exclamation-circle' : 'fa-info-circle';
+
+            const alertHtml = `
+                <div class="alert ${alertClass} alert-dismissible fade show position-fixed custom-alert"
+                     style="top: 80px; right: 20px; z-index: 9999; min-width: 300px; max-width: 400px;">
+                    <i class="fa-solid ${iconClass} me-2"></i>
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+
+            $('body').append(alertHtml);
+
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                $('.custom-alert').fadeOut(500, function() {
+                    $(this).remove();
+                });
+            }, 4000);
+        }
+    </script>
+</body>
+
+</html>
